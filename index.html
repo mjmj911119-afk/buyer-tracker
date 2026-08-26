@@ -3,32 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>은별이방 기록</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
   padding:22px 14px 45px;
   min-height:100vh;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Apple SD Gothic Neo",
-    "Noto Sans KR",
-    sans-serif;
-
-  color:#543c47;
-
-  background:
-    radial-gradient(circle at top left,#fff 0,transparent 35%),
-    radial-gradient(circle at top right,#ffe3ef 0,transparent 35%),
-    linear-gradient(180deg,#fff9fc 0%,#fff1f6 55%,#fff8fb 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  color:#5e4350;
+  background:linear-gradient(180deg,#fff9fc 0%,#fff0f6 55%,#fff8fb 100%);
 }
 
 .container{
@@ -36,112 +22,121 @@ body{
   margin:auto;
 }
 
+/* 상단 */
 .hero{
-  position:relative;
-  overflow:hidden;
-
   padding:30px 24px;
-  margin-bottom:18px;
-
-  border-radius:27px;
-
+  margin-bottom:20px;
+  border-radius:28px;
   color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f49abb 0%,
-      #efa7c3 55%,
-      #dcb3d2 100%
-    );
-
-  box-shadow:
-    0 15px 35px rgba(215,110,155,.20);
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  width:190px;
-  height:190px;
-  right:-55px;
-  top:-100px;
-  border-radius:50%;
-  background:rgba(255,255,255,.17);
+  background:linear-gradient(135deg,#f49abb,#eaa8c1 55%,#dca9c2);
+  box-shadow:0 14px 35px rgba(215,110,155,.20);
 }
 
 .hero h1{
-  position:relative;
-  margin:0 0 7px;
+  margin:0 0 6px;
   font-size:28px;
-  z-index:1;
 }
 
 .hero p{
-  position:relative;
   margin:0;
-  color:#fff7fb;
   font-size:14px;
-  z-index:1;
+  color:#fff8fb;
 }
 
-.card{
-  padding:19px;
-  margin-bottom:16px;
-
-  border:1px solid #f1dce5;
+/* 큰 메뉴 */
+.section{
+  margin-bottom:14px;
+  overflow:hidden;
+  border:1px solid #f0d7e2;
   border-radius:22px;
+  background:white;
+  box-shadow:0 7px 22px rgba(190,100,140,.07);
+}
 
-  background:rgba(255,255,255,.97);
+.section-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#fff,#fff0f6);
+  user-select:none;
+}
 
-  box-shadow:
-    0 8px 25px rgba(180,100,135,.07);
+.section-header:hover{
+  background:#fff3f7;
 }
 
 .section-title{
-  margin-bottom:14px;
-  font-size:18px;
-  font-weight:850;
-  color:#704e5e;
+  font-size:19px;
+  font-weight:900;
+  color:#704d5d;
 }
 
+.section-sub{
+  margin-top:4px;
+  color:#b28b9c;
+  font-size:12px;
+}
+
+.section-icon{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#fbe6ef;
+  color:#c67d9c;
+  font-size:19px;
+  transition:.25s;
+}
+
+.section.open .section-icon{
+  transform:rotate(180deg);
+}
+
+.section-content{
+  display:none;
+  padding:18px;
+  border-top:1px solid #f4e4eb;
+}
+
+.section.open .section-content{
+  display:block;
+}
+
+/* 입력 */
 .form{
   display:grid;
-  grid-template-columns:1fr 1fr 110px 145px;
-  gap:10px;
+  grid-template-columns:1fr 1fr 110px 140px;
+  gap:9px;
 }
 
 .hot-form{
   display:grid;
-  grid-template-columns:1fr 160px 145px;
-  gap:10px;
+  grid-template-columns:1fr 160px 140px;
+  gap:9px;
 }
 
 input{
   width:100%;
-  padding:14px;
-
+  padding:13px;
   border:1.5px solid #efd3df;
-  border-radius:13px;
-
+  border-radius:12px;
   outline:none;
-
-  color:#5a3d4b;
   background:#fffafd;
-
+  color:#5e4350;
   font-size:16px;
 }
 
-input::placeholder{
-  color:#b69aa7;
+input:focus{
+  border-color:#e699b7;
+  box-shadow:0 0 0 3px rgba(230,150,185,.10);
 }
 
-input:focus{
-  border-color:#e59bb8;
-  background:white;
-
-  box-shadow:
-    0 0 0 4px rgba(230,150,185,.12);
+input::placeholder{
+  color:#b89aa7;
 }
 
 button{
@@ -150,392 +145,251 @@ button{
 }
 
 .add{
-  min-height:48px;
-
   border:0;
-  border-radius:13px;
-
+  border-radius:12px;
   color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #eb8caf,
-      #df9fbd
-    );
-
-  font-size:16px;
-  font-weight:800;
-
-  box-shadow:
-    0 7px 17px rgba(215,110,155,.17);
-}
-
-.add:active{
-  transform:scale(.98);
+  background:linear-gradient(135deg,#ed8fb1,#dda0ba);
+  font-weight:850;
+  font-size:15px;
 }
 
 .tip{
-  margin-top:10px;
-  color:#ad8799;
+  margin:9px 0 15px;
+  color:#ae8999;
   font-size:12px;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.stat{
-  padding:15px 7px;
-
-  border:1px solid #f0dce5;
-  border-radius:18px;
-
-  text-align:center;
-
-  box-shadow:
-    0 5px 15px rgba(180,100,135,.04);
-}
-
-.stat:nth-child(1){
-  background:
-    linear-gradient(135deg,#fff,#ffe8f1);
-}
-
-.stat:nth-child(2){
-  background:
-    linear-gradient(135deg,#fff8fb,#f9e1eb);
-}
-
-.stat:nth-child(3){
-  background:
-    linear-gradient(135deg,#fff,#f3e5ed);
-}
-
-.stat span{
-  display:block;
-  margin-bottom:5px;
-  color:#ae8899;
-  font-size:12px;
-}
-
-.stat strong{
-  color:#694859;
-  font-size:21px;
-}
-
-/* 구매자 */
-
-.buyer-card,
-.hot-card{
-  margin-bottom:11px;
-
+/* 열혈 */
+.hot-card,
+.buyer-card{
+  margin-bottom:9px;
   overflow:hidden;
-
-  border:1px solid #efd9e3;
-  border-radius:17px;
-
+  border:1px solid #efdbe4;
+  border-radius:16px;
   background:white;
-
-  box-shadow:
-    0 4px 13px rgba(180,100,135,.04);
 }
 
-.buyer-card.dragging,
-.hot-card.dragging{
-  opacity:.65;
-  transform:scale(1.015);
-
-  box-shadow:
-    0 13px 30px rgba(200,100,145,.16);
-}
-
-.buyer-header,
-.hot-header{
+.hot-header,
+.buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #fff1f6
-    );
+  padding:13px;
+  background:linear-gradient(135deg,#fff,#fff5f8);
 }
 
-.buyer-main,
-.hot-main{
+.hot-main,
+.buyer-main{
   display:flex;
   align-items:center;
-  gap:11px;
-
+  gap:10px;
   flex:1;
-
   cursor:pointer;
 }
 
-.avatar,
-.rank-circle{
+.rank{
+  width:44px;
+  height:44px;
+  flex:none;
   display:flex;
   align-items:center;
   justify-content:center;
+  border-radius:50%;
+  color:white;
+  background:linear-gradient(135deg,#ed9ab9,#dba6bd);
+  font-size:13px;
+  font-weight:900;
+}
 
+.avatar{
   width:40px;
   height:40px;
-
   flex:none;
-
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border-radius:50%;
-
   color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ed9bb9,
-      #d9a9c2
-    );
-
-  box-shadow:
-    0 4px 10px rgba(200,100,145,.13);
-
-  font-size:14px;
-  font-weight:850;
+  background:linear-gradient(135deg,#efa0bd,#dca9c0);
 }
 
-.rank-circle{
-  width:44px;
-  height:44px;
-}
-
-.buyer-name,
-.hot-name{
-  color:#654555;
+.name{
   font-size:16px;
   font-weight:850;
+  color:#674857;
 }
 
-.buyer-total,
-.hot-sub{
-  margin-top:3px;
-  color:#b08c9d;
+.sub{
+  margin-top:2px;
   font-size:12px;
+  color:#b28e9e;
 }
 
+/* 드래그 */
 .drag-handle,
 .item-handle{
   display:flex;
   align-items:center;
   justify-content:center;
-
   flex:none;
-
   border:1px solid #efd7e1;
-  border-radius:11px;
-
-  color:#b77c96;
-  background:#fff3f7;
-
+  border-radius:10px;
+  color:#b77d96;
+  background:#fff2f7;
   cursor:grab;
-
   touch-action:none;
   user-select:none;
-  -webkit-user-select:none;
 }
 
 .drag-handle{
-  width:40px;
-  height:40px;
-  font-size:21px;
+  width:38px;
+  height:38px;
+  font-size:20px;
 }
 
 .item-handle{
-  width:34px;
-  height:34px;
-  border-radius:9px;
-  font-size:18px;
+  width:33px;
+  height:33px;
+  font-size:17px;
 }
 
-.drag-handle:active,
-.item-handle:active{
-  color:white;
-  background:#d99ab6;
+.dragging{
+  opacity:.55;
 }
 
-.buyer-detail,
-.hot-detail{
+/* 펼쳐지는 내부 */
+.hot-detail,
+.buyer-detail{
   display:none;
-
-  padding:12px 14px 14px;
-
-  border-top:1px solid #f5e5ec;
-
+  padding:13px;
+  border-top:1px solid #f3e4eb;
   background:#fffafd;
 }
 
-.buyer-card.open .buyer-detail,
-.hot-card.open .hot-detail{
+.hot-card.open .hot-detail,
+.buyer-card.open .buyer-detail{
   display:block;
 }
 
-.item-row{
+/* 열혈 수정 */
+.hot-edit{
   display:grid;
-
-  grid-template-columns:
-    38px 1fr 82px 65px;
-
-  gap:7px;
-  align-items:center;
-
-  padding:9px 3px;
-
-  border-bottom:1px solid #f3e4eb;
+  grid-template-columns:1fr 150px 90px;
+  gap:8px;
 }
 
-.item-row.dragging{
-  opacity:.6;
+.save-btn{
+  border:0;
   border-radius:11px;
-  background:#fcebf2;
+  color:white;
+  background:#dc91ad;
+  font-weight:800;
+}
+
+.delete-btn{
+  margin-top:9px;
+  width:100%;
+  padding:10px;
+  border:1px solid #efd4dc;
+  border-radius:11px;
+  color:#ad6178;
+  background:#fff0f3;
+  font-weight:800;
+}
+
+/* 쿠폰 통계 */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:15px 0;
+}
+
+.stat{
+  padding:12px 5px;
+  border-radius:15px;
+  text-align:center;
+  background:#fff1f6;
+}
+
+.stat span{
+  display:block;
+  color:#af8999;
+  font-size:11px;
+}
+
+.stat strong{
+  display:block;
+  margin-top:3px;
+  color:#674858;
+  font-size:18px;
+}
+
+/* 쿠폰 */
+.item-row{
+  display:grid;
+  grid-template-columns:35px 1fr 75px 58px;
+  gap:6px;
+  align-items:center;
+  padding:8px 2px;
+  border-bottom:1px solid #f2e4ea;
 }
 
 .item-name{
   overflow:hidden;
-  color:#6a4959;
   font-weight:700;
-
   text-overflow:ellipsis;
   white-space:nowrap;
 }
 
 .qty{
-  padding:9px 5px;
+  padding:8px 4px;
   text-align:center;
-  background:white;
 }
 
-.item-delete,
-.danger{
-  padding:9px 5px;
-
-  border:1px solid #efd5dc;
-  border-radius:10px;
-
-  color:#b55f7a;
+.small-delete{
+  padding:8px 4px;
+  border:1px solid #efd4dc;
+  border-radius:9px;
+  color:#ad6178;
   background:#fff0f3;
-
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
 }
 
-.buyer-actions,
-.hot-actions{
+.actions{
   display:flex;
-  gap:8px;
-  margin-top:13px;
+  gap:7px;
+  margin-top:11px;
 }
 
-.rename,
 .edit-btn{
   flex:1;
-
-  padding:11px;
-
-  border:1px solid #ecd6df;
-  border-radius:11px;
-
-  color:#704e5e;
+  padding:10px;
+  border:1px solid #ead7df;
+  border-radius:10px;
   background:white;
-
+  color:#704f5e;
   font-weight:800;
 }
 
-.buyer-delete,
-.hot-delete{
+.danger-btn{
   flex:1;
-
-  padding:11px;
-
-  border:1px solid #efd7dd;
-  border-radius:11px;
-
-  color:#ad6278;
+  padding:10px;
+  border:1px solid #efd4dc;
+  border-radius:10px;
   background:#fff0f3;
-
+  color:#ad6178;
   font-weight:800;
-}
-
-/* 열혈 */
-
-.hot-rank{
-  margin-right:2px;
-  color:#d9799e;
-  font-weight:900;
-}
-
-.contribution-box{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  gap:10px;
-
-  padding:13px;
-
-  border:1px solid #f1dde6;
-  border-radius:13px;
-
-  background:white;
-}
-
-.contribution-label{
-  color:#a98193;
-  font-size:13px;
-}
-
-.contribution-number{
-  color:#674656;
-  font-size:20px;
-  font-weight:900;
 }
 
 .empty{
-  padding:38px 20px;
-  color:#b192a0;
+  padding:25px;
   text-align:center;
+  color:#b292a0;
 }
 
-.reset{
-  padding:11px 14px;
-
-  border:1px solid #efd8e2;
-  border-radius:12px;
-
-  color:#a47689;
-  background:#fff3f7;
-
-  font-weight:700;
-}
-
-.divider{
-  height:1px;
-  margin:25px 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #efd8e2,
-      transparent
-    );
-}
-
-@media(max-width:760px){
+@media(max-width:700px){
 
   .form,
   .hot-form{
@@ -545,21 +399,20 @@ button{
   .form .add,
   .hot-form .add{
     grid-column:1/-1;
+    min-height:46px;
   }
 
-  .item-row{
-    grid-template-columns:
-      34px 1fr 70px 58px;
+  .hot-edit{
+    grid-template-columns:1fr 110px;
+  }
 
-    gap:5px;
+  .hot-edit .save-btn{
+    grid-column:1/-1;
+    min-height:42px;
   }
 
   .hero h1{
     font-size:24px;
-  }
-
-  .stat strong{
-    font-size:18px;
   }
 }
 </style>
@@ -571,150 +424,145 @@ button{
 
   <div class="hero">
     <h1>🌸 은별이방 기록</h1>
-    <p>쿠폰 기록과 열혈 등수를 한 곳에서 관리해요.</p>
-  </div>
-
-
-  <!-- 쿠폰 기록 -->
-
-  <div class="card">
-
-    <div class="section-title">
-      🎟️ 쿠폰 기록
-    </div>
-
-    <div class="form">
-
-      <input
-        id="buyer"
-        placeholder="구매한 이름">
-
-      <input
-        id="product"
-        placeholder="구매한 항목">
-
-      <input
-        id="count"
-        type="number"
-        min="1"
-        value="1"
-        placeholder="개수">
-
-      <button
-        id="addButton"
-        class="add">
-
-        ＋ 기록 추가
-
-      </button>
-
-    </div>
-
-    <div class="tip">
-      구매자를 누르면 쿠폰 목록이 펼쳐져요. ☰를 잡아 순서도 바꿀 수 있어요.
-    </div>
-
-  </div>
-
-
-  <div class="stats">
-
-    <div class="stat">
-      <span>구매자</span>
-      <strong id="peopleCount">0명</strong>
-    </div>
-
-    <div class="stat">
-      <span>쿠폰 항목</span>
-      <strong id="itemCount">0개</strong>
-    </div>
-
-    <div class="stat">
-      <span>전체 수량</span>
-      <strong id="totalCount">0개</strong>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-title">
-      🩷 구매자별 쿠폰 기록
-    </div>
-
-    <div id="buyerList"></div>
-
+    <p>필요한 기록만 눌러서 확인해요 ♡</p>
   </div>
 
 
   <!-- 열혈 등수 -->
+  <div class="section" id="hotSection">
 
-  <div class="divider"></div>
+    <div class="section-header" onclick="toggleSection('hotSection')">
 
+      <div>
+        <div class="section-title">🔥 열혈 등수</div>
+        <div class="section-sub">눌러서 열혈 기록 보기</div>
+      </div>
 
-  <div class="card">
-
-    <div class="section-title">
-      🔥 열혈 등수
-    </div>
-
-    <div class="hot-form">
-
-      <input
-        id="hotName"
-        placeholder="열혈 이름">
-
-      <input
-        id="hotContribution"
-        type="number"
-        min="0"
-        placeholder="기여 개수">
-
-      <button
-        id="hotAddButton"
-        class="add">
-
-        ＋ 열혈 추가
-
-      </button>
+      <div class="section-icon">⌄</div>
 
     </div>
 
-    <div class="tip">
-      등수를 누르면 기여 개수가 보여요. ☰를 드래그하면 순위가 자동으로 바뀌어요.
+
+    <div class="section-content">
+
+      <div class="hot-form">
+
+        <input id="hotName" placeholder="열혈 이름">
+
+        <input
+          id="hotCount"
+          type="number"
+          min="0"
+          placeholder="기여 개수">
+
+        <button
+          class="add"
+          id="hotAddButton">
+          ＋ 추가
+        </button>
+
+      </div>
+
+      <div class="tip">
+        ☰를 잡아 순서를 바꾸면 등수가 자동으로 변경돼요.
+      </div>
+
+      <div id="hotList"></div>
+
     </div>
 
   </div>
 
 
-  <div class="card">
+  <!-- 쿠폰 -->
+  <div class="section" id="couponSection">
 
-    <div class="section-title">
-      💗 열혈 순위
+    <div class="section-header" onclick="toggleSection('couponSection')">
+
+      <div>
+        <div class="section-title">🎟️ 쿠폰 기록</div>
+        <div class="section-sub">눌러서 구매자별 쿠폰 보기</div>
+      </div>
+
+      <div class="section-icon">⌄</div>
+
     </div>
 
-    <div id="hotList"></div>
+
+    <div class="section-content">
+
+      <div class="form">
+
+        <input id="buyer" placeholder="구매한 이름">
+
+        <input id="product" placeholder="구매한 항목">
+
+        <input
+          id="count"
+          type="number"
+          min="1"
+          value="1"
+          placeholder="개수">
+
+        <button
+          class="add"
+          id="addButton">
+          ＋ 기록 추가
+        </button>
+
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <span>구매자</span>
+          <strong id="peopleCount">0명</strong>
+        </div>
+
+        <div class="stat">
+          <span>쿠폰 항목</span>
+          <strong id="itemCount">0개</strong>
+        </div>
+
+        <div class="stat">
+          <span>전체 수량</span>
+          <strong id="totalCount">0개</strong>
+        </div>
+
+      </div>
+
+      <div class="tip">
+        구매자를 누르면 쿠폰이 펼쳐져요. ☰로 순서를 바꿀 수 있어요.
+      </div>
+
+      <div id="buyerList"></div>
+
+    </div>
 
   </div>
-
-
-  <button
-    id="resetButton"
-    class="reset">
-
-    쿠폰 기록 전체 삭제
-
-  </button>
 
 </div>
 
 
 <script>
 
-/* =============================
-   쿠폰 데이터
-============================= */
+/* ========================
+   큰 메뉴 열기/닫기
+======================== */
+
+function toggleSection(id){
+
+  document
+    .getElementById(id)
+    .classList
+    .toggle("open");
+
+}
+
+
+/* ========================
+   저장된 데이터
+======================== */
 
 var records={
   items:[],
@@ -723,66 +571,41 @@ var records={
   itemOrders:{}
 };
 
-
-try{
-
-  var saved=
-    localStorage.getItem(
-      "buyerTracker"
-    );
-
-  if(saved){
-
-    var loaded=
-      JSON.parse(saved);
-
-    records.items=
-      loaded.items||[];
-
-    records.people=
-      loaded.people||{};
-
-    records.order=
-      loaded.order||
-      Object.keys(records.people);
-
-    records.itemOrders=
-      loaded.itemOrders||{};
-
-  }
-
-}catch(e){}
-
-
-/* =============================
-   열혈 데이터
-============================= */
-
 var hotRecords=[];
 
 
 try{
 
-  var hotSaved=
-    localStorage.getItem(
-      "hotRankTracker"
-    );
+  var saved=localStorage.getItem("buyerTracker");
 
-  if(hotSaved){
+  if(saved){
 
-    hotRecords=
-      JSON.parse(hotSaved)||[];
+    var loaded=JSON.parse(saved);
+
+    records.items=loaded.items||[];
+    records.people=loaded.people||{};
+    records.order=loaded.order||Object.keys(records.people);
+    records.itemOrders=loaded.itemOrders||{};
 
   }
 
 }catch(e){}
 
 
-/* =============================
-   저장
-============================= */
+try{
 
-function save(){
+  var hotSaved=localStorage.getItem("hotRankTracker");
+
+  if(hotSaved){
+
+    hotRecords=JSON.parse(hotSaved)||[];
+
+  }
+
+}catch(e){}
+
+
+function saveCoupons(){
 
   localStorage.setItem(
     "buyerTracker",
@@ -802,81 +625,432 @@ function saveHot(){
 }
 
 
-/* =============================
-   쿠폰
-============================= */
+/* ========================
+   공통 드래그
+======================== */
 
-function normalizeOrders(){
+function makeSortable(
+  container,
+  handleSelector,
+  itemSelector,
+  callback
+){
 
-  records.order=
-    records.order.filter(
-      function(name){
+  var dragged=null;
 
-        return records.people[name];
+  container.onpointerdown=function(e){
+
+    var handle=e.target.closest(handleSelector);
+
+    if(!handle)return;
+
+    var item=handle.closest(itemSelector);
+
+    if(!item)return;
+
+    dragged=item;
+
+    dragged.classList.add("dragging");
+
+    try{
+      handle.setPointerCapture(e.pointerId);
+    }catch(err){}
+
+    e.preventDefault();
+    e.stopPropagation();
+
+  };
+
+
+  container.onpointermove=function(e){
+
+    if(!dragged)return;
+
+    var others=
+      Array.from(container.children)
+      .filter(function(el){
+
+        return el.matches(itemSelector)&&el!==dragged;
+
+      });
+
+
+    var target=null;
+
+
+    for(var i=0;i<others.length;i++){
+
+      var rect=others[i].getBoundingClientRect();
+
+      if(e.clientY<rect.top+rect.height/2){
+
+        target=others[i];
+
+        break;
 
       }
+
+    }
+
+
+    if(target){
+
+      container.insertBefore(dragged,target);
+
+    }else{
+
+      container.appendChild(dragged);
+
+    }
+
+  };
+
+
+  function finish(){
+
+    if(!dragged)return;
+
+    dragged.classList.remove("dragging");
+
+    dragged=null;
+
+    callback();
+
+  }
+
+
+  container.onpointerup=finish;
+  container.onpointercancel=finish;
+
+}
+
+
+/* ========================
+   열혈
+======================== */
+
+function addHot(){
+
+  var name=
+    document.getElementById("hotName").value.trim();
+
+  var count=
+    parseInt(
+      document.getElementById("hotCount").value
     );
 
 
-  Object.keys(
-    records.people
-  ).forEach(
-    function(name){
+  if(!name){
 
-      if(
-        records.order.indexOf(name)
-        ===-1
-      ){
+    alert("열혈 이름을 입력해주세요.");
 
-        records.order.push(name);
+    return;
 
-      }
+  }
 
 
-      if(
-        !records.itemOrders[name]
-      ){
-
-        records.itemOrders[name]=
-          Object.keys(
-            records.people[name]
-          );
-
-      }
+  if(isNaN(count)||count<0){
+    count=0;
+  }
 
 
-      records.itemOrders[name]=
-        records.itemOrders[name]
-        .filter(
-          function(product){
+  hotRecords.push({
 
-            return (
-              records.people[name][product]
-              !==undefined
-            );
+    id:
+      Date.now().toString()+
+      Math.random().toString(),
 
-          }
+    name:name,
+
+    contribution:count
+
+  });
+
+
+  saveHot();
+
+
+  document.getElementById("hotName").value="";
+  document.getElementById("hotCount").value="";
+
+
+  drawHot();
+
+}
+
+
+function updateHot(id){
+
+  var person=
+    hotRecords.find(function(p){
+      return p.id===id;
+    });
+
+
+  if(!person)return;
+
+
+  var nameInput=
+    document.getElementById(
+      "hot-name-"+id
+    );
+
+
+  var countInput=
+    document.getElementById(
+      "hot-count-"+id
+    );
+
+
+  var newName=
+    nameInput.value.trim();
+
+
+  var newCount=
+    parseInt(countInput.value);
+
+
+  if(!newName){
+
+    alert("이름을 입력해주세요.");
+
+    return;
+
+  }
+
+
+  if(isNaN(newCount)||newCount<0){
+
+    alert("기여 개수를 확인해주세요.");
+
+    return;
+
+  }
+
+
+  person.name=newName;
+  person.contribution=newCount;
+
+
+  saveHot();
+
+  drawHot();
+
+}
+
+
+function deleteHot(id){
+
+  var person=
+    hotRecords.find(function(p){
+      return p.id===id;
+    });
+
+
+  if(!person)return;
+
+
+  if(
+    confirm(
+      person.name+
+      "님을 삭제할까요?"
+    )
+  ){
+
+    hotRecords=
+      hotRecords.filter(function(p){
+        return p.id!==id;
+      });
+
+
+    saveHot();
+
+    drawHot();
+
+  }
+
+}
+
+
+function drawHot(){
+
+  var list=
+    document.getElementById("hotList");
+
+
+  if(hotRecords.length===0){
+
+    list.innerHTML=
+      '<div class="empty">아직 열혈 기록이 없어요.</div>';
+
+    return;
+
+  }
+
+
+  list.innerHTML="";
+
+
+  hotRecords.forEach(function(person,index){
+
+    var card=document.createElement("div");
+
+    card.className="hot-card";
+    card.dataset.id=person.id;
+
+
+    var header=document.createElement("div");
+
+    header.className="hot-header";
+
+
+    var main=document.createElement("div");
+
+    main.className="hot-main";
+
+
+    var rank=document.createElement("div");
+
+    rank.className="rank";
+    rank.textContent=(index+1)+"위";
+
+
+    var info=document.createElement("div");
+
+
+    var name=document.createElement("div");
+
+    name.className="name";
+    name.textContent=person.name;
+
+
+    var sub=document.createElement("div");
+
+    sub.className="sub";
+    sub.textContent="눌러서 기여 개수 확인 / 수정";
+
+
+    info.appendChild(name);
+    info.appendChild(sub);
+
+
+    main.appendChild(rank);
+    main.appendChild(info);
+
+
+    main.onclick=function(){
+
+      card.classList.toggle("open");
+
+    };
+
+
+    var handle=document.createElement("div");
+
+    handle.className="drag-handle";
+    handle.textContent="☰";
+
+
+    header.appendChild(main);
+    header.appendChild(handle);
+
+
+    var detail=document.createElement("div");
+
+    detail.className="hot-detail";
+
+
+    var edit=document.createElement("div");
+
+    edit.className="hot-edit";
+
+
+    var nameInput=document.createElement("input");
+
+    nameInput.id="hot-name-"+person.id;
+    nameInput.value=person.name;
+    nameInput.placeholder="이름";
+
+
+    var countInput=document.createElement("input");
+
+    countInput.id="hot-count-"+person.id;
+    countInput.type="number";
+    countInput.min="0";
+    countInput.value=person.contribution;
+    countInput.placeholder="기여 개수";
+
+
+    var saveButton=document.createElement("button");
+
+    saveButton.className="save-btn";
+    saveButton.textContent="저장";
+
+    saveButton.onclick=function(){
+
+      updateHot(person.id);
+
+    };
+
+
+    edit.appendChild(nameInput);
+    edit.appendChild(countInput);
+    edit.appendChild(saveButton);
+
+
+    var deleteButton=document.createElement("button");
+
+    deleteButton.className="delete-btn";
+    deleteButton.textContent="열혈 기록 삭제";
+
+    deleteButton.onclick=function(){
+
+      deleteHot(person.id);
+
+    };
+
+
+    detail.appendChild(edit);
+    detail.appendChild(deleteButton);
+
+
+    card.appendChild(header);
+    card.appendChild(detail);
+
+
+    list.appendChild(card);
+
+  });
+
+
+  makeSortable(
+    list,
+    ".drag-handle",
+    ".hot-card",
+    function(){
+
+      var ids=
+        Array.from(
+          list.querySelectorAll(".hot-card")
+        )
+        .map(function(card){
+          return card.dataset.id;
+        });
+
+
+      hotRecords.sort(function(a,b){
+
+        return (
+          ids.indexOf(a.id)-
+          ids.indexOf(b.id)
         );
 
+      });
 
-      Object.keys(
-        records.people[name]
-      ).forEach(
-        function(product){
 
-          if(
-            records.itemOrders[name]
-            .indexOf(product)
-            ===-1
-          ){
+      saveHot();
 
-            records.itemOrders[name]
-            .push(product);
-
-          }
-
-        }
-      );
+      drawHot();
 
     }
   );
@@ -884,55 +1058,97 @@ function normalizeOrders(){
 }
 
 
+/* ========================
+   쿠폰
+======================== */
+
+function normalizeCoupons(){
+
+  records.order=
+    records.order.filter(function(name){
+      return records.people[name];
+    });
+
+
+  Object.keys(records.people).forEach(function(name){
+
+    if(records.order.indexOf(name)===-1){
+      records.order.push(name);
+    }
+
+
+    if(!records.itemOrders[name]){
+
+      records.itemOrders[name]=
+        Object.keys(records.people[name]);
+
+    }
+
+
+    records.itemOrders[name]=
+      records.itemOrders[name]
+      .filter(function(product){
+
+        return records.people[name][product]!==undefined;
+
+      });
+
+
+    Object.keys(records.people[name]).forEach(function(product){
+
+      if(
+        records.itemOrders[name].indexOf(product)===-1
+      ){
+
+        records.itemOrders[name].push(product);
+
+      }
+
+    });
+
+  });
+
+}
+
+
 function addRecord(){
 
   var buyer=
-    document
-    .getElementById("buyer")
-    .value.trim();
-
+    document.getElementById("buyer").value.trim();
 
   var product=
-    document
-    .getElementById("product")
-    .value.trim();
-
+    document.getElementById("product").value.trim();
 
   var count=
     parseInt(
-      document
-      .getElementById("count")
-      .value
+      document.getElementById("count").value
     );
 
 
   if(!buyer){
 
-    alert(
-      "구매한 이름을 입력해주세요."
-    );
+    alert("구매한 이름을 입력해주세요.");
 
     return;
+
   }
 
 
   if(!product){
 
-    alert(
-      "구매한 항목을 입력해주세요."
-    );
+    alert("구매한 항목을 입력해주세요.");
 
     return;
+
   }
 
 
   if(!count||count<1){
 
-    alert(
-      "개수를 입력해주세요."
-    );
+    alert("개수를 입력해주세요.");
 
     return;
+
   }
 
 
@@ -948,14 +1164,12 @@ function addRecord(){
 
 
   if(
-    records.people[buyer][product]
-    ===undefined
+    records.people[buyer][product]===undefined
   ){
 
     records.people[buyer][product]=0;
 
-    records.itemOrders[buyer]
-    .push(product);
+    records.itemOrders[buyer].push(product);
 
   }
 
@@ -963,32 +1177,12 @@ function addRecord(){
   records.people[buyer][product]+=count;
 
 
-  if(
-    records.items.indexOf(product)
-    ===-1
-  ){
-
-    records.items.push(product);
-
-  }
+  saveCoupons();
 
 
-  save();
-
-
-  document
-  .getElementById("buyer")
-  .value="";
-
-
-  document
-  .getElementById("product")
-  .value="";
-
-
-  document
-  .getElementById("count")
-  .value="1";
+  document.getElementById("buyer").value="";
+  document.getElementById("product").value="";
+  document.getElementById("count").value="1";
 
 
   drawBuyers();
@@ -1000,42 +1194,26 @@ function renameBuyer(oldName){
 
   var newName=
     prompt(
-      "새 구매자 이름을 입력해주세요.",
+      "새 이름을 입력해주세요.",
       oldName
     );
 
 
-  if(newName===null){
-    return;
-  }
+  if(newName===null)return;
 
 
-  newName=
-    newName.trim();
+  newName=newName.trim();
 
 
-  if(!newName){
-
-    alert(
-      "이름을 입력해주세요."
-    );
-
-    return;
-  }
-
-
-  if(newName===oldName){
-    return;
-  }
+  if(!newName||newName===oldName)return;
 
 
   if(records.people[newName]){
 
-    alert(
-      "이미 같은 이름의 구매자가 있어요."
-    );
+    alert("이미 같은 이름의 구매자가 있어요.");
 
     return;
+
   }
 
 
@@ -1043,16 +1221,14 @@ function renameBuyer(oldName){
     records.people[oldName];
 
 
-  delete
-    records.people[oldName];
+  delete records.people[oldName];
 
 
   records.itemOrders[newName]=
     records.itemOrders[oldName]||[];
 
 
-  delete
-    records.itemOrders[oldName];
+  delete records.itemOrders[oldName];
 
 
   var index=
@@ -1061,98 +1237,72 @@ function renameBuyer(oldName){
 
   if(index!==-1){
 
-    records.order[index]=
-      newName;
+    records.order[index]=newName;
 
   }
 
 
-  save();
+  saveCoupons();
 
   drawBuyers();
 
 }
 
 
-function changeQty(
-  buyer,
-  product,
-  value
-){
+function changeQty(buyer,product,value){
 
-  var number=
-    parseInt(value);
+  var number=parseInt(value);
 
 
-  if(
-    isNaN(number)||
-    number<0
-  ){
-
+  if(isNaN(number)||number<0){
     number=0;
-
   }
 
 
   if(number===0){
 
-    delete
-      records.people[buyer][product];
+    delete records.people[buyer][product];
 
 
     records.itemOrders[buyer]=
       records.itemOrders[buyer]
-      .filter(
-        function(p){
+      .filter(function(p){
 
-          return p!==product;
+        return p!==product;
 
-        }
-      );
+      });
 
   }else{
 
-    records.people[buyer][product]=
-      number;
+    records.people[buyer][product]=number;
 
   }
 
 
-  save();
+  saveCoupons();
 
   drawBuyers();
 
 }
 
 
-function deleteItem(
-  buyer,
-  product
-){
+function deleteItem(buyer,product){
 
-  if(
-    confirm(
-      product+
-      " 항목을 삭제할까요?"
-    )
-  ){
+  if(confirm(product+" 항목을 삭제할까요?")){
 
-    delete
-      records.people[buyer][product];
+    delete records.people[buyer][product];
 
 
     records.itemOrders[buyer]=
       records.itemOrders[buyer]
-      .filter(
-        function(p){
+      .filter(function(p){
 
-          return p!==product;
+        return p!==product;
 
-        }
-      );
+      });
 
 
-    save();
+    saveCoupons();
 
     drawBuyers();
 
@@ -1163,32 +1313,22 @@ function deleteItem(
 
 function deleteBuyer(buyer){
 
-  if(
-    confirm(
-      buyer+
-      "님의 모든 기록을 삭제할까요?"
-    )
-  ){
+  if(confirm(buyer+"님의 기록을 삭제할까요?")){
 
-    delete
-      records.people[buyer];
+    delete records.people[buyer];
 
-
-    delete
-      records.itemOrders[buyer];
+    delete records.itemOrders[buyer];
 
 
     records.order=
-      records.order.filter(
-        function(name){
+      records.order.filter(function(name){
 
-          return name!==buyer;
+        return name!==buyer;
 
-        }
-      );
+      });
 
 
-    save();
+    saveCoupons();
 
     drawBuyers();
 
@@ -1202,292 +1342,51 @@ function updateStats(){
   var buyers=
     Object.keys(records.people);
 
-  var usedItems={};
+  var items={};
 
   var total=0;
 
 
-  buyers.forEach(
-    function(buyer){
+  buyers.forEach(function(buyer){
 
-      Object.keys(
-        records.people[buyer]
-      ).forEach(
-        function(product){
+    Object.keys(records.people[buyer]).forEach(function(product){
 
-          usedItems[product]=true;
+      items[product]=true;
 
-          total+=
-            records.people[buyer][product]
-            ||0;
+      total+=records.people[buyer][product]||0;
 
-        }
-      );
+    });
 
-    }
-  );
+  });
 
 
-  document
-  .getElementById(
-    "peopleCount"
-  )
-  .textContent=
+  document.getElementById("peopleCount").textContent=
     buyers.length+"명";
 
+  document.getElementById("itemCount").textContent=
+    Object.keys(items).length+"개";
 
-  document
-  .getElementById(
-    "itemCount"
-  )
-  .textContent=
-    Object.keys(usedItems)
-    .length+"개";
-
-
-  document
-  .getElementById(
-    "totalCount"
-  )
-  .textContent=
+  document.getElementById("totalCount").textContent=
     total+"개";
 
 }
 
 
-/* =============================
-   드래그
-============================= */
-
-function makeSortable(
-  container,
-  handleSelector,
-  itemSelector,
-  onChange
-){
-
-  var dragged=null;
-  var activeHandle=null;
-  var pointerId=null;
-
-
-  container.addEventListener(
-    "pointerdown",
-    function(e){
-
-      var handle=
-        e.target.closest(
-          handleSelector
-        );
-
-
-      if(!handle){
-        return;
-      }
-
-
-      var item=
-        handle.closest(
-          itemSelector
-        );
-
-
-      if(!item){
-        return;
-      }
-
-
-      dragged=item;
-
-      activeHandle=handle;
-
-      pointerId=e.pointerId;
-
-
-      try{
-
-        activeHandle
-        .setPointerCapture(
-          pointerId
-        );
-
-      }catch(err){}
-
-
-      dragged
-      .classList
-      .add("dragging");
-
-
-      e.preventDefault();
-
-      e.stopPropagation();
-
-    }
-  );
-
-
-  container.addEventListener(
-    "pointermove",
-    function(e){
-
-      if(!dragged){
-        return;
-      }
-
-
-      var elements=
-        Array.from(
-          container.children
-        )
-        .filter(
-          function(el){
-
-            return (
-              el.matches(
-                itemSelector
-              ) &&
-              el!==dragged
-            );
-
-          }
-        );
-
-
-      var target=null;
-
-
-      for(
-        var i=0;
-        i<elements.length;
-        i++
-      ){
-
-        var rect=
-          elements[i]
-          .getBoundingClientRect();
-
-
-        if(
-          e.clientY<
-          rect.top+
-          rect.height/2
-        ){
-
-          target=
-            elements[i];
-
-          break;
-
-        }
-
-      }
-
-
-      if(target){
-
-        container
-        .insertBefore(
-          dragged,
-          target
-        );
-
-      }else{
-
-        container
-        .appendChild(
-          dragged
-        );
-
-      }
-
-    }
-  );
-
-
-  function finish(){
-
-    if(!dragged){
-      return;
-    }
-
-
-    dragged
-    .classList
-    .remove("dragging");
-
-
-    if(
-      activeHandle&&
-      pointerId!==null
-    ){
-
-      try{
-
-        activeHandle
-        .releasePointerCapture(
-          pointerId
-        );
-
-      }catch(err){}
-
-    }
-
-
-    dragged=null;
-
-    activeHandle=null;
-
-    pointerId=null;
-
-
-    onChange();
-
-  }
-
-
-  container
-  .addEventListener(
-    "pointerup",
-    finish
-  );
-
-
-  container
-  .addEventListener(
-    "pointercancel",
-    finish
-  );
-
-}
-
-
-/* =============================
-   구매자 출력
-============================= */
-
 function drawBuyers(){
 
-  normalizeOrders();
+  normalizeCoupons();
 
   updateStats();
 
 
   var list=
-    document
-    .getElementById(
-      "buyerList"
-    );
+    document.getElementById("buyerList");
 
 
-  if(
-    records.order.length===0
-  ){
+  if(records.order.length===0){
 
     list.innerHTML=
-      '<div class="empty">'+
-      '아직 쿠폰 기록이 없어요.'+
-      '</div>';
+      '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
 
     return;
 
@@ -1497,1044 +1396,266 @@ function drawBuyers(){
   list.innerHTML="";
 
 
-  records.order
-  .forEach(
-    function(buyer){
+  records.order.forEach(function(buyer){
 
-      var buyerData=
-        records.people[buyer];
+    var data=records.people[buyer];
 
+    var products=
+      records.itemOrders[buyer]||[];
 
-      var products=
-        records.itemOrders[buyer]
-        ||[];
 
+    var total=0;
 
-      var total=0;
 
+    products.forEach(function(product){
 
-      products.forEach(
-        function(product){
+      total+=data[product]||0;
 
-          total+=
-            buyerData[product]
-            ||0;
+    });
 
-        }
-      );
 
+    var card=document.createElement("div");
 
-      var card=
-        document
-        .createElement("div");
+    card.className="buyer-card";
+    card.dataset.buyer=buyer;
 
 
-      card.className=
-        "buyer-card";
+    var header=document.createElement("div");
 
+    header.className="buyer-header";
 
-      card.dataset.buyer=
-        buyer;
 
+    var main=document.createElement("div");
 
-      var header=
-        document
-        .createElement("div");
+    main.className="buyer-main";
 
 
-      header.className=
-        "buyer-header";
+    var avatar=document.createElement("div");
 
+    avatar.className="avatar";
+    avatar.textContent="♥";
 
-      var main=
-        document
-        .createElement("div");
 
+    var info=document.createElement("div");
 
-      main.className=
-        "buyer-main";
 
+    var name=document.createElement("div");
 
-      var avatar=
-        document
-        .createElement("div");
+    name.className="name";
+    name.textContent=buyer;
 
 
-      avatar.className=
-        "avatar";
+    var sub=document.createElement("div");
 
+    sub.className="sub";
+    sub.textContent="총 "+total+"개";
 
-      avatar.textContent=
-        "♥";
 
+    info.appendChild(name);
+    info.appendChild(sub);
 
-      var info=
-        document
-        .createElement("div");
 
+    main.appendChild(avatar);
+    main.appendChild(info);
 
-      var name=
-        document
-        .createElement("div");
 
+    main.onclick=function(){
 
-      name.className=
-        "buyer-name";
+      card.classList.toggle("open");
 
+    };
 
-      name.textContent=
-        buyer;
 
+    var handle=document.createElement("div");
 
-      var totalText=
-        document
-        .createElement("div");
+    handle.className="drag-handle";
+    handle.textContent="☰";
 
 
-      totalText.className=
-        "buyer-total";
+    header.appendChild(main);
+    header.appendChild(handle);
 
 
-      totalText.textContent=
-        "총 "+
-        total+
-        "개";
+    var detail=document.createElement("div");
 
+    detail.className="buyer-detail";
 
-      info.appendChild(name);
 
-      info.appendChild(
-        totalText
-      );
+    var itemList=document.createElement("div");
 
 
-      main.appendChild(
-        avatar
-      );
+    products.forEach(function(product){
 
+      if(data[product]===undefined)return;
 
-      main.appendChild(
-        info
-      );
 
+      var row=document.createElement("div");
 
-      main.onclick=
-        function(){
+      row.className="item-row";
+      row.dataset.product=product;
 
-          card
-          .classList
-          .toggle("open");
 
-        };
+      var itemHandle=document.createElement("div");
 
+      itemHandle.className="item-handle";
+      itemHandle.textContent="☰";
 
-      var handle=
-        document
-        .createElement("div");
 
+      var itemName=document.createElement("div");
 
-      handle.className=
-        "drag-handle";
+      itemName.className="item-name";
+      itemName.textContent=product;
 
 
-      handle.textContent=
-        "☰";
+      var qty=document.createElement("input");
 
+      qty.type="number";
+      qty.min="0";
+      qty.className="qty";
+      qty.value=data[product];
 
-      header.appendChild(
-        main
-      );
+      qty.onchange=function(){
 
-
-      header.appendChild(
-        handle
-      );
-
-
-      var detail=
-        document
-        .createElement("div");
-
-
-      detail.className=
-        "buyer-detail";
-
-
-      var itemList=
-        document
-        .createElement("div");
-
-
-      itemList.className=
-        "item-list";
-
-
-      products.forEach(
-        function(product){
-
-          if(
-            buyerData[product]
-            ===undefined
-          ){
-
-            return;
-
-          }
-
-
-          var row=
-            document
-            .createElement("div");
-
-
-          row.className=
-            "item-row";
-
-
-          row.dataset.product=
-            product;
-
-
-          var itemHandle=
-            document
-            .createElement("div");
-
-
-          itemHandle.className=
-            "item-handle";
-
-
-          itemHandle.textContent=
-            "☰";
-
-
-          var itemName=
-            document
-            .createElement("div");
-
-
-          itemName.className=
-            "item-name";
-
-
-          itemName.textContent=
-            product;
-
-
-          var input=
-            document
-            .createElement("input");
-
-
-          input.type=
-            "number";
-
-
-          input.min=
-            "0";
-
-
-          input.className=
-            "qty";
-
-
-          input.value=
-            buyerData[product];
-
-
-          input.onchange=
-            function(){
-
-              changeQty(
-                buyer,
-                product,
-                this.value
-              );
-
-            };
-
-
-          var del=
-            document
-            .createElement(
-              "button"
-            );
-
-
-          del.className=
-            "item-delete";
-
-
-          del.textContent=
-            "삭제";
-
-
-          del.onclick=
-            function(){
-
-              deleteItem(
-                buyer,
-                product
-              );
-
-            };
-
-
-          row.appendChild(
-            itemHandle
-          );
-
-
-          row.appendChild(
-            itemName
-          );
-
-
-          row.appendChild(
-            input
-          );
-
-
-          row.appendChild(
-            del
-          );
-
-
-          itemList
-          .appendChild(row);
-
-        }
-      );
-
-
-      detail.appendChild(
-        itemList
-      );
-
-
-      var actions=
-        document
-        .createElement("div");
-
-
-      actions.className=
-        "buyer-actions";
-
-
-      var renameButton=
-        document
-        .createElement("button");
-
-
-      renameButton.className=
-        "rename";
-
-
-      renameButton.textContent=
-        "✎ 이름 수정";
-
-
-      renameButton.onclick=
-        function(){
-
-          renameBuyer(buyer);
-
-        };
-
-
-      var buyerDelete=
-        document
-        .createElement("button");
-
-
-      buyerDelete.className=
-        "buyer-delete";
-
-
-      buyerDelete.textContent=
-        "구매자 삭제";
-
-
-      buyerDelete.onclick=
-        function(){
-
-          deleteBuyer(buyer);
-
-        };
-
-
-      actions.appendChild(
-        renameButton
-      );
-
-
-      actions.appendChild(
-        buyerDelete
-      );
-
-
-      detail.appendChild(
-        actions
-      );
-
-
-      card.appendChild(
-        header
-      );
-
-
-      card.appendChild(
-        detail
-      );
-
-
-      list.appendChild(
-        card
-      );
-
-
-      makeSortable(
-
-        itemList,
-
-        ".item-handle",
-
-        ".item-row",
-
-        function(){
-
-          records
-          .itemOrders[buyer]=
-
-            Array.from(
-              itemList
-              .querySelectorAll(
-                ".item-row"
-              )
-            )
-            .map(
-              function(row){
-
-                return (
-                  row.dataset.product
-                );
-
-              }
-            );
-
-
-          save();
-
-        }
-
-      );
-
-    }
-  );
-
-
-  makeSortable(
-
-    list,
-
-    ".drag-handle",
-
-    ".buyer-card",
-
-    function(){
-
-      records.order=
-
-        Array.from(
-          list
-          .querySelectorAll(
-            ".buyer-card"
-          )
-        )
-        .map(
-          function(card){
-
-            return (
-              card.dataset.buyer
-            );
-
-          }
+        changeQty(
+          buyer,
+          product,
+          this.value
         );
 
-
-      save();
-
-    }
-
-  );
-
-}
+      };
 
 
-/* =============================
-   열혈
-============================= */
+      var del=document.createElement("button");
 
-function addHot(){
+      del.className="small-delete";
+      del.textContent="삭제";
 
-  var name=
-    document
-    .getElementById(
-      "hotName"
-    )
-    .value.trim();
+      del.onclick=function(){
+
+        deleteItem(buyer,product);
+
+      };
 
 
-  var contribution=
-    parseInt(
-      document
-      .getElementById(
-        "hotContribution"
-      )
-      .value
+      row.appendChild(itemHandle);
+      row.appendChild(itemName);
+      row.appendChild(qty);
+      row.appendChild(del);
+
+
+      itemList.appendChild(row);
+
+    });
+
+
+    detail.appendChild(itemList);
+
+
+    var actions=document.createElement("div");
+
+    actions.className="actions";
+
+
+    var rename=document.createElement("button");
+
+    rename.className="edit-btn";
+    rename.textContent="✎ 이름 수정";
+
+    rename.onclick=function(){
+
+      renameBuyer(buyer);
+
+    };
+
+
+    var deleteBtn=document.createElement("button");
+
+    deleteBtn.className="danger-btn";
+    deleteBtn.textContent="구매자 삭제";
+
+    deleteBtn.onclick=function(){
+
+      deleteBuyer(buyer);
+
+    };
+
+
+    actions.appendChild(rename);
+    actions.appendChild(deleteBtn);
+
+
+    detail.appendChild(actions);
+
+
+    card.appendChild(header);
+    card.appendChild(detail);
+
+
+    list.appendChild(card);
+
+
+    makeSortable(
+      itemList,
+      ".item-handle",
+      ".item-row",
+      function(){
+
+        records.itemOrders[buyer]=
+          Array.from(
+            itemList.querySelectorAll(".item-row")
+          )
+          .map(function(row){
+
+            return row.dataset.product;
+
+          });
+
+
+        saveCoupons();
+
+      }
     );
-
-
-  if(!name){
-
-    alert(
-      "열혈 이름을 입력해주세요."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    isNaN(contribution)||
-    contribution<0
-  ){
-
-    contribution=0;
-
-  }
-
-
-  hotRecords.push({
-
-    id:
-      Date.now().toString()+
-      Math.random(),
-
-    name:name,
-
-    contribution:
-      contribution
 
   });
 
 
-  saveHot();
-
-
-  document
-  .getElementById(
-    "hotName"
-  )
-  .value="";
-
-
-  document
-  .getElementById(
-    "hotContribution"
-  )
-  .value="";
-
-
-  drawHot();
-
-}
-
-
-function renameHot(index){
-
-  var current=
-    hotRecords[index];
-
-
-  var name=
-    prompt(
-      "새 이름을 입력해주세요.",
-      current.name
-    );
-
-
-  if(name===null){
-    return;
-  }
-
-
-  name=name.trim();
-
-
-  if(!name){
-    return;
-  }
-
-
-  current.name=name;
-
-  saveHot();
-
-  drawHot();
-
-}
-
-
-function editContribution(index){
-
-  var current=
-    hotRecords[index];
-
-
-  var value=
-    prompt(
-      "기여 개수를 입력해주세요.",
-      current.contribution
-    );
-
-
-  if(value===null){
-    return;
-  }
-
-
-  var number=
-    parseInt(value);
-
-
-  if(
-    isNaN(number)||
-    number<0
-  ){
-
-    alert(
-      "0 이상의 숫자를 입력해주세요."
-    );
-
-    return;
-
-  }
-
-
-  current.contribution=
-    number;
-
-
-  saveHot();
-
-  drawHot();
-
-}
-
-
-function deleteHot(index){
-
-  if(
-    confirm(
-      hotRecords[index].name+
-      "님을 열혈 등수에서 삭제할까요?"
-    )
-  ){
-
-    hotRecords.splice(
-      index,
-      1
-    );
-
-
-    saveHot();
-
-    drawHot();
-
-  }
-
-}
-
-
-function drawHot(){
-
-  var list=
-    document
-    .getElementById(
-      "hotList"
-    );
-
-
-  if(
-    hotRecords.length===0
-  ){
-
-    list.innerHTML=
-      '<div class="empty">'+
-      '아직 열혈 기록이 없어요.'+
-      '</div>';
-
-    return;
-
-  }
-
-
-  list.innerHTML="";
-
-
-  hotRecords.forEach(
-    function(person,index){
-
-      var card=
-        document
-        .createElement("div");
-
-
-      card.className=
-        "hot-card";
-
-
-      card.dataset.id=
-        person.id;
-
-
-      var header=
-        document
-        .createElement("div");
-
-
-      header.className=
-        "hot-header";
-
-
-      var main=
-        document
-        .createElement("div");
-
-
-      main.className=
-        "hot-main";
-
-
-      var rank=
-        document
-        .createElement("div");
-
-
-      rank.className=
-        "rank-circle";
-
-
-      rank.textContent=
-        (index+1)+"위";
-
-
-      var info=
-        document
-        .createElement("div");
-
-
-      var name=
-        document
-        .createElement("div");
-
-
-      name.className=
-        "hot-name";
-
-
-      name.textContent=
-        person.name;
-
-
-      var sub=
-        document
-        .createElement("div");
-
-
-      sub.className=
-        "hot-sub";
-
-
-      sub.textContent=
-        "눌러서 기여 개수 보기";
-
-
-      info.appendChild(name);
-
-      info.appendChild(sub);
-
-
-      main.appendChild(rank);
-
-      main.appendChild(info);
-
-
-      main.onclick=
-        function(){
-
-          card
-          .classList
-          .toggle("open");
-
-        };
-
-
-      var handle=
-        document
-        .createElement("div");
-
-
-      handle.className=
-        "drag-handle";
-
-
-      handle.textContent=
-        "☰";
-
-
-      header.appendChild(main);
-
-      header.appendChild(handle);
-
-
-      var detail=
-        document
-        .createElement("div");
-
-
-      detail.className=
-        "hot-detail";
-
-
-      var contributionBox=
-        document
-        .createElement("div");
-
-
-      contributionBox.className=
-        "contribution-box";
-
-
-      contributionBox.innerHTML=
-        '<div>'+
-        '<div class="contribution-label">기여 개수</div>'+
-        '<div class="contribution-number">'+
-        Number(person.contribution)
-        .toLocaleString()+
-        '개</div>'+
-        '</div>';
-
-
-      detail.appendChild(
-        contributionBox
-      );
-
-
-      var actions=
-        document
-        .createElement("div");
-
-
-      actions.className=
-        "hot-actions";
-
-
-      var rename=
-        document
-        .createElement("button");
-
-
-      rename.className=
-        "edit-btn";
-
-
-      rename.textContent=
-        "✎ 이름 수정";
-
-
-      rename.onclick=
-        function(){
-
-          renameHot(index);
-
-        };
-
-
-      var contribution=
-        document
-        .createElement("button");
-
-
-      contribution.className=
-        "edit-btn";
-
-
-      contribution.textContent=
-        "기여 개수 수정";
-
-
-      contribution.onclick=
-        function(){
-
-          editContribution(index);
-
-        };
-
-
-      var del=
-        document
-        .createElement("button");
-
-
-      del.className=
-        "hot-delete";
-
-
-      del.textContent=
-        "삭제";
-
-
-      del.onclick=
-        function(){
-
-          deleteHot(index);
-
-        };
-
-
-      actions.appendChild(rename);
-
-      actions.appendChild(
-        contribution
-      );
-
-      actions.appendChild(del);
-
-
-      detail.appendChild(actions);
-
-
-      card.appendChild(header);
-
-      card.appendChild(detail);
-
-
-      list.appendChild(card);
-
-    }
-  );
-
-
   makeSortable(
-
     list,
-
     ".drag-handle",
-
-    ".hot-card",
-
+    ".buyer-card",
     function(){
 
-      var order=
-
+      records.order=
         Array.from(
-          list
-          .querySelectorAll(
-            ".hot-card"
-          )
+          list.querySelectorAll(".buyer-card")
         )
-        .map(
-          function(card){
+        .map(function(card){
 
-            return card.dataset.id;
+          return card.dataset.buyer;
 
-          }
-        );
+        });
 
 
-      hotRecords.sort(
-        function(a,b){
-
-          return (
-            order.indexOf(a.id)-
-            order.indexOf(b.id)
-          );
-
-        }
-      );
-
-
-      saveHot();
-
-      drawHot();
+      saveCoupons();
 
     }
-
   );
 
 }
 
 
-/* =============================
-   버튼
-============================= */
+/* 버튼 */
 
-document
-.getElementById(
-  "addButton"
-)
-.onclick=
-  addRecord;
+document.getElementById("hotAddButton").onclick=addHot;
+
+document.getElementById("addButton").onclick=addRecord;
 
 
-document
-.getElementById(
-  "hotAddButton"
-)
-.onclick=
-  addHot;
-
-
-document
-.getElementById(
-  "resetButton"
-)
-.onclick=
-function(){
-
-  if(
-    confirm(
-      "모든 쿠폰 기록을 삭제할까요?"
-    )
-  ){
-
-    records={
-      items:[],
-      people:{},
-      order:[],
-      itemOrders:{}
-    };
-
-
-    save();
-
-    drawBuyers();
-
-  }
-
-};
-
-
-/* =============================
-   시작
-============================= */
-
-drawBuyers();
+/* 시작 */
 
 drawHot();
+
+drawBuyers();
 
 </script>
 
