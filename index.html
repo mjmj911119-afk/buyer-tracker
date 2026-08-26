@@ -150,8 +150,6 @@ button{
   font-size:12px;
 }
 
-/* 열혈 / 구매자 카드 */
-
 .hot-card,
 .buyer-card{
   margin-bottom:9px;
@@ -177,7 +175,6 @@ button{
   gap:10px;
   flex:1;
   min-width:0;
-  cursor:pointer;
 }
 
 .rank,
@@ -221,8 +218,6 @@ button{
   gap:6px;
 }
 
-/* 자물쇠 */
-
 .lock-btn{
   width:38px;
   height:38px;
@@ -235,12 +230,6 @@ button{
   justify-content:center;
   padding:0;
 }
-
-.lock-btn:active{
-  background:#f9dbe7;
-}
-
-/* 드래그 */
 
 .drag-handle,
 .item-handle{
@@ -255,7 +244,6 @@ button{
   cursor:grab;
   touch-action:none;
   user-select:none;
-  -webkit-user-select:none;
 }
 
 .drag-handle{
@@ -273,8 +261,6 @@ button{
 .dragging{
   opacity:.55;
 }
-
-/* 기여 개수 숨김 영역 */
 
 .hot-secret{
   display:none;
@@ -307,35 +293,12 @@ button{
   font-weight:900;
 }
 
-/* 열혈 수정 영역 */
-
-.hot-edit-panel{
-  display:none;
-  padding:13px;
-  border-top:1px solid #f3e4eb;
-  background:#fffafd;
+.hot-actions{
+  padding:0 13px 13px;
+  background:#fff9fc;
 }
 
-.hot-card.edit-open .hot-edit-panel{
-  display:block;
-}
-
-.hot-edit{
-  display:grid;
-  grid-template-columns:1fr 180px 90px;
-  gap:8px;
-}
-
-.save-btn{
-  border:0;
-  border-radius:11px;
-  color:white;
-  background:#dc91ad;
-  font-weight:800;
-}
-
-.delete-btn{
-  margin-top:9px;
+.hot-delete{
   width:100%;
   padding:10px;
   border:1px solid #efd4dc;
@@ -344,8 +307,6 @@ button{
   background:#fff0f3;
   font-weight:800;
 }
-
-/* 쿠폰 */
 
 .buyer-detail{
   display:none;
@@ -449,7 +410,6 @@ button{
 }
 
 @media(max-width:700px){
-
   .form,
   .hot-form{
     grid-template-columns:1fr 1fr;
@@ -459,15 +419,6 @@ button{
   .hot-form .add{
     grid-column:1/-1;
     min-height:46px;
-  }
-
-  .hot-edit{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .hot-edit .save-btn{
-    grid-column:1/-1;
-    min-height:42px;
   }
 
   .hero h1{
@@ -520,7 +471,7 @@ button{
       </div>
 
       <div class="tip">
-        🔒를 누르면 기여 개수가 보여요. 이름을 누르면 수정할 수 있어요.
+        같은 이름을 다시 입력하면 기존 기여 개수에 자동으로 더해져요. 🔒를 누르면 현재 기여 개수를 볼 수 있어요.
       </div>
 
       <div id="hotList"></div>
@@ -539,14 +490,8 @@ button{
     <div class="section-content">
 
       <div class="form">
-
-        <input
-          id="buyer"
-          placeholder="구매한 이름">
-
-        <input
-          id="product"
-          placeholder="구매한 항목">
+        <input id="buyer" placeholder="구매한 이름">
+        <input id="product" placeholder="구매한 항목">
 
         <input
           id="count"
@@ -560,11 +505,9 @@ button{
           id="addButton">
           ＋ 기록 추가
         </button>
-
       </div>
 
       <div class="stats">
-
         <div class="stat">
           <span>구매자</span>
           <strong id="peopleCount">0명</strong>
@@ -579,7 +522,6 @@ button{
           <span>전체 수량</span>
           <strong id="totalCount">0개</strong>
         </div>
-
       </div>
 
       <div class="tip">
@@ -595,40 +537,28 @@ button{
 
 <script>
 
-/* 큰 메뉴 */
-
 function toggleSection(id){
   document.getElementById(id).classList.toggle("open");
 }
-
-/* 숫자 쉼표 */
 
 function onlyDigits(value){
   return String(value || "").replace(/[^\d]/g,"");
 }
 
 function formatNumber(value){
-
   var digits=onlyDigits(value);
-
   if(!digits)return "";
-
   return Number(digits).toLocaleString("ko-KR");
 }
 
 function parseNumber(value){
-
   var digits=onlyDigits(value);
-
   if(!digits)return 0;
-
   return parseInt(digits,10) || 0;
 }
 
 function attachCommaInput(input){
-
   input.addEventListener("input",function(){
-
     var pos=input.selectionStart;
     var oldLength=input.value.length;
 
@@ -643,8 +573,6 @@ function attachCommaInput(input){
   });
 }
 
-/* 데이터 */
-
 var records={
   items:[],
   people:{},
@@ -655,11 +583,9 @@ var records={
 var hotRecords=[];
 
 try{
-
   var saved=localStorage.getItem("buyerTracker");
 
   if(saved){
-
     var loaded=JSON.parse(saved);
 
     records.items=loaded.items||[];
@@ -667,41 +593,25 @@ try{
     records.order=loaded.order||Object.keys(records.people);
     records.itemOrders=loaded.itemOrders||{};
   }
-
 }catch(e){}
 
 try{
-
   var hotSaved=localStorage.getItem("hotRankTracker");
 
   if(hotSaved){
     hotRecords=JSON.parse(hotSaved)||[];
   }
-
 }catch(e){}
 
 function saveCoupons(){
-  localStorage.setItem(
-    "buyerTracker",
-    JSON.stringify(records)
-  );
+  localStorage.setItem("buyerTracker",JSON.stringify(records));
 }
 
 function saveHot(){
-  localStorage.setItem(
-    "hotRankTracker",
-    JSON.stringify(hotRecords)
-  );
+  localStorage.setItem("hotRankTracker",JSON.stringify(hotRecords));
 }
 
-/* 드래그 */
-
-function makeSortable(
-  container,
-  handleSelector,
-  itemSelector,
-  callback
-){
+function makeSortable(container,handleSelector,itemSelector,callback){
 
   var dragged=null;
 
@@ -754,7 +664,6 @@ function makeSortable(
   };
 
   function finish(){
-
     if(!dragged)return;
 
     dragged.classList.remove("dragging");
@@ -767,30 +676,37 @@ function makeSortable(
   container.onpointercancel=finish;
 }
 
-/* =========================
-   열혈
-========================= */
+/* 열혈 */
 
 function addHot(){
 
-  var name=
-    document.getElementById("hotName").value.trim();
-
-  var count=
-    parseNumber(
-      document.getElementById("hotCount").value
-    );
+  var name=document.getElementById("hotName").value.trim();
+  var count=parseNumber(document.getElementById("hotCount").value);
 
   if(!name){
     alert("열혈 이름을 입력해주세요.");
     return;
   }
 
-  hotRecords.push({
-    id:Date.now().toString()+Math.random().toString(),
-    name:name,
-    contribution:count
+  if(count<1){
+    alert("기여 개수를 입력해주세요.");
+    return;
+  }
+
+  var existing=hotRecords.find(function(person){
+    return person.name===name;
   });
+
+  if(existing){
+    existing.contribution=
+      Number(existing.contribution||0)+count;
+  }else{
+    hotRecords.push({
+      id:Date.now().toString()+Math.random().toString(),
+      name:name,
+      contribution:count
+    });
+  }
 
   saveHot();
 
@@ -800,51 +716,19 @@ function addHot(){
   drawHot();
 }
 
-function updateHot(id){
-
-  var person=
-    hotRecords.find(function(p){
-      return p.id===id;
-    });
-
-  if(!person)return;
-
-  var nameInput=
-    document.getElementById("hot-name-"+id);
-
-  var countInput=
-    document.getElementById("hot-count-"+id);
-
-  var newName=nameInput.value.trim();
-  var newCount=parseNumber(countInput.value);
-
-  if(!newName){
-    alert("이름을 입력해주세요.");
-    return;
-  }
-
-  person.name=newName;
-  person.contribution=newCount;
-
-  saveHot();
-  drawHot();
-}
-
 function deleteHot(id){
 
-  var person=
-    hotRecords.find(function(p){
-      return p.id===id;
-    });
+  var person=hotRecords.find(function(p){
+    return p.id===id;
+  });
 
   if(!person)return;
 
   if(confirm(person.name+"님을 삭제할까요?")){
 
-    hotRecords=
-      hotRecords.filter(function(p){
-        return p.id!==id;
-      });
+    hotRecords=hotRecords.filter(function(p){
+      return p.id!==id;
+    });
 
     saveHot();
     drawHot();
@@ -853,14 +737,11 @@ function deleteHot(id){
 
 function drawHot(){
 
-  var list=
-    document.getElementById("hotList");
+  var list=document.getElementById("hotList");
 
   if(hotRecords.length===0){
-
     list.innerHTML=
       '<div class="empty">아직 열혈 기록이 없어요.</div>';
-
     return;
   }
 
@@ -893,21 +774,14 @@ function drawHot(){
     main.appendChild(rank);
     main.appendChild(info);
 
-    /* 이름 누르면 수정 */
-    main.onclick=function(){
-      card.classList.toggle("edit-open");
-    };
-
     var tools=document.createElement("div");
     tools.className="hot-tools";
 
-    /* 자물쇠 */
     var lock=document.createElement("button");
     lock.className="lock-btn";
     lock.textContent="🔒";
 
     lock.onclick=function(e){
-
       e.stopPropagation();
 
       card.classList.toggle("secret-open");
@@ -919,7 +793,6 @@ function drawHot(){
       }
     };
 
-    /* 순서 드래그 */
     var handle=document.createElement("div");
     handle.className="drag-handle";
     handle.textContent="☰";
@@ -930,7 +803,6 @@ function drawHot(){
     header.appendChild(main);
     header.appendChild(tools);
 
-    /* 기여 개수 */
     var secret=document.createElement("div");
     secret.className="hot-secret";
 
@@ -944,73 +816,29 @@ function drawHot(){
     var secretNumber=document.createElement("div");
     secretNumber.className="secret-number";
     secretNumber.textContent=
-      Number(person.contribution||0)
-      .toLocaleString("ko-KR")+"개";
+      Number(person.contribution||0).toLocaleString("ko-KR")+"개";
 
     secretBox.appendChild(secretLabel);
     secretBox.appendChild(secretNumber);
 
     secret.appendChild(secretBox);
 
-    /* 수정 */
-    var editPanel=document.createElement("div");
-    editPanel.className="hot-edit-panel";
-
-    var edit=document.createElement("div");
-    edit.className="hot-edit";
-
-    var nameInput=document.createElement("input");
-    nameInput.id="hot-name-"+person.id;
-    nameInput.value=person.name;
-    nameInput.placeholder="이름";
-
-    var countWrap=document.createElement("div");
-    countWrap.className="input-unit";
-
-    var countInput=document.createElement("input");
-    countInput.id="hot-count-"+person.id;
-    countInput.type="text";
-    countInput.inputMode="numeric";
-    countInput.value=
-      Number(person.contribution||0)
-      .toLocaleString("ko-KR");
-
-    countInput.placeholder="기여 개수";
-
-    var unit=document.createElement("span");
-    unit.textContent="개";
-
-    countWrap.appendChild(countInput);
-    countWrap.appendChild(unit);
-
-    attachCommaInput(countInput);
-
-    var saveButton=document.createElement("button");
-    saveButton.className="save-btn";
-    saveButton.textContent="저장";
-
-    saveButton.onclick=function(){
-      updateHot(person.id);
-    };
-
-    edit.appendChild(nameInput);
-    edit.appendChild(countWrap);
-    edit.appendChild(saveButton);
+    var actions=document.createElement("div");
+    actions.className="hot-actions";
 
     var deleteButton=document.createElement("button");
-    deleteButton.className="delete-btn";
+    deleteButton.className="hot-delete";
     deleteButton.textContent="열혈 기록 삭제";
 
     deleteButton.onclick=function(){
       deleteHot(person.id);
     };
 
-    editPanel.appendChild(edit);
-    editPanel.appendChild(deleteButton);
+    actions.appendChild(deleteButton);
 
     card.appendChild(header);
     card.appendChild(secret);
-    card.appendChild(editPanel);
+    card.appendChild(actions);
 
     list.appendChild(card);
   });
@@ -1038,9 +866,7 @@ function drawHot(){
   );
 }
 
-/* =========================
-   쿠폰
-========================= */
+/* 쿠폰 */
 
 function normalizeCoupons(){
 
@@ -1056,8 +882,7 @@ function normalizeCoupons(){
     }
 
     if(!records.itemOrders[name]){
-      records.itemOrders[name]=
-        Object.keys(records.people[name]);
+      records.itemOrders[name]=Object.keys(records.people[name]);
     }
 
     records.itemOrders[name]=
@@ -1067,7 +892,6 @@ function normalizeCoupons(){
       });
 
     Object.keys(records.people[name]).forEach(function(product){
-
       if(records.itemOrders[name].indexOf(product)===-1){
         records.itemOrders[name].push(product);
       }
@@ -1077,16 +901,9 @@ function normalizeCoupons(){
 
 function addRecord(){
 
-  var buyer=
-    document.getElementById("buyer").value.trim();
-
-  var product=
-    document.getElementById("product").value.trim();
-
-  var count=
-    parseInt(
-      document.getElementById("count").value
-    );
+  var buyer=document.getElementById("buyer").value.trim();
+  var product=document.getElementById("product").value.trim();
+  var count=parseInt(document.getElementById("count").value);
 
   if(!buyer){
     alert("구매한 이름을 입력해주세요.");
@@ -1104,18 +921,13 @@ function addRecord(){
   }
 
   if(!records.people[buyer]){
-
     records.people[buyer]={};
-
     records.order.push(buyer);
-
     records.itemOrders[buyer]=[];
   }
 
   if(records.people[buyer][product]===undefined){
-
     records.people[buyer][product]=0;
-
     records.itemOrders[buyer].push(product);
   }
 
@@ -1132,11 +944,7 @@ function addRecord(){
 
 function renameBuyer(oldName){
 
-  var newName=
-    prompt(
-      "새 이름을 입력해주세요.",
-      oldName
-    );
+  var newName=prompt("새 이름을 입력해주세요.",oldName);
 
   if(newName===null)return;
 
@@ -1149,18 +957,13 @@ function renameBuyer(oldName){
     return;
   }
 
-  records.people[newName]=
-    records.people[oldName];
-
+  records.people[newName]=records.people[oldName];
   delete records.people[oldName];
 
-  records.itemOrders[newName]=
-    records.itemOrders[oldName]||[];
-
+  records.itemOrders[newName]=records.itemOrders[oldName]||[];
   delete records.itemOrders[oldName];
 
-  var index=
-    records.order.indexOf(oldName);
+  var index=records.order.indexOf(oldName);
 
   if(index!==-1){
     records.order[index]=newName;
@@ -1170,11 +973,7 @@ function renameBuyer(oldName){
   drawBuyers();
 }
 
-function changeQty(
-  buyer,
-  product,
-  value
-){
+function changeQty(buyer,product,value){
 
   var number=parseInt(value);
 
@@ -1200,10 +999,7 @@ function changeQty(
   drawBuyers();
 }
 
-function deleteItem(
-  buyer,
-  product
-){
+function deleteItem(buyer,product){
 
   if(confirm(product+" 항목을 삭제할까요?")){
 
@@ -1239,9 +1035,7 @@ function deleteBuyer(buyer){
 
 function updateStats(){
 
-  var buyers=
-    Object.keys(records.people);
-
+  var buyers=Object.keys(records.people);
   var items={};
   var total=0;
 
@@ -1250,9 +1044,7 @@ function updateStats(){
     Object.keys(records.people[buyer]).forEach(function(product){
 
       items[product]=true;
-
-      total+=
-        records.people[buyer][product]||0;
+      total+=records.people[buyer][product]||0;
     });
   });
 
@@ -1271,14 +1063,11 @@ function drawBuyers(){
   normalizeCoupons();
   updateStats();
 
-  var list=
-    document.getElementById("buyerList");
+  var list=document.getElementById("buyerList");
 
   if(records.order.length===0){
-
     list.innerHTML=
       '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
-
     return;
   }
 
@@ -1286,52 +1075,35 @@ function drawBuyers(){
 
   records.order.forEach(function(buyer){
 
-    var data=
-      records.people[buyer];
-
-    var products=
-      records.itemOrders[buyer]||[];
-
+    var data=records.people[buyer];
+    var products=records.itemOrders[buyer]||[];
     var total=0;
 
     products.forEach(function(product){
       total+=data[product]||0;
     });
 
-    var card=
-      document.createElement("div");
-
+    var card=document.createElement("div");
     card.className="buyer-card";
     card.dataset.buyer=buyer;
 
-    var header=
-      document.createElement("div");
-
+    var header=document.createElement("div");
     header.className="buyer-header";
 
-    var main=
-      document.createElement("div");
-
+    var main=document.createElement("div");
     main.className="buyer-main";
 
-    var avatar=
-      document.createElement("div");
-
+    var avatar=document.createElement("div");
     avatar.className="avatar";
     avatar.textContent="♥";
 
-    var info=
-      document.createElement("div");
+    var info=document.createElement("div");
 
-    var name=
-      document.createElement("div");
-
+    var name=document.createElement("div");
     name.className="name";
     name.textContent=buyer;
 
-    var sub=
-      document.createElement("div");
-
+    var sub=document.createElement("div");
     sub.className="sub";
     sub.textContent="총 "+total+"개";
 
@@ -1345,72 +1117,50 @@ function drawBuyers(){
       card.classList.toggle("open");
     };
 
-    var handle=
-      document.createElement("div");
-
+    var handle=document.createElement("div");
     handle.className="drag-handle";
     handle.textContent="☰";
 
     header.appendChild(main);
     header.appendChild(handle);
 
-    var detail=
-      document.createElement("div");
-
+    var detail=document.createElement("div");
     detail.className="buyer-detail";
 
-    var itemList=
-      document.createElement("div");
+    var itemList=document.createElement("div");
 
     products.forEach(function(product){
 
       if(data[product]===undefined)return;
 
-      var row=
-        document.createElement("div");
-
+      var row=document.createElement("div");
       row.className="item-row";
       row.dataset.product=product;
 
-      var itemHandle=
-        document.createElement("div");
-
+      var itemHandle=document.createElement("div");
       itemHandle.className="item-handle";
       itemHandle.textContent="☰";
 
-      var itemName=
-        document.createElement("div");
-
+      var itemName=document.createElement("div");
       itemName.className="item-name";
       itemName.textContent=product;
 
-      var qty=
-        document.createElement("input");
-
+      var qty=document.createElement("input");
       qty.type="number";
       qty.min="0";
       qty.className="qty";
       qty.value=data[product];
 
       qty.onchange=function(){
-        changeQty(
-          buyer,
-          product,
-          this.value
-        );
+        changeQty(buyer,product,this.value);
       };
 
-      var del=
-        document.createElement("button");
-
+      var del=document.createElement("button");
       del.className="small-delete";
       del.textContent="삭제";
 
       del.onclick=function(){
-        deleteItem(
-          buyer,
-          product
-        );
+        deleteItem(buyer,product);
       };
 
       row.appendChild(itemHandle);
@@ -1423,14 +1173,10 @@ function drawBuyers(){
 
     detail.appendChild(itemList);
 
-    var actions=
-      document.createElement("div");
-
+    var actions=document.createElement("div");
     actions.className="actions";
 
-    var rename=
-      document.createElement("button");
-
+    var rename=document.createElement("button");
     rename.className="edit-btn";
     rename.textContent="✎ 이름 수정";
 
@@ -1438,9 +1184,7 @@ function drawBuyers(){
       renameBuyer(buyer);
     };
 
-    var deleteBtn=
-      document.createElement("button");
-
+    var deleteBtn=document.createElement("button");
     deleteBtn.className="danger-btn";
     deleteBtn.textContent="구매자 삭제";
 
@@ -1494,17 +1238,12 @@ function drawBuyers(){
   );
 }
 
-/* 시작 */
-
 attachCommaInput(
   document.getElementById("hotCount")
 );
 
-document.getElementById("hotAddButton").onclick=
-  addHot;
-
-document.getElementById("addButton").onclick=
-  addRecord;
+document.getElementById("hotAddButton").onclick=addHot;
+document.getElementById("addButton").onclick=addRecord;
 
 drawHot();
 drawBuyers();
