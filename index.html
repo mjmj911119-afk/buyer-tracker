@@ -17,10 +17,7 @@ body{
   background:linear-gradient(180deg,#fff9fc 0%,#fff0f6 55%,#fff8fb 100%);
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
-}
+.container{max-width:900px;margin:auto}
 
 .hero{
   padding:30px 24px;
@@ -31,16 +28,8 @@ body{
   box-shadow:0 14px 35px rgba(215,110,155,.20);
 }
 
-.hero h1{
-  margin:0 0 6px;
-  font-size:28px;
-}
-
-.hero p{
-  margin:0;
-  font-size:14px;
-  color:#fff8fb;
-}
+.hero h1{margin:0 0 6px;font-size:28px}
+.hero p{margin:0;font-size:14px;color:#fff8fb}
 
 .section{
   margin-bottom:14px;
@@ -76,9 +65,7 @@ body{
   border-top:1px solid #f4e4eb;
 }
 
-.section.open .section-content{
-  display:block;
-}
+.section.open .section-content{display:block}
 
 .form{
   display:grid;
@@ -126,9 +113,7 @@ input:focus{
   box-shadow:0 0 0 3px rgba(230,150,185,.10);
 }
 
-input::placeholder{
-  color:#b89aa7;
-}
+input::placeholder{color:#b89aa7}
 
 button{
   font-family:inherit;
@@ -150,8 +135,7 @@ button{
   font-size:12px;
 }
 
-.hot-card,
-.buyer-card{
+.hot-card,.buyer-card{
   margin-bottom:9px;
   overflow:hidden;
   border:1px solid #efdbe4;
@@ -159,8 +143,7 @@ button{
   background:white;
 }
 
-.hot-header,
-.buyer-header{
+.hot-header,.buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -168,8 +151,7 @@ button{
   background:linear-gradient(135deg,#fff,#fff5f8);
 }
 
-.hot-main,
-.buyer-main{
+.hot-main,.buyer-main{
   display:flex;
   align-items:center;
   gap:10px;
@@ -177,8 +159,7 @@ button{
   min-width:0;
 }
 
-.rank,
-.avatar{
+.rank,.avatar{
   flex:none;
   display:flex;
   align-items:center;
@@ -218,21 +199,24 @@ button{
   gap:6px;
 }
 
-.lock-btn{
+.icon-btn{
   width:38px;
   height:38px;
   border:1px solid #efd7e1;
   border-radius:10px;
   background:#fff2f7;
-  font-size:17px;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:0;
+  font-size:17px;
 }
 
-.drag-handle,
-.item-handle{
+.trash-btn{
+  background:#fff1f3;
+}
+
+.drag-handle,.item-handle{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -244,6 +228,7 @@ button{
   cursor:grab;
   touch-action:none;
   user-select:none;
+  -webkit-user-select:none;
 }
 
 .drag-handle{
@@ -258,10 +243,9 @@ button{
   font-size:17px;
 }
 
-.dragging{
-  opacity:.55;
-}
+.dragging{opacity:.55}
 
+/* 열혈 기여 개수 보기 */
 .hot-secret{
   display:none;
   padding:13px;
@@ -293,21 +277,18 @@ button{
   font-weight:900;
 }
 
-.hot-actions{
-  padding:0 13px 13px;
-  background:#fff9fc;
-}
-
-.hot-delete{
+.adjust-btn{
+  margin-top:10px;
   width:100%;
   padding:10px;
-  border:1px solid #efd4dc;
-  border-radius:11px;
-  color:#ad6178;
-  background:#fff0f3;
+  border:1px solid #ead7df;
+  border-radius:10px;
+  background:#fff;
+  color:#704f5e;
   font-weight:800;
 }
 
+/* 쿠폰 */
 .buyer-detail{
   display:none;
   padding:13px;
@@ -383,8 +364,7 @@ button{
   margin-top:11px;
 }
 
-.edit-btn,
-.danger-btn{
+.edit-btn,.danger-btn{
   flex:1;
   padding:10px;
   border-radius:10px;
@@ -410,13 +390,11 @@ button{
 }
 
 @media(max-width:700px){
-  .form,
-  .hot-form{
+  .form,.hot-form{
     grid-template-columns:1fr 1fr;
   }
 
-  .form .add,
-  .hot-form .add{
+  .form .add,.hot-form .add{
     grid-column:1/-1;
     min-height:46px;
   }
@@ -448,10 +426,7 @@ button{
     <div class="section-content">
 
       <div class="hot-form">
-
-        <input
-          id="hotName"
-          placeholder="열혈 이름">
+        <input id="hotName" placeholder="열혈 이름">
 
         <div class="input-unit">
           <input
@@ -462,16 +437,13 @@ button{
           <span>개</span>
         </div>
 
-        <button
-          class="add"
-          id="hotAddButton">
+        <button class="add" id="hotAddButton">
           ＋ 추가
         </button>
-
       </div>
 
       <div class="tip">
-        같은 이름을 다시 입력하면 기존 기여 개수에 자동으로 더해져요. 🔒를 누르면 현재 기여 개수를 볼 수 있어요.
+        같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요. 🔒로 확인하고, 🗑️로 삭제할 수 있어요.
       </div>
 
       <div id="hotList"></div>
@@ -500,14 +472,13 @@ button{
           value="1"
           placeholder="개수">
 
-        <button
-          class="add"
-          id="addButton">
+        <button class="add" id="addButton">
           ＋ 기록 추가
         </button>
       </div>
 
       <div class="stats">
+
         <div class="stat">
           <span>구매자</span>
           <strong id="peopleCount">0명</strong>
@@ -522,6 +493,7 @@ button{
           <span>전체 수량</span>
           <strong id="totalCount">0개</strong>
         </div>
+
       </div>
 
       <div class="tip">
@@ -554,22 +526,12 @@ function formatNumber(value){
 function parseNumber(value){
   var digits=onlyDigits(value);
   if(!digits)return 0;
-  return parseInt(digits,10) || 0;
+  return parseInt(digits,10)||0;
 }
 
 function attachCommaInput(input){
   input.addEventListener("input",function(){
-    var pos=input.selectionStart;
-    var oldLength=input.value.length;
-
     input.value=formatNumber(input.value);
-
-    var newLength=input.value.length;
-
-    try{
-      var next=pos+(newLength-oldLength);
-      input.setSelectionRange(next,next);
-    }catch(e){}
   });
 }
 
@@ -587,7 +549,6 @@ try{
 
   if(saved){
     var loaded=JSON.parse(saved);
-
     records.items=loaded.items||[];
     records.people=loaded.people||{};
     records.order=loaded.order||Object.keys(records.people);
@@ -716,6 +677,33 @@ function addHot(){
   drawHot();
 }
 
+function adjustHot(id){
+
+  var person=hotRecords.find(function(p){
+    return p.id===id;
+  });
+
+  if(!person)return;
+
+  var value=prompt(
+    "기여 개수를 직접 수정해주세요.",
+    Number(person.contribution||0).toLocaleString("ko-KR")
+  );
+
+  if(value===null)return;
+
+  var number=parseNumber(value);
+
+  if(number<0){
+    return;
+  }
+
+  person.contribution=number;
+
+  saveHot();
+  drawHot();
+}
+
 function deleteHot(id){
 
   var person=hotRecords.find(function(p){
@@ -778,7 +766,7 @@ function drawHot(){
     tools.className="hot-tools";
 
     var lock=document.createElement("button");
-    lock.className="lock-btn";
+    lock.className="icon-btn";
     lock.textContent="🔒";
 
     lock.onclick=function(e){
@@ -793,11 +781,21 @@ function drawHot(){
       }
     };
 
+    var trash=document.createElement("button");
+    trash.className="icon-btn trash-btn";
+    trash.textContent="🗑️";
+
+    trash.onclick=function(e){
+      e.stopPropagation();
+      deleteHot(person.id);
+    };
+
     var handle=document.createElement("div");
     handle.className="drag-handle";
     handle.textContent="☰";
 
     tools.appendChild(lock);
+    tools.appendChild(trash);
     tools.appendChild(handle);
 
     header.appendChild(main);
@@ -818,27 +816,22 @@ function drawHot(){
     secretNumber.textContent=
       Number(person.contribution||0).toLocaleString("ko-KR")+"개";
 
+    var adjustButton=document.createElement("button");
+    adjustButton.className="adjust-btn";
+    adjustButton.textContent="기여 개수 직접 수정";
+
+    adjustButton.onclick=function(){
+      adjustHot(person.id);
+    };
+
     secretBox.appendChild(secretLabel);
     secretBox.appendChild(secretNumber);
+    secretBox.appendChild(adjustButton);
 
     secret.appendChild(secretBox);
 
-    var actions=document.createElement("div");
-    actions.className="hot-actions";
-
-    var deleteButton=document.createElement("button");
-    deleteButton.className="hot-delete";
-    deleteButton.textContent="열혈 기록 삭제";
-
-    deleteButton.onclick=function(){
-      deleteHot(person.id);
-    };
-
-    actions.appendChild(deleteButton);
-
     card.appendChild(header);
     card.appendChild(secret);
-    card.appendChild(actions);
 
     list.appendChild(card);
   });
@@ -892,6 +885,7 @@ function normalizeCoupons(){
       });
 
     Object.keys(records.people[name]).forEach(function(product){
+
       if(records.itemOrders[name].indexOf(product)===-1){
         records.itemOrders[name].push(product);
       }
@@ -1238,9 +1232,7 @@ function drawBuyers(){
   );
 }
 
-attachCommaInput(
-  document.getElementById("hotCount")
-);
+attachCommaInput(document.getElementById("hotCount"));
 
 document.getElementById("hotAddButton").onclick=addHot;
 document.getElementById("addButton").onclick=addRecord;
