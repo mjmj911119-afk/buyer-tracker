@@ -6,89 +6,265 @@
 <title>구매 기록 관리</title>
 
 <style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f5f6fa;
-  margin: 0;
-  padding: 15px;
-  color: #222;
+*{
+  box-sizing:border-box;
 }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
+body{
+  margin:0;
+  padding:20px 14px 40px;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  color:#24435a;
+  background:
+    radial-gradient(circle at top left,#dff7ff 0,transparent 35%),
+    radial-gradient(circle at top right,#ece5ff 0,transparent 30%),
+    linear-gradient(180deg,#f8fdff 0%,#eef8ff 55%,#f7f4ff 100%);
+  min-height:100vh;
 }
 
-h1 {
-  font-size: 24px;
+.container{
+  max-width:1000px;
+  margin:0 auto;
 }
 
-.card {
-  background: white;
-  padding: 16px;
-  border-radius: 15px;
-  margin-bottom: 15px;
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#8fdcff 0%,#9fc8ff 45%,#b9b2ff 100%);
+  border-radius:26px;
+  padding:26px 22px;
+  margin-bottom:18px;
+  box-shadow:0 14px 35px rgba(97,167,220,.22);
+  color:white;
 }
 
-.form {
-  display: grid;
-  gap: 10px;
+.hero:before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  top:-70px;
+  right:-40px;
 }
 
-input {
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
+.hero:after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  bottom:-45px;
+  left:-25px;
 }
 
-button {
-  padding: 13px;
-  border: 0;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
+.hero h1{
+  margin:0 0 6px;
+  font-size:28px;
+  position:relative;
+  z-index:1;
 }
 
-.add {
-  background: #222;
-  color: white;
+.hero p{
+  margin:0;
+  font-size:14px;
+  opacity:.95;
+  position:relative;
+  z-index:1;
 }
 
-.delete {
-  background: #ffeaea;
-  color: #d33;
+.card{
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(157,210,240,.45);
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 10px 28px rgba(82,145,190,.10);
+  backdrop-filter:blur(8px);
 }
 
-.tablebox {
-  overflow-x: auto;
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr 120px 150px;
+  gap:10px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 500px;
+input{
+  width:100%;
+  padding:14px 15px;
+  border:1.5px solid #cfe9f8;
+  border-radius:14px;
+  font-size:16px;
+  color:#24435a;
+  background:#fbfeff;
+  outline:none;
+  transition:.18s;
 }
 
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
+input:focus{
+  border-color:#7cccf2;
+  box-shadow:0 0 0 4px rgba(124,204,242,.16);
 }
 
-th {
-  background: #fafafa;
+.add{
+  border:0;
+  border-radius:14px;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  background:linear-gradient(135deg,#68c9f4,#7fafff 55%,#9e8fff);
+  box-shadow:0 8px 18px rgba(98,170,235,.25);
+  cursor:pointer;
 }
 
-.qty {
-  width: 60px;
-  text-align: center;
+.add:active{
+  transform:scale(.98);
 }
 
-.empty {
-  text-align: center;
-  padding: 30px;
-  color: #999;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.stat{
+  border-radius:18px;
+  padding:15px;
+  color:#24435a;
+  font-weight:700;
+  text-align:center;
+}
+
+.stat:nth-child(1){
+  background:linear-gradient(135deg,#dcf7ff,#cfeeff);
+}
+
+.stat:nth-child(2){
+  background:linear-gradient(135deg,#e2fff4,#cff5e7);
+}
+
+.stat:nth-child(3){
+  background:linear-gradient(135deg,#eee9ff,#ded6ff);
+}
+
+.stat span{
+  display:block;
+  font-size:12px;
+  opacity:.7;
+  margin-bottom:5px;
+}
+
+.stat strong{
+  font-size:22px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.section-title b{
+  font-size:17px;
+}
+
+.tablebox{
+  overflow-x:auto;
+  border-radius:16px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+  overflow:hidden;
+  background:white;
+}
+
+th,td{
+  padding:12px 10px;
+  border-bottom:1px solid #edf3f7;
+  text-align:center;
+}
+
+th{
+  background:linear-gradient(180deg,#eaf8ff,#f4fbff);
+  color:#4b7896;
+  font-size:14px;
+}
+
+tr:nth-child(even) td{
+  background:#fcfeff;
+}
+
+.qty{
+  width:70px;
+  text-align:center;
+  padding:9px;
+  border-radius:10px;
+  border:1px solid #d6ecf7;
+  background:#fafdff;
+}
+
+.delete{
+  border:0;
+  border-radius:10px;
+  padding:9px 12px;
+  background:linear-gradient(135deg,#ffdce7,#ffe9f0);
+  color:#d85d7b;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.reset-wrap{
+  text-align:right;
+}
+
+.reset{
+  border:0;
+  border-radius:12px;
+  padding:11px 14px;
+  background:#edf4f8;
+  color:#6a8293;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.empty{
+  text-align:center;
+  padding:38px 20px;
+  color:#91a6b6;
+  background:linear-gradient(180deg,#fbfeff,#f7fbff);
+  border-radius:14px;
+}
+
+.tip{
+  margin-top:10px;
+  font-size:12px;
+  color:#8aa6b8;
+}
+
+@media(max-width:760px){
+  .form{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .add{
+    grid-column:1/-1;
+    min-height:48px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
 }
 </style>
 </head>
@@ -97,98 +273,82 @@ th {
 
 <div class="container">
 
-<h1>🛒 구매 기록 관리</h1>
+  <div class="hero">
+    <h1>☁️ 구매 기록 관리</h1>
+    <p>이름별 구매 항목과 개수를 깔끔하게 정리해보세요.</p>
+  </div>
 
-<div class="card">
+  <div class="card">
+    <div class="form">
+      <input id="buyer" placeholder="구매한 이름">
+      <input id="product" placeholder="구매한 항목">
+      <input id="count" type="number" min="1" value="1" placeholder="개수">
+      <button id="addButton" class="add">기록 추가</button>
+    </div>
+    <div class="tip">같은 이름 + 같은 항목을 다시 추가하면 개수가 자동으로 합산돼요.</div>
+  </div>
 
-<div class="form">
+  <div class="stats">
+    <div class="stat">
+      <span>구매자</span>
+      <strong id="peopleCount">0명</strong>
+    </div>
 
-<input
-id="buyer"
-placeholder="구매한 이름">
+    <div class="stat">
+      <span>구매 항목</span>
+      <strong id="itemCount">0개</strong>
+    </div>
 
-<input
-id="product"
-placeholder="구매한 항목">
+    <div class="stat">
+      <span>전체 수량</span>
+      <strong id="totalCount">0개</strong>
+    </div>
+  </div>
 
-<input
-id="count"
-type="number"
-min="1"
-value="1"
-placeholder="개수">
+  <div class="card">
+    <div class="section-title">
+      <b>🩵 구매 현황</b>
+    </div>
 
-<button
-id="addButton"
-class="add">
-기록 추가
-</button>
+    <div id="tableArea" class="tablebox"></div>
+  </div>
 
-</div>
-
-</div>
-
-<div class="card">
-
-<b>구매 현황</b>
-
-<div
-id="tableArea"
-class="tablebox">
-</div>
-
-</div>
-
-<button
-id="resetButton"
-class="delete">
-전체 기록 삭제
-</button>
+  <div class="reset-wrap">
+    <button id="resetButton" class="reset">전체 기록 삭제</button>
+  </div>
 
 </div>
 
 <script>
-
 var records = {
   items: [],
   people: {}
 };
 
 try {
-
-  var saved =
-  localStorage.getItem("buyerTracker");
+  var saved = localStorage.getItem("buyerTracker");
 
   if(saved) {
     records = JSON.parse(saved);
   }
-
 } catch(e) {}
 
 function save() {
-
   localStorage.setItem(
     "buyerTracker",
     JSON.stringify(records)
   );
-
 }
 
 function addRecord() {
-
   var buyer =
-    document.getElementById("buyer")
-    .value.trim();
+    document.getElementById("buyer").value.trim();
 
   var product =
-    document.getElementById("product")
-    .value.trim();
+    document.getElementById("product").value.trim();
 
   var count =
-    parseInt(
-      document.getElementById("count")
-      .value
-    );
+    parseInt(document.getElementById("count").value);
 
   if(buyer === "") {
     alert("구매한 이름을 입력해주세요.");
@@ -226,11 +386,9 @@ function addRecord() {
   document.getElementById("count").value = "1";
 
   drawTable();
-
 }
 
 function changeQty(buyer, product, value) {
-
   var number = parseInt(value);
 
   if(isNaN(number) || number < 0) {
@@ -241,44 +399,55 @@ function changeQty(buyer, product, value) {
 
   save();
   drawTable();
-
 }
 
 function deleteBuyer(buyer) {
-
-  if(
-    confirm(
-      buyer +
-      "님의 기록을 삭제할까요?"
-    )
-  ) {
-
+  if(confirm(buyer + "님의 기록을 삭제할까요?")) {
     delete records.people[buyer];
 
     save();
     drawTable();
-
   }
+}
 
+function updateStats() {
+  var buyers = Object.keys(records.people);
+
+  document.getElementById("peopleCount").textContent =
+    buyers.length + "명";
+
+  document.getElementById("itemCount").textContent =
+    records.items.length + "개";
+
+  var grandTotal = 0;
+
+  buyers.forEach(function(buyer) {
+    records.items.forEach(function(product) {
+      grandTotal += records.people[buyer][product] || 0;
+    });
+  });
+
+  document.getElementById("totalCount").textContent =
+    grandTotal + "개";
 }
 
 function drawTable() {
-
   var area =
     document.getElementById("tableArea");
 
   var buyers =
     Object.keys(records.people);
 
-  if(buyers.length === 0) {
+  updateStats();
 
+  if(buyers.length === 0) {
     area.innerHTML =
       '<div class="empty">' +
-      '아직 구매 기록이 없습니다.' +
+      '☁️ 아직 구매 기록이 없어요.<br>' +
+      '위에서 이름, 항목, 개수를 입력해보세요!' +
       '</div>';
 
     return;
-
   }
 
   var table =
@@ -300,14 +469,12 @@ function drawTable() {
 
   records.items.forEach(
     function(product) {
-
       var th =
         document.createElement("th");
 
       th.textContent = product;
 
       header.appendChild(th);
-
     }
   );
 
@@ -328,7 +495,6 @@ function drawTable() {
   header.appendChild(manageHeader);
 
   thead.appendChild(header);
-
   table.appendChild(thead);
 
   var tbody =
@@ -336,14 +502,14 @@ function drawTable() {
 
   buyers.forEach(
     function(buyer) {
-
       var row =
         document.createElement("tr");
 
       var name =
         document.createElement("td");
 
-      name.textContent = buyer;
+      name.innerHTML =
+        "<b>" + buyer + "</b>";
 
       row.appendChild(name);
 
@@ -351,7 +517,6 @@ function drawTable() {
 
       records.items.forEach(
         function(product) {
-
           var td =
             document.createElement("td");
 
@@ -366,24 +531,19 @@ function drawTable() {
             records.people[buyer][product] || 0;
 
           input.value = quantity;
-
           total += quantity;
 
           input.onchange =
             function() {
-
               changeQty(
                 buyer,
                 product,
                 this.value
               );
-
             };
 
           td.appendChild(input);
-
           row.appendChild(td);
-
         }
       );
 
@@ -409,28 +569,20 @@ function drawTable() {
 
       deleteButton.onclick =
         function() {
-
           deleteBuyer(buyer);
-
         };
 
-      manage.appendChild(
-        deleteButton
-      );
-
+      manage.appendChild(deleteButton);
       row.appendChild(manage);
 
       tbody.appendChild(row);
-
     }
   );
 
   table.appendChild(tbody);
 
   area.innerHTML = "";
-
   area.appendChild(table);
-
 }
 
 document
@@ -441,13 +593,7 @@ document
 .getElementById("resetButton")
 .onclick =
 function() {
-
-  if(
-    confirm(
-      "모든 기록을 삭제할까요?"
-    )
-  ) {
-
+  if(confirm("모든 기록을 삭제할까요?")) {
     records = {
       items: [],
       people: {}
@@ -455,13 +601,10 @@ function() {
 
     save();
     drawTable();
-
   }
-
 };
 
 drawTable();
-
 </script>
 
 </body>
