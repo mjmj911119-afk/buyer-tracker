@@ -30,7 +30,7 @@ body{
   margin-bottom:18px;
   border-radius:28px;
   color:white;
-  background:linear-gradient(135deg,#ff8eb9 0%,#f7a2c9 50%,#be9dff 100%);
+  background:linear-gradient(135deg,#ff8eb9,#f7a2c9 50%,#be9dff);
   box-shadow:0 14px 35px rgba(225,110,165,.24);
 }
 
@@ -48,8 +48,9 @@ body{
   padding:18px;
   margin-bottom:16px;
   border-radius:22px;
-  background:white;
+  background:rgba(255,255,255,.96);
   border:1px solid #f3d5e2;
+  box-shadow:0 10px 28px rgba(210,120,160,.08);
 }
 
 .form{
@@ -60,13 +61,23 @@ body{
 
 input{
   width:100%;
-  padding:14px 15px;
+  padding:14px;
   border:1.5px solid #f1cede;
   border-radius:14px;
   background:#fffafd;
   color:#654455;
   font-size:16px;
   outline:none;
+}
+
+input:focus{
+  border-color:#f08fba;
+  box-shadow:0 0 0 4px rgba(240,143,186,.14);
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
 }
 
 .add{
@@ -92,7 +103,7 @@ input{
 }
 
 .stat{
-  padding:15px;
+  padding:14px 6px;
   border-radius:18px;
   text-align:center;
 }
@@ -105,43 +116,58 @@ input{
   display:block;
   font-size:12px;
   opacity:.65;
+  margin-bottom:4px;
 }
 
 .stat strong{
-  font-size:21px;
+  font-size:20px;
+}
+
+.section-title{
+  margin-bottom:13px;
+  font-size:17px;
 }
 
 .buyer-card{
   margin-bottom:11px;
   border:1px solid #f1d7e3;
   border-radius:18px;
-  background:white;
+  background:#fff;
   overflow:hidden;
+  transition:transform .15s, box-shadow .15s;
+}
+
+.buyer-card.dragging{
+  opacity:.65;
+  transform:scale(1.02);
+  box-shadow:0 12px 25px rgba(220,100,155,.22);
 }
 
 .buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  width:100%;
   padding:14px;
-  border:0;
   background:linear-gradient(135deg,#fff4f8,#fbf2ff);
 }
 
-.buyer-left{
+.buyer-main{
   display:flex;
   align-items:center;
   gap:10px;
+  flex:1;
+  cursor:pointer;
 }
 
 .avatar{
   width:38px;
   height:38px;
-  border-radius:50%;
+  flex:none;
   display:flex;
   align-items:center;
   justify-content:center;
+  border-radius:50%;
+  color:white;
   background:linear-gradient(135deg,#ffb4cf,#c9b1ff);
 }
 
@@ -151,36 +177,43 @@ input{
 }
 
 .buyer-total{
+  margin-top:2px;
   font-size:12px;
   color:#aa8094;
 }
 
-.header-right{
+.header-tools{
   display:flex;
   align-items:center;
-  gap:6px;
-}
-
-.move-btn{
-  width:34px;
-  height:34px;
-  padding:0;
-  border:0;
-  border-radius:10px;
-  background:#f6e6ee;
-  color:#b45f84;
-  font-size:17px;
-  font-weight:800;
+  gap:5px;
 }
 
 .arrow{
-  width:34px;
-  height:34px;
-  border:0;
-  border-radius:10px;
-  background:#f5edf2;
-  color:#8d6b7b;
+  padding:7px;
+  color:#a07489;
   font-size:18px;
+  cursor:pointer;
+}
+
+.drag-handle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  color:#bd7698;
+  background:#f8e8f0;
+  font-size:21px;
+  font-weight:bold;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.drag-handle:active{
+  cursor:grabbing;
 }
 
 .buyer-detail{
@@ -194,20 +227,50 @@ input{
 
 .item-row{
   display:grid;
-  grid-template-columns:1fr 90px 70px;
-  gap:8px;
+  grid-template-columns:38px 1fr 82px 65px;
+  gap:7px;
   align-items:center;
-  padding:9px 4px;
+  padding:8px 3px;
   border-bottom:1px solid #f6e9ef;
+  transition:transform .15s;
+}
+
+.item-row.dragging{
+  opacity:.55;
+  background:#fff0f6;
+  border-radius:12px;
+}
+
+.item-handle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  background:#faedf3;
+  color:#c17a9b;
+  font-size:18px;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.item-name{
+  font-weight:700;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .qty{
-  padding:9px;
+  padding:9px 5px;
   text-align:center;
+  border-radius:10px;
 }
 
 .item-delete{
-  padding:9px;
+  padding:9px 5px;
   border:0;
   border-radius:10px;
   background:#ffe6ef;
@@ -216,7 +279,7 @@ input{
 }
 
 .buyer-delete{
-  margin-top:10px;
+  margin-top:11px;
   padding:10px 12px;
   border:0;
   border-radius:11px;
@@ -226,7 +289,7 @@ input{
 }
 
 .empty{
-  padding:36px;
+  padding:36px 20px;
   text-align:center;
   color:#b18a9d;
 }
@@ -251,7 +314,16 @@ input{
   }
 
   .item-row{
-    grid-template-columns:1fr 75px 62px;
+    grid-template-columns:34px 1fr 70px 58px;
+    gap:5px;
+  }
+
+  .item-delete{
+    font-size:12px;
+  }
+
+  .hero h1{
+    font-size:24px;
   }
 }
 </style>
@@ -263,15 +335,13 @@ input{
 
 <div class="hero">
   <h1>🎀 은별이방 쿠폰 기록</h1>
-  <p>구매자를 누르면 구매한 쿠폰을 확인할 수 있어요 ♡</p>
+  <p>구매자와 쿠폰 순서를 원하는 대로 정리해보세요 ♡</p>
 </div>
 
 <div class="card">
 
   <div class="form">
-
     <input id="buyer" placeholder="구매한 이름">
-
     <input id="product" placeholder="구매한 항목">
 
     <input
@@ -284,11 +354,10 @@ input{
     <button id="addButton" class="add">
       ＋ 기록 추가
     </button>
-
   </div>
 
   <div class="tip">
-    같은 구매자 + 같은 항목을 추가하면 자동 합산돼요.
+    ☰ 버튼을 누른 채 위아래로 움직이면 순서를 바꿀 수 있어요.
   </div>
 
 </div>
@@ -314,9 +383,11 @@ input{
 
 <div class="card">
 
-  <b>🩷 구매자별 쿠폰 기록</b>
+  <div class="section-title">
+    <b>🩷 구매자별 쿠폰 기록</b>
+  </div>
 
-  <div id="buyerList" style="margin-top:13px"></div>
+  <div id="buyerList"></div>
 
 </div>
 
@@ -327,30 +398,64 @@ input{
 </div>
 
 <script>
-
 var records = {
   items: [],
   people: {},
-  order: []
+  order: [],
+  itemOrders: {}
 };
 
 try {
   var saved = localStorage.getItem("buyerTracker");
 
-  if(saved) {
+  if(saved){
     var loaded = JSON.parse(saved);
 
     records.items = loaded.items || [];
     records.people = loaded.people || {};
     records.order = loaded.order || Object.keys(records.people);
+    records.itemOrders = loaded.itemOrders || {};
   }
-} catch(e) {}
+}catch(e){}
 
 function save(){
   localStorage.setItem(
     "buyerTracker",
     JSON.stringify(records)
   );
+}
+
+function normalizeOrders(){
+
+  records.order = records.order.filter(function(name){
+    return records.people[name];
+  });
+
+  Object.keys(records.people).forEach(function(name){
+
+    if(!records.order.includes(name)){
+      records.order.push(name);
+    }
+
+    if(!records.itemOrders[name]){
+      records.itemOrders[name] =
+        Object.keys(records.people[name]);
+    }
+
+    records.itemOrders[name] =
+      records.itemOrders[name].filter(function(product){
+        return records.people[name][product] !== undefined;
+      });
+
+    Object.keys(records.people[name]).forEach(function(product){
+
+      if(!records.itemOrders[name].includes(product)){
+        records.itemOrders[name].push(product);
+      }
+
+    });
+
+  });
 }
 
 function addRecord(){
@@ -379,20 +484,22 @@ function addRecord(){
     return;
   }
 
-  if(records.items.indexOf(product) === -1){
-    records.items.push(product);
-  }
-
   if(!records.people[buyer]){
     records.people[buyer] = {};
     records.order.push(buyer);
+    records.itemOrders[buyer] = [];
   }
 
-  if(!records.people[buyer][product]){
+  if(records.people[buyer][product] === undefined){
     records.people[buyer][product] = 0;
+    records.itemOrders[buyer].push(product);
   }
 
   records.people[buyer][product] += count;
+
+  if(!records.items.includes(product)){
+    records.items.push(product);
+  }
 
   save();
 
@@ -400,27 +507,6 @@ function addRecord(){
   document.getElementById("product").value = "";
   document.getElementById("count").value = "1";
 
-  drawBuyers();
-}
-
-function moveBuyer(buyer, direction){
-
-  var index = records.order.indexOf(buyer);
-
-  if(index === -1) return;
-
-  var newIndex = index + direction;
-
-  if(newIndex < 0 || newIndex >= records.order.length){
-    return;
-  }
-
-  var temp = records.order[index];
-
-  records.order[index] = records.order[newIndex];
-  records.order[newIndex] = temp;
-
-  save();
   drawBuyers();
 }
 
@@ -433,7 +519,14 @@ function changeQty(buyer, product, value){
   }
 
   if(number === 0){
+
     delete records.people[buyer][product];
+
+    records.itemOrders[buyer] =
+      records.itemOrders[buyer].filter(function(p){
+        return p !== product;
+      });
+
   }else{
     records.people[buyer][product] = number;
   }
@@ -448,6 +541,11 @@ function deleteItem(buyer, product){
 
     delete records.people[buyer][product];
 
+    records.itemOrders[buyer] =
+      records.itemOrders[buyer].filter(function(p){
+        return p !== product;
+      });
+
     save();
     drawBuyers();
   }
@@ -458,6 +556,7 @@ function deleteBuyer(buyer){
   if(confirm(buyer + "님의 모든 기록을 삭제할까요?")){
 
     delete records.people[buyer];
+    delete records.itemOrders[buyer];
 
     records.order =
       records.order.filter(function(name){
@@ -472,10 +571,6 @@ function deleteBuyer(buyer){
 function updateStats(){
 
   var buyers = Object.keys(records.people);
-
-  document.getElementById("peopleCount").textContent =
-    buyers.length + "명";
-
   var usedItems = {};
   var total = 0;
 
@@ -484,13 +579,14 @@ function updateStats(){
     Object.keys(records.people[buyer]).forEach(function(product){
 
       usedItems[product] = true;
-
-      total +=
-        records.people[buyer][product] || 0;
+      total += records.people[buyer][product] || 0;
 
     });
 
   });
+
+  document.getElementById("peopleCount").textContent =
+    buyers.length + "명";
 
   document.getElementById("itemCount").textContent =
     Object.keys(usedItems).length + "개";
@@ -499,26 +595,83 @@ function updateStats(){
     total + "개";
 }
 
-function drawBuyers(){
+/* 드래그 공통 기능 */
+function makeSortable(container, handleSelector, itemSelector, onChange){
 
-  var list =
-    document.getElementById("buyerList");
+  var dragged = null;
+  var pointerId = null;
 
-  records.order =
-    records.order.filter(function(name){
-      return records.people[name];
-    });
+  container.addEventListener("pointerdown", function(e){
 
-  Object.keys(records.people).forEach(function(name){
+    var handle = e.target.closest(handleSelector);
 
-    if(records.order.indexOf(name) === -1){
-      records.order.push(name);
-    }
+    if(!handle) return;
 
+    var item = handle.closest(itemSelector);
+
+    if(!item) return;
+
+    dragged = item;
+    pointerId = e.pointerId;
+
+    handle.setPointerCapture(pointerId);
+
+    dragged.classList.add("dragging");
+
+    e.preventDefault();
   });
 
-  save();
+  container.addEventListener("pointermove", function(e){
+
+    if(!dragged) return;
+
+    var elements =
+      Array.from(container.querySelectorAll(":scope > " + itemSelector))
+      .filter(function(el){
+        return el !== dragged;
+      });
+
+    var target = null;
+
+    for(var i = 0; i < elements.length; i++){
+
+      var rect = elements[i].getBoundingClientRect();
+
+      if(e.clientY < rect.top + rect.height / 2){
+        target = elements[i];
+        break;
+      }
+    }
+
+    if(target){
+      container.insertBefore(dragged, target);
+    }else{
+      container.appendChild(dragged);
+    }
+  });
+
+  function finish(){
+
+    if(!dragged) return;
+
+    dragged.classList.remove("dragging");
+
+    dragged = null;
+    pointerId = null;
+
+    onChange();
+  }
+
+  container.addEventListener("pointerup", finish);
+  container.addEventListener("pointercancel", finish);
+}
+
+function drawBuyers(){
+
+  normalizeOrders();
   updateStats();
+
+  var list = document.getElementById("buyerList");
 
   if(records.order.length === 0){
 
@@ -532,11 +685,10 @@ function drawBuyers(){
 
   list.innerHTML = "";
 
-  records.order.forEach(function(buyer, index){
+  records.order.forEach(function(buyer){
 
     var buyerData = records.people[buyer];
-
-    var products = Object.keys(buyerData);
+    var products = records.itemOrders[buyer] || [];
 
     var total = 0;
 
@@ -544,62 +696,34 @@ function drawBuyers(){
       total += buyerData[product] || 0;
     });
 
-    var card =
-      document.createElement("div");
+    var card = document.createElement("div");
 
     card.className = "buyer-card";
+    card.dataset.buyer = buyer;
 
-    var header =
-      document.createElement("div");
-
+    var header = document.createElement("div");
     header.className = "buyer-header";
 
-    var left =
-      document.createElement("div");
+    var main = document.createElement("div");
+    main.className = "buyer-main";
 
-    left.className = "buyer-left";
-
-    left.innerHTML =
+    main.innerHTML =
       '<div class="avatar">🎀</div>' +
       '<div>' +
-        '<div class="buyer-name">' + buyer + '</div>' +
+        '<div class="buyer-name"></div>' +
         '<div class="buyer-total">총 ' + total + '개</div>' +
       '</div>';
 
-    left.onclick = function(){
+    main.querySelector(".buyer-name").textContent = buyer;
+
+    main.onclick = function(){
       card.classList.toggle("open");
     };
 
-    var right =
-      document.createElement("div");
+    var tools = document.createElement("div");
+    tools.className = "header-tools";
 
-    right.className = "header-right";
-
-    var up =
-      document.createElement("button");
-
-    up.className = "move-btn";
-    up.textContent = "↑";
-
-    up.onclick = function(e){
-      e.stopPropagation();
-      moveBuyer(buyer, -1);
-    };
-
-    var down =
-      document.createElement("button");
-
-    down.className = "move-btn";
-    down.textContent = "↓";
-
-    down.onclick = function(e){
-      e.stopPropagation();
-      moveBuyer(buyer, 1);
-    };
-
-    var arrow =
-      document.createElement("button");
-
+    var arrow = document.createElement("div");
     arrow.className = "arrow";
     arrow.textContent = "⌄";
 
@@ -607,32 +731,41 @@ function drawBuyers(){
       card.classList.toggle("open");
     };
 
-    right.appendChild(up);
-    right.appendChild(down);
-    right.appendChild(arrow);
+    var handle = document.createElement("div");
+    handle.className = "drag-handle";
+    handle.textContent = "☰";
+    handle.title = "드래그해서 순서 변경";
 
-    header.appendChild(left);
-    header.appendChild(right);
+    tools.appendChild(arrow);
+    tools.appendChild(handle);
 
-    var detail =
-      document.createElement("div");
+    header.appendChild(main);
+    header.appendChild(tools);
 
+    var detail = document.createElement("div");
     detail.className = "buyer-detail";
+
+    var itemList = document.createElement("div");
+    itemList.className = "item-list";
 
     products.forEach(function(product){
 
-      var row =
-        document.createElement("div");
+      var row = document.createElement("div");
 
       row.className = "item-row";
+      row.dataset.product = product;
 
-      var name =
-        document.createElement("div");
+      var itemHandle = document.createElement("div");
 
+      itemHandle.className = "item-handle";
+      itemHandle.textContent = "☰";
+
+      var name = document.createElement("div");
+
+      name.className = "item-name";
       name.textContent = product;
 
-      var input =
-        document.createElement("input");
+      var input = document.createElement("input");
 
       input.type = "number";
       input.min = "0";
@@ -640,49 +773,90 @@ function drawBuyers(){
       input.value = buyerData[product];
 
       input.onchange = function(){
+
         changeQty(
           buyer,
           product,
           this.value
         );
+
       };
 
-      var del =
-        document.createElement("button");
+      var del = document.createElement("button");
 
       del.className = "item-delete";
       del.textContent = "삭제";
 
       del.onclick = function(){
-        deleteItem(buyer, product);
+
+        deleteItem(
+          buyer,
+          product
+        );
+
       };
 
+      row.appendChild(itemHandle);
       row.appendChild(name);
       row.appendChild(input);
       row.appendChild(del);
 
-      detail.appendChild(row);
-
+      itemList.appendChild(row);
     });
 
-    var deleteButton =
-      document.createElement("button");
+    detail.appendChild(itemList);
 
-    deleteButton.className = "buyer-delete";
-    deleteButton.textContent = "구매자 전체 삭제";
+    var buyerDelete = document.createElement("button");
 
-    deleteButton.onclick = function(){
+    buyerDelete.className = "buyer-delete";
+    buyerDelete.textContent = "구매자 전체 삭제";
+
+    buyerDelete.onclick = function(){
       deleteBuyer(buyer);
     };
 
-    detail.appendChild(deleteButton);
+    detail.appendChild(buyerDelete);
 
     card.appendChild(header);
     card.appendChild(detail);
 
     list.appendChild(card);
 
+    makeSortable(
+      itemList,
+      ".item-handle",
+      ".item-row",
+      function(){
+
+        records.itemOrders[buyer] =
+          Array.from(
+            itemList.querySelectorAll(".item-row")
+          ).map(function(row){
+            return row.dataset.product;
+          });
+
+        save();
+      }
+    );
+
   });
+
+  makeSortable(
+    list,
+    ".drag-handle",
+    ".buyer-card",
+    function(){
+
+      records.order =
+        Array.from(
+          list.querySelectorAll(".buyer-card")
+        ).map(function(card){
+          return card.dataset.buyer;
+        });
+
+      save();
+    }
+  );
 }
 
 document.getElementById("addButton").onclick =
@@ -696,7 +870,8 @@ function(){
     records = {
       items: [],
       people: {},
-      order: []
+      order: [],
+      itemOrders: {}
     };
 
     save();
@@ -707,6 +882,5 @@ function(){
 drawBuyers();
 
 </script>
-
 </body>
 </html>
