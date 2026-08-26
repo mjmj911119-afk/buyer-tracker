@@ -3,21 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>은별이방 쿠폰 기록</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  padding:20px 14px 40px;
+  padding:22px 14px 45px;
   min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-  color:#f5f5f5;
+
+  font-family:
+  -apple-system,
+  BlinkMacSystemFont,
+  "Apple SD Gothic Neo",
+  "Noto Sans KR",
+  sans-serif;
+
+  color:#252525;
+
   background:
-    radial-gradient(circle at top left,#282828 0,transparent 35%),
-    radial-gradient(circle at top right,#1d1d1d 0,transparent 35%),
-    linear-gradient(180deg,#0f0f10 0%,#151516 55%,#0c0c0d 100%);
+    radial-gradient(circle at top left,#ffffff 0,transparent 35%),
+    radial-gradient(circle at top right,#e9e9eb 0,transparent 35%),
+    linear-gradient(180deg,#f5f5f6 0%,#eeeeef 55%,#f8f8f8 100%);
 }
 
 .container{
@@ -25,78 +37,146 @@ body{
   margin:auto;
 }
 
+/* 제목 */
+
 .hero{
   position:relative;
   overflow:hidden;
-  padding:28px 22px;
+
+  padding:30px 24px;
   margin-bottom:18px;
-  border:1px solid #363636;
-  border-radius:28px;
+
+  border-radius:26px;
+
   color:white;
-  background:linear-gradient(135deg,#171717,#262626 55%,#383838);
-  box-shadow:0 16px 40px rgba(0,0,0,.45);
+
+  background:
+    linear-gradient(
+      135deg,
+      #1c1c1e 0%,
+      #343437 55%,
+      #57575b 100%
+    );
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.16);
 }
 
 .hero:before{
   content:"";
+
   position:absolute;
-  width:180px;
-  height:180px;
-  top:-90px;
-  right:-45px;
+
+  width:190px;
+  height:190px;
+
+  right:-55px;
+  top:-100px;
+
   border-radius:50%;
-  background:rgba(255,255,255,.06);
+
+  background:
+    rgba(255,255,255,.09);
+}
+
+.hero:after{
+  content:"";
+
+  position:absolute;
+
+  width:100px;
+  height:100px;
+
+  left:-30px;
+  bottom:-60px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.05);
 }
 
 .hero h1{
   position:relative;
   z-index:1;
+
   margin:0 0 7px;
+
   font-size:27px;
-  letter-spacing:-.5px;
+  letter-spacing:-.6px;
 }
 
 .hero p{
   position:relative;
   z-index:1;
+
   margin:0;
-  color:#bdbdbd;
+
+  color:#d7d7d9;
+
   font-size:14px;
 }
 
+/* 흰색 카드 */
+
 .card{
-  padding:18px;
+  padding:19px;
+
   margin-bottom:16px;
-  border:1px solid #303030;
+
+  border:
+    1px solid #dedee0;
+
   border-radius:22px;
-  background:rgba(24,24,25,.96);
-  box-shadow:0 10px 30px rgba(0,0,0,.28);
+
+  background:
+    rgba(255,255,255,.97);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
 }
+
+/* 입력창 */
 
 .form{
   display:grid;
-  grid-template-columns:1fr 1fr 110px 145px;
+
+  grid-template-columns:
+    1fr 1fr 110px 145px;
+
   gap:10px;
 }
 
 input{
   width:100%;
+
   padding:14px;
-  border:1.5px solid #3a3a3a;
-  border-radius:14px;
+
+  border:
+    1.5px solid #d8d8da;
+
+  border-radius:13px;
+
   outline:none;
-  color:#fff;
-  background:#111112;
+
+  color:#222;
+
+  background:#fafafa;
+
   font-size:16px;
 }
 
 input::placeholder{
-  color:#777;
+  color:#9b9b9e;
 }
 
 input:focus{
-  border-color:#8b8b8b;
-  box-shadow:0 0 0 4px rgba(255,255,255,.06);
+  border-color:#555;
+
+  background:white;
+
+  box-shadow:
+    0 0 0 4px rgba(0,0,0,.05);
 }
 
 button{
@@ -104,15 +184,39 @@ button{
   cursor:pointer;
 }
 
+/* 기록 추가 */
+
 .add{
   min-height:48px;
-  border:1px solid #555;
-  border-radius:14px;
-  color:#111;
-  background:linear-gradient(135deg,#fff,#d7d7d7);
+
+  border:0;
+
+  border-radius:13px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1c1c1e,
+      #3d3d40
+    );
+
   font-size:16px;
-  font-weight:900;
-  box-shadow:0 8px 20px rgba(255,255,255,.08);
+
+  font-weight:800;
+
+  box-shadow:
+    0 7px 17px rgba(0,0,0,.16);
+}
+
+.add:hover{
+  background:
+    linear-gradient(
+      135deg,
+      #29292b,
+      #4a4a4e
+    );
 }
 
 .add:active{
@@ -121,154 +225,275 @@ button{
 
 .tip{
   margin-top:10px;
-  color:#858585;
+
+  color:#929295;
+
   font-size:12px;
 }
 
+/* 통계 */
+
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:10px;
+
   margin-bottom:16px;
 }
 
 .stat{
-  padding:15px 6px;
-  border:1px solid #303030;
+  padding:15px 7px;
+
+  border:
+    1px solid #dedee0;
+
   border-radius:18px;
+
   text-align:center;
-  background:#19191a;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.04);
 }
 
 .stat:nth-child(1){
-  background:linear-gradient(135deg,#1b1b1c,#272728);
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f0f0f1
+    );
 }
 
 .stat:nth-child(2){
-  background:linear-gradient(135deg,#171718,#303031);
+  background:
+    linear-gradient(
+      135deg,
+      #f7f7f8,
+      #e8e8ea
+    );
 }
 
 .stat:nth-child(3){
-  background:linear-gradient(135deg,#202021,#3a3a3b);
+  background:
+    linear-gradient(
+      135deg,
+      #eeeeef,
+      #dcdcdf
+    );
 }
 
 .stat span{
   display:block;
+
   margin-bottom:5px;
-  color:#8f8f8f;
+
+  color:#88888c;
+
   font-size:12px;
 }
 
 .stat strong{
-  color:#f7f7f7;
+  color:#252527;
+
   font-size:21px;
 }
 
+/* 구매자 영역 */
+
 .section-title{
-  margin-bottom:13px;
-  color:#f5f5f5;
+  margin-bottom:14px;
+
+  color:#29292b;
+
   font-size:17px;
 }
 
 .buyer-card{
   margin-bottom:11px;
+
   overflow:hidden;
-  border:1px solid #333;
-  border-radius:18px;
-  background:#151516;
-  transition:transform .15s,box-shadow .15s;
+
+  border:
+    1px solid #dedee0;
+
+  border-radius:17px;
+
+  background:white;
+
+  box-shadow:
+    0 4px 13px rgba(0,0,0,.035);
+
+  transition:
+    transform .15s,
+    box-shadow .15s;
 }
 
 .buyer-card.dragging{
-  opacity:.6;
+  opacity:.65;
+
   transform:scale(1.015);
-  box-shadow:0 15px 30px rgba(0,0,0,.55);
+
+  box-shadow:
+    0 13px 30px rgba(0,0,0,.15);
 }
 
 .buyer-header{
   display:flex;
+
   align-items:center;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   padding:14px;
-  background:linear-gradient(135deg,#1b1b1c,#242425);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f3f3f4
+    );
 }
 
 .buyer-main{
   display:flex;
+
   align-items:center;
-  gap:10px;
+
+  gap:11px;
+
   flex:1;
+
   cursor:pointer;
 }
 
+/* 프로필 동그라미 */
+
 .avatar{
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   width:40px;
   height:40px;
+
   flex:none;
-  border:1px solid #545454;
+
   border-radius:50%;
-  color:#111;
-  background:linear-gradient(135deg,#ffffff,#bfbfbf);
-  font-size:17px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #222224,
+      #66666a
+    );
+
+  font-size:16px;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.12);
 }
 
 .buyer-name{
-  color:#fff;
+  color:#222224;
+
   font-size:16px;
+
   font-weight:850;
 }
 
 .buyer-total{
   margin-top:3px;
-  color:#8e8e8e;
+
+  color:#929296;
+
   font-size:12px;
 }
 
+/* 드래그 버튼 */
+
 .drag-handle{
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   width:40px;
   height:40px;
+
   flex:none;
-  border:1px solid #3c3c3c;
+
+  border:
+    1px solid #dddddf;
+
   border-radius:11px;
-  color:#aaa;
-  background:#111112;
+
+  color:#66666a;
+
+  background:#f5f5f6;
+
   font-size:21px;
+
   cursor:grab;
+
   touch-action:none;
+
   user-select:none;
+
   -webkit-user-select:none;
 }
 
 .drag-handle:active{
-  color:#fff;
-  background:#303030;
+  color:white;
+
+  background:#333336;
+
   cursor:grabbing;
 }
 
+/* 펼친 내용 */
+
 .buyer-detail{
   display:none;
-  padding:12px 14px 14px;
-  border-top:1px solid #2c2c2c;
-  background:#111112;
+
+  padding:
+    12px 14px 14px;
+
+  border-top:
+    1px solid #ececee;
+
+  background:#fafafa;
 }
 
-.buyer-card.open .buyer-detail{
+.buyer-card.open
+.buyer-detail{
   display:block;
 }
 
+/* 쿠폰 한 줄 */
+
 .item-row{
   display:grid;
-  grid-template-columns:38px 1fr 82px 65px;
+
+  grid-template-columns:
+    38px 1fr 82px 65px;
+
   gap:7px;
+
   align-items:center;
+
   padding:9px 3px;
-  border-bottom:1px solid #292929;
+
+  border-bottom:
+    1px solid #e8e8ea;
 }
 
 .item-row:last-child{
@@ -276,82 +501,152 @@ button{
 }
 
 .item-row.dragging{
-  opacity:.55;
-  border-radius:12px;
-  background:#282829;
+  opacity:.6;
+
+  border-radius:11px;
+
+  background:#e9e9eb;
 }
+
+/* 쿠폰 드래그 */
 
 .item-handle{
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   width:34px;
   height:34px;
-  border:1px solid #393939;
+
+  border:
+    1px solid #dddddf;
+
   border-radius:9px;
-  color:#8d8d8d;
-  background:#19191a;
+
+  color:#77777a;
+
+  background:white;
+
   font-size:18px;
+
   cursor:grab;
+
   touch-action:none;
+
   user-select:none;
+
   -webkit-user-select:none;
+}
+
+.item-handle:active{
+  color:white;
+
+  background:#3a3a3d;
 }
 
 .item-name{
   overflow:hidden;
-  color:#ddd;
+
+  color:#333336;
+
   font-weight:700;
+
   text-overflow:ellipsis;
+
   white-space:nowrap;
 }
 
+/* 수량 */
+
 .qty{
   padding:9px 5px;
-  border:1px solid #3b3b3b;
+
+  border:
+    1px solid #d8d8da;
+
   border-radius:10px;
+
   text-align:center;
-  background:#181819;
+
+  background:white;
 }
+
+/* 삭제 */
 
 .item-delete{
   padding:9px 5px;
-  border:1px solid #483333;
+
+  border:
+    1px solid #e1dada;
+
   border-radius:10px;
-  color:#d98b8b;
-  background:#241919;
+
+  color:#805e5e;
+
+  background:#f6eeee;
+
   font-size:12px;
+
   font-weight:800;
+}
+
+.item-delete:hover{
+  background:#f0e2e2;
 }
 
 .buyer-delete{
   margin-top:12px;
+
   padding:10px 12px;
-  border:1px solid #3a3a3a;
+
+  border:
+    1px solid #dddddf;
+
   border-radius:11px;
-  color:#9d9d9d;
-  background:#1c1c1d;
+
+  color:#747478;
+
+  background:#f1f1f2;
+
   font-weight:700;
 }
+
+/* 기록 없음 */
 
 .empty{
   padding:38px 20px;
-  color:#777;
+
+  color:#99999c;
+
   text-align:center;
 }
 
+/* 전체 삭제 */
+
 .reset{
   padding:11px 14px;
-  border:1px solid #353535;
+
+  border:
+    1px solid #d8d8da;
+
   border-radius:12px;
-  color:#858585;
-  background:#181819;
+
+  color:#77777a;
+
+  background:#f4f4f5;
+
   font-weight:700;
 }
 
+/* 휴대폰 */
+
 @media(max-width:760px){
+
   .form{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
   .add{
@@ -359,8 +654,14 @@ button{
   }
 
   .item-row{
-    grid-template-columns:34px 1fr 70px 58px;
+    grid-template-columns:
+      34px 1fr 70px 58px;
+
     gap:5px;
+  }
+
+  .hero{
+    padding:25px 20px;
   }
 
   .hero h1{
@@ -375,6 +676,7 @@ button{
     font-size:18px;
   }
 }
+
 </style>
 </head>
 
@@ -382,74 +684,97 @@ button{
 
 <div class="container">
 
-  <div class="hero">
-    <h1>🖤 은별이방 쿠폰 기록</h1>
-    <p>구매자를 누르면 보유 쿠폰을 확인할 수 있어요.</p>
-  </div>
+<div class="hero">
 
-  <div class="card">
+  <h1>🖤 은별이방 쿠폰 기록</h1>
 
-    <div class="form">
+  <p>
+    구매자를 누르면 보유 쿠폰을 확인할 수 있어요.
+  </p>
 
-      <input id="buyer" placeholder="구매한 이름">
+</div>
 
-      <input id="product" placeholder="구매한 항목">
 
-      <input
-        id="count"
-        type="number"
-        min="1"
-        value="1"
-        placeholder="개수">
+<div class="card">
 
-      <button id="addButton" class="add">
-        ＋ 기록 추가
-      </button>
+<div class="form">
 
-    </div>
+  <input
+    id="buyer"
+    placeholder="구매한 이름">
 
-    <div class="tip">
-      ☰를 잡고 드래그하면 구매자와 쿠폰 항목의 순서를 바꿀 수 있어요.
-    </div>
+  <input
+    id="product"
+    placeholder="구매한 항목">
 
-  </div>
+  <input
+    id="count"
+    type="number"
+    min="1"
+    value="1"
+    placeholder="개수">
 
-  <div class="stats">
+  <button
+    id="addButton"
+    class="add">
 
-    <div class="stat">
-      <span>구매자</span>
-      <strong id="peopleCount">0명</strong>
-    </div>
+    ＋ 기록 추가
 
-    <div class="stat">
-      <span>쿠폰 항목</span>
-      <strong id="itemCount">0개</strong>
-    </div>
-
-    <div class="stat">
-      <span>전체 수량</span>
-      <strong id="totalCount">0개</strong>
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-      <b>구매자별 쿠폰 기록</b>
-    </div>
-
-    <div id="buyerList"></div>
-
-  </div>
-
-  <button id="resetButton" class="reset">
-    전체 기록 삭제
   </button>
 
 </div>
 
+<div class="tip">
+  ☰를 잡고 드래그하면 구매자와 쿠폰 순서를 바꿀 수 있어요.
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+  <span>구매자</span>
+  <strong id="peopleCount">0명</strong>
+</div>
+
+<div class="stat">
+  <span>쿠폰 항목</span>
+  <strong id="itemCount">0개</strong>
+</div>
+
+<div class="stat">
+  <span>전체 수량</span>
+  <strong id="totalCount">0개</strong>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+  <b>🖤 구매자별 쿠폰 기록</b>
+</div>
+
+<div id="buyerList"></div>
+
+</div>
+
+
+<button
+  id="resetButton"
+  class="reset">
+
+  전체 기록 삭제
+
+</button>
+
+</div>
+
+
 <script>
+
 var records = {
   items: [],
   people: {},
@@ -457,203 +782,455 @@ var records = {
   itemOrders: {}
 };
 
-try {
-  var saved = localStorage.getItem("buyerTracker");
+
+/* 기존 데이터 불러오기 */
+
+try{
+
+  var saved =
+    localStorage.getItem(
+      "buyerTracker"
+    );
 
   if(saved){
-    var loaded = JSON.parse(saved);
 
-    records.items = loaded.items || [];
-    records.people = loaded.people || {};
-    records.order = loaded.order || Object.keys(records.people);
-    records.itemOrders = loaded.itemOrders || {};
+    var loaded =
+      JSON.parse(saved);
+
+    records.items =
+      loaded.items || [];
+
+    records.people =
+      loaded.people || {};
+
+    records.order =
+      loaded.order ||
+      Object.keys(
+        records.people
+      );
+
+    records.itemOrders =
+      loaded.itemOrders || {};
   }
+
 }catch(e){}
 
+
+/* 저장 */
+
 function save(){
+
   localStorage.setItem(
     "buyerTracker",
     JSON.stringify(records)
   );
+
 }
+
+
+/* 순서 데이터 정리 */
 
 function normalizeOrders(){
 
-  records.order = records.order.filter(function(name){
-    return records.people[name];
-  });
+  records.order =
+    records.order.filter(
+      function(name){
 
-  Object.keys(records.people).forEach(function(name){
+        return records.people[name];
 
-    if(records.order.indexOf(name) === -1){
-      records.order.push(name);
-    }
+      }
+    );
 
-    if(!records.itemOrders[name]){
-      records.itemOrders[name] =
-        Object.keys(records.people[name]);
-    }
 
-    records.itemOrders[name] =
-      records.itemOrders[name].filter(function(product){
-        return records.people[name][product] !== undefined;
-      });
+  Object.keys(
+    records.people
+  ).forEach(
+    function(name){
 
-    Object.keys(records.people[name]).forEach(function(product){
+      if(
+        records.order.indexOf(name)
+        === -1
+      ){
 
-      if(records.itemOrders[name].indexOf(product) === -1){
-        records.itemOrders[name].push(product);
+        records.order.push(name);
+
       }
 
-    });
 
-  });
+      if(
+        !records.itemOrders[name]
+      ){
+
+        records.itemOrders[name] =
+          Object.keys(
+            records.people[name]
+          );
+
+      }
+
+
+      records.itemOrders[name] =
+        records.itemOrders[name]
+        .filter(
+          function(product){
+
+            return (
+              records.people[name][product]
+              !== undefined
+            );
+
+          }
+        );
+
+
+      Object.keys(
+        records.people[name]
+      ).forEach(
+        function(product){
+
+          if(
+            records.itemOrders[name]
+            .indexOf(product)
+            === -1
+          ){
+
+            records.itemOrders[name]
+            .push(product);
+
+          }
+
+        }
+      );
+
+    }
+  );
+
 }
+
+
+/* 기록 추가 */
 
 function addRecord(){
 
   var buyer =
-    document.getElementById("buyer").value.trim();
+    document
+    .getElementById("buyer")
+    .value
+    .trim();
+
 
   var product =
-    document.getElementById("product").value.trim();
+    document
+    .getElementById("product")
+    .value
+    .trim();
+
 
   var count =
-    parseInt(document.getElementById("count").value);
+    parseInt(
+      document
+      .getElementById("count")
+      .value
+    );
+
 
   if(!buyer){
-    alert("구매한 이름을 입력해주세요.");
+
+    alert(
+      "구매한 이름을 입력해주세요."
+    );
+
     return;
   }
+
 
   if(!product){
-    alert("구매한 항목을 입력해주세요.");
+
+    alert(
+      "구매한 항목을 입력해주세요."
+    );
+
     return;
   }
 
-  if(!count || count < 1){
-    alert("개수를 입력해주세요.");
+
+  if(
+    !count ||
+    count < 1
+  ){
+
+    alert(
+      "개수를 입력해주세요."
+    );
+
     return;
   }
 
-  if(!records.people[buyer]){
+
+  if(
+    !records.people[buyer]
+  ){
+
     records.people[buyer] = {};
+
     records.order.push(buyer);
+
     records.itemOrders[buyer] = [];
+
   }
 
-  if(records.people[buyer][product] === undefined){
+
+  if(
+    records.people[buyer][product]
+    === undefined
+  ){
 
     records.people[buyer][product] = 0;
 
-    if(!records.itemOrders[buyer]){
+    if(
+      !records.itemOrders[buyer]
+    ){
+
       records.itemOrders[buyer] = [];
+
     }
 
-    records.itemOrders[buyer].push(product);
+    records.itemOrders[buyer]
+    .push(product);
+
   }
 
-  records.people[buyer][product] += count;
 
-  if(records.items.indexOf(product) === -1){
+  records.people[buyer][product]
+    += count;
+
+
+  if(
+    records.items.indexOf(product)
+    === -1
+  ){
+
     records.items.push(product);
+
   }
+
 
   save();
 
-  document.getElementById("buyer").value = "";
-  document.getElementById("product").value = "";
-  document.getElementById("count").value = "1";
+
+  document
+  .getElementById("buyer")
+  .value = "";
+
+
+  document
+  .getElementById("product")
+  .value = "";
+
+
+  document
+  .getElementById("count")
+  .value = "1";
+
 
   drawBuyers();
+
 }
 
-function changeQty(buyer, product, value){
 
-  var number = parseInt(value);
+/* 개수 수정 */
 
-  if(isNaN(number) || number < 0){
+function changeQty(
+  buyer,
+  product,
+  value
+){
+
+  var number =
+    parseInt(value);
+
+
+  if(
+    isNaN(number) ||
+    number < 0
+  ){
+
     number = 0;
+
   }
+
 
   if(number === 0){
 
-    delete records.people[buyer][product];
+    delete
+      records.people[buyer][product];
+
 
     records.itemOrders[buyer] =
-      records.itemOrders[buyer].filter(function(p){
-        return p !== product;
-      });
+      records.itemOrders[buyer]
+      .filter(
+        function(p){
+
+          return p !== product;
+
+        }
+      );
 
   }else{
-    records.people[buyer][product] = number;
+
+    records.people[buyer][product]
+      = number;
+
   }
+
 
   save();
+
   drawBuyers();
+
 }
 
-function deleteItem(buyer, product){
 
-  if(confirm(product + " 항목을 삭제할까요?")){
+/* 쿠폰 삭제 */
 
-    delete records.people[buyer][product];
+function deleteItem(
+  buyer,
+  product
+){
+
+  if(
+    confirm(
+      product +
+      " 항목을 삭제할까요?"
+    )
+  ){
+
+    delete
+      records.people[buyer][product];
+
 
     records.itemOrders[buyer] =
-      records.itemOrders[buyer].filter(function(p){
-        return p !== product;
-      });
+      records.itemOrders[buyer]
+      .filter(
+        function(p){
+
+          return p !== product;
+
+        }
+      );
+
 
     save();
+
     drawBuyers();
+
   }
+
 }
+
+
+/* 구매자 삭제 */
 
 function deleteBuyer(buyer){
 
-  if(confirm(buyer + "님의 모든 기록을 삭제할까요?")){
+  if(
+    confirm(
+      buyer +
+      "님의 모든 기록을 삭제할까요?"
+    )
+  ){
 
-    delete records.people[buyer];
-    delete records.itemOrders[buyer];
+    delete
+      records.people[buyer];
+
+    delete
+      records.itemOrders[buyer];
+
 
     records.order =
-      records.order.filter(function(name){
-        return name !== buyer;
-      });
+      records.order.filter(
+        function(name){
+
+          return name !== buyer;
+
+        }
+      );
+
 
     save();
+
     drawBuyers();
+
   }
+
 }
+
+
+/* 통계 */
 
 function updateStats(){
 
-  var buyers = Object.keys(records.people);
+  var buyers =
+    Object.keys(
+      records.people
+    );
+
+
   var usedItems = {};
+
   var total = 0;
 
-  buyers.forEach(function(buyer){
 
-    Object.keys(records.people[buyer]).forEach(function(product){
+  buyers.forEach(
+    function(buyer){
 
-      usedItems[product] = true;
+      Object.keys(
+        records.people[buyer]
+      ).forEach(
+        function(product){
 
-      total +=
-        records.people[buyer][product] || 0;
+          usedItems[product] = true;
 
-    });
+          total +=
+            records.people[buyer][product]
+            || 0;
 
-  });
+        }
+      );
 
-  document.getElementById("peopleCount").textContent =
+    }
+  );
+
+
+  document
+  .getElementById(
+    "peopleCount"
+  )
+  .textContent =
     buyers.length + "명";
 
-  document.getElementById("itemCount").textContent =
-    Object.keys(usedItems).length + "개";
 
-  document.getElementById("totalCount").textContent =
+  document
+  .getElementById(
+    "itemCount"
+  )
+  .textContent =
+    Object.keys(
+      usedItems
+    ).length + "개";
+
+
+  document
+  .getElementById(
+    "totalCount"
+  )
+  .textContent =
     total + "개";
+
 }
+
+
+/* 드래그 */
 
 function makeSortable(
   container,
@@ -663,102 +1240,227 @@ function makeSortable(
 ){
 
   var dragged = null;
+
   var activeHandle = null;
+
   var pointerId = null;
 
-  container.addEventListener("pointerdown", function(e){
 
-    var handle =
-      e.target.closest(handleSelector);
+  container
+  .addEventListener(
+    "pointerdown",
+    function(e){
 
-    if(!handle) return;
-
-    var item =
-      handle.closest(itemSelector);
-
-    if(!item) return;
-
-    dragged = item;
-    activeHandle = handle;
-    pointerId = e.pointerId;
-
-    try{
-      activeHandle.setPointerCapture(pointerId);
-    }catch(err){}
-
-    dragged.classList.add("dragging");
-
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
-  container.addEventListener("pointermove", function(e){
-
-    if(!dragged) return;
-
-    var elements =
-      Array.from(container.children).filter(function(el){
-
-        return (
-          el.matches(itemSelector) &&
-          el !== dragged
+      var handle =
+        e.target.closest(
+          handleSelector
         );
 
-      });
 
-    var target = null;
+      if(!handle){
+        return;
+      }
 
-    for(var i = 0; i < elements.length; i++){
 
-      var rect =
-        elements[i].getBoundingClientRect();
+      var item =
+        handle.closest(
+          itemSelector
+        );
 
-      if(e.clientY < rect.top + rect.height / 2){
-        target = elements[i];
-        break;
+
+      if(!item){
+        return;
+      }
+
+
+      dragged = item;
+
+      activeHandle = handle;
+
+      pointerId =
+        e.pointerId;
+
+
+      try{
+
+        activeHandle
+        .setPointerCapture(
+          pointerId
+        );
+
+      }catch(err){}
+
+
+      dragged
+      .classList
+      .add("dragging");
+
+
+      e.preventDefault();
+
+      e.stopPropagation();
+
+    }
+  );
+
+
+  container
+  .addEventListener(
+    "pointermove",
+    function(e){
+
+      if(!dragged){
+        return;
+      }
+
+
+      var elements =
+        Array
+        .from(
+          container.children
+        )
+        .filter(
+          function(el){
+
+            return (
+              el.matches(
+                itemSelector
+              ) &&
+              el !== dragged
+            );
+
+          }
+        );
+
+
+      var target = null;
+
+
+      for(
+        var i = 0;
+        i < elements.length;
+        i++
+      ){
+
+        var rect =
+          elements[i]
+          .getBoundingClientRect();
+
+
+        if(
+          e.clientY <
+          rect.top +
+          rect.height / 2
+        ){
+
+          target =
+            elements[i];
+
+          break;
+
+        }
+
+      }
+
+
+      if(target){
+
+        container
+        .insertBefore(
+          dragged,
+          target
+        );
+
+      }else{
+
+        container
+        .appendChild(
+          dragged
+        );
+
       }
 
     }
+  );
 
-    if(target){
-      container.insertBefore(dragged, target);
-    }else{
-      container.appendChild(dragged);
-    }
-  });
 
   function finish(){
 
-    if(!dragged) return;
-
-    dragged.classList.remove("dragging");
-
-    if(activeHandle && pointerId !== null){
-      try{
-        activeHandle.releasePointerCapture(pointerId);
-      }catch(err){}
+    if(!dragged){
+      return;
     }
 
+
+    dragged
+    .classList
+    .remove("dragging");
+
+
+    if(
+      activeHandle &&
+      pointerId !== null
+    ){
+
+      try{
+
+        activeHandle
+        .releasePointerCapture(
+          pointerId
+        );
+
+      }catch(err){}
+
+    }
+
+
     dragged = null;
+
     activeHandle = null;
+
     pointerId = null;
 
+
     onChange();
+
   }
 
-  container.addEventListener("pointerup", finish);
-  container.addEventListener("pointercancel", finish);
+
+  container
+  .addEventListener(
+    "pointerup",
+    finish
+  );
+
+
+  container
+  .addEventListener(
+    "pointercancel",
+    finish
+  );
+
 }
+
+
+/* 구매자 출력 */
 
 function drawBuyers(){
 
   normalizeOrders();
+
   updateStats();
 
-  var list =
-    document.getElementById("buyerList");
 
-  if(records.order.length === 0){
+  var list =
+    document
+    .getElementById(
+      "buyerList"
+    );
+
+
+  if(
+    records.order.length
+    === 0
+  ){
 
     list.innerHTML =
       '<div class="empty">' +
@@ -766,243 +1468,497 @@ function drawBuyers(){
       '</div>';
 
     return;
+
   }
+
 
   list.innerHTML = "";
 
-  records.order.forEach(function(buyer){
 
-    var buyerData =
-      records.people[buyer];
+  records.order
+  .forEach(
+    function(buyer){
 
-    var products =
-      records.itemOrders[buyer] || [];
+      var buyerData =
+        records.people[buyer];
 
-    var total = 0;
 
-    products.forEach(function(product){
+      var products =
+        records.itemOrders[buyer]
+        || [];
 
-      total +=
-        buyerData[product] || 0;
 
-    });
+      var total = 0;
 
-    var card =
-      document.createElement("div");
 
-    card.className = "buyer-card";
-    card.dataset.buyer = buyer;
+      products.forEach(
+        function(product){
 
-    var header =
-      document.createElement("div");
+          total +=
+            buyerData[product]
+            || 0;
 
-    header.className = "buyer-header";
+        }
+      );
 
-    var main =
-      document.createElement("div");
 
-    main.className = "buyer-main";
+      var card =
+        document
+        .createElement("div");
 
-    var avatar =
-      document.createElement("div");
 
-    avatar.className = "avatar";
-    avatar.textContent = "★";
+      card.className =
+        "buyer-card";
 
-    var info =
-      document.createElement("div");
 
-    var name =
-      document.createElement("div");
+      card.dataset.buyer =
+        buyer;
 
-    name.className = "buyer-name";
-    name.textContent = buyer;
 
-    var totalText =
-      document.createElement("div");
+      var header =
+        document
+        .createElement("div");
 
-    totalText.className = "buyer-total";
-    totalText.textContent =
-      "총 " + total + "개";
 
-    info.appendChild(name);
-    info.appendChild(totalText);
+      header.className =
+        "buyer-header";
 
-    main.appendChild(avatar);
-    main.appendChild(info);
 
-    main.onclick = function(){
-      card.classList.toggle("open");
-    };
+      var main =
+        document
+        .createElement("div");
 
-    var handle =
-      document.createElement("div");
 
-    handle.className = "drag-handle";
-    handle.textContent = "☰";
-    handle.title = "드래그해서 순서 변경";
+      main.className =
+        "buyer-main";
 
-    header.appendChild(main);
-    header.appendChild(handle);
 
-    var detail =
-      document.createElement("div");
+      var avatar =
+        document
+        .createElement("div");
 
-    detail.className = "buyer-detail";
 
-    var itemList =
-      document.createElement("div");
+      avatar.className =
+        "avatar";
 
-    itemList.className = "item-list";
 
-    products.forEach(function(product){
+      avatar.textContent =
+        "★";
 
-      if(buyerData[product] === undefined){
-        return;
-      }
 
-      var row =
-        document.createElement("div");
+      var info =
+        document
+        .createElement("div");
 
-      row.className = "item-row";
-      row.dataset.product = product;
 
-      var itemHandle =
-        document.createElement("div");
+      var name =
+        document
+        .createElement("div");
 
-      itemHandle.className = "item-handle";
-      itemHandle.textContent = "☰";
 
-      var itemName =
-        document.createElement("div");
+      name.className =
+        "buyer-name";
 
-      itemName.className = "item-name";
-      itemName.textContent = product;
 
-      var input =
-        document.createElement("input");
+      name.textContent =
+        buyer;
 
-      input.type = "number";
-      input.min = "0";
-      input.className = "qty";
-      input.value = buyerData[product];
 
-      input.onchange = function(){
+      var totalText =
+        document
+        .createElement("div");
 
-        changeQty(
-          buyer,
-          product,
-          this.value
+
+      totalText.className =
+        "buyer-total";
+
+
+      totalText.textContent =
+        "총 " +
+        total +
+        "개";
+
+
+      info.appendChild(name);
+
+      info.appendChild(
+        totalText
+      );
+
+
+      main.appendChild(
+        avatar
+      );
+
+
+      main.appendChild(
+        info
+      );
+
+
+      main.onclick =
+        function(){
+
+          card
+          .classList
+          .toggle("open");
+
+        };
+
+
+      var handle =
+        document
+        .createElement("div");
+
+
+      handle.className =
+        "drag-handle";
+
+
+      handle.textContent =
+        "☰";
+
+
+      header.appendChild(
+        main
+      );
+
+
+      header.appendChild(
+        handle
+      );
+
+
+      var detail =
+        document
+        .createElement("div");
+
+
+      detail.className =
+        "buyer-detail";
+
+
+      var itemList =
+        document
+        .createElement("div");
+
+
+      itemList.className =
+        "item-list";
+
+
+      products.forEach(
+        function(product){
+
+          if(
+            buyerData[product]
+            === undefined
+          ){
+            return;
+          }
+
+
+          var row =
+            document
+            .createElement("div");
+
+
+          row.className =
+            "item-row";
+
+
+          row.dataset.product =
+            product;
+
+
+          var itemHandle =
+            document
+            .createElement("div");
+
+
+          itemHandle.className =
+            "item-handle";
+
+
+          itemHandle.textContent =
+            "☰";
+
+
+          var itemName =
+            document
+            .createElement("div");
+
+
+          itemName.className =
+            "item-name";
+
+
+          itemName.textContent =
+            product;
+
+
+          var input =
+            document
+            .createElement("input");
+
+
+          input.type =
+            "number";
+
+
+          input.min =
+            "0";
+
+
+          input.className =
+            "qty";
+
+
+          input.value =
+            buyerData[product];
+
+
+          input.onchange =
+            function(){
+
+              changeQty(
+                buyer,
+                product,
+                this.value
+              );
+
+            };
+
+
+          var del =
+            document
+            .createElement(
+              "button"
+            );
+
+
+          del.className =
+            "item-delete";
+
+
+          del.textContent =
+            "삭제";
+
+
+          del.onclick =
+            function(){
+
+              deleteItem(
+                buyer,
+                product
+              );
+
+            };
+
+
+          row.appendChild(
+            itemHandle
+          );
+
+
+          row.appendChild(
+            itemName
+          );
+
+
+          row.appendChild(
+            input
+          );
+
+
+          row.appendChild(
+            del
+          );
+
+
+          itemList
+          .appendChild(row);
+
+        }
+      );
+
+
+      detail.appendChild(
+        itemList
+      );
+
+
+      var buyerDelete =
+        document
+        .createElement(
+          "button"
         );
 
-      };
 
-      var del =
-        document.createElement("button");
+      buyerDelete.className =
+        "buyer-delete";
 
-      del.className = "item-delete";
-      del.textContent = "삭제";
 
-      del.onclick = function(){
+      buyerDelete.textContent =
+        "구매자 전체 삭제";
 
-        deleteItem(
-          buyer,
-          product
-        );
 
-      };
+      buyerDelete.onclick =
+        function(){
 
-      row.appendChild(itemHandle);
-      row.appendChild(itemName);
-      row.appendChild(input);
-      row.appendChild(del);
+          deleteBuyer(
+            buyer
+          );
 
-      itemList.appendChild(row);
+        };
 
-    });
 
-    detail.appendChild(itemList);
+      detail.appendChild(
+        buyerDelete
+      );
 
-    var buyerDelete =
-      document.createElement("button");
 
-    buyerDelete.className =
-      "buyer-delete";
+      card.appendChild(
+        header
+      );
 
-    buyerDelete.textContent =
-      "구매자 전체 삭제";
 
-    buyerDelete.onclick = function(){
-      deleteBuyer(buyer);
-    };
+      card.appendChild(
+        detail
+      );
 
-    detail.appendChild(buyerDelete);
 
-    card.appendChild(header);
-    card.appendChild(detail);
+      list.appendChild(
+        card
+      );
 
-    list.appendChild(card);
 
-    makeSortable(
-      itemList,
-      ".item-handle",
-      ".item-row",
-      function(){
+      makeSortable(
 
-        records.itemOrders[buyer] =
-          Array.from(
-            itemList.querySelectorAll(".item-row")
-          ).map(function(row){
+        itemList,
 
-            return row.dataset.product;
+        ".item-handle",
 
-          });
+        ".item-row",
 
-        save();
-      }
-    );
+        function(){
 
-  });
+          records
+          .itemOrders[buyer] =
+
+            Array
+            .from(
+              itemList
+              .querySelectorAll(
+                ".item-row"
+              )
+            )
+            .map(
+              function(row){
+
+                return (
+                  row.dataset.product
+                );
+
+              }
+            );
+
+
+          save();
+
+        }
+
+      );
+
+    }
+  );
+
 
   makeSortable(
+
     list,
+
     ".drag-handle",
+
     ".buyer-card",
+
     function(){
 
       records.order =
-        Array.from(
-          list.querySelectorAll(".buyer-card")
-        ).map(function(card){
 
-          return card.dataset.buyer;
+        Array
+        .from(
+          list
+          .querySelectorAll(
+            ".buyer-card"
+          )
+        )
+        .map(
+          function(card){
 
-        });
+            return (
+              card.dataset.buyer
+            );
+
+          }
+        );
+
 
       save();
+
     }
+
   );
+
 }
 
-document.getElementById("addButton")
-.onclick = addRecord;
 
-document.getElementById("resetButton")
-.onclick = function(){
+/* 버튼 */
 
-  if(confirm("모든 쿠폰 기록을 삭제할까요?")){
+document
+.getElementById(
+  "addButton"
+)
+.onclick =
+  addRecord;
+
+
+document
+.getElementById(
+  "resetButton"
+)
+.onclick =
+function(){
+
+  if(
+    confirm(
+      "모든 쿠폰 기록을 삭제할까요?"
+    )
+  ){
 
     records = {
+
       items: [],
+
       people: {},
+
       order: [],
+
       itemOrders: {}
+
     };
 
+
     save();
+
     drawBuyers();
+
   }
+
 };
+
+
+/* 시작 */
 
 drawBuyers();
 
