@@ -17,10 +17,7 @@ body{
   background:linear-gradient(180deg,#fff9fc 0%,#fff0f6 55%,#fff8fb 100%);
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
-}
+.container{max-width:900px;margin:auto}
 
 .hero{
   padding:30px 24px;
@@ -31,16 +28,8 @@ body{
   box-shadow:0 14px 35px rgba(215,110,155,.20);
 }
 
-.hero h1{
-  margin:0 0 6px;
-  font-size:28px;
-}
-
-.hero p{
-  margin:0;
-  font-size:14px;
-  color:#fff8fb;
-}
+.hero h1{margin:0 0 6px;font-size:28px}
+.hero p{margin:0;font-size:14px;color:#fff8fb}
 
 .section{
   margin-bottom:14px;
@@ -56,10 +45,6 @@ body{
   cursor:pointer;
   background:linear-gradient(135deg,#fff,#fff0f6);
   user-select:none;
-}
-
-.section-header:hover{
-  background:#fff3f7;
 }
 
 .section-title{
@@ -80,9 +65,7 @@ body{
   border-top:1px solid #f4e4eb;
 }
 
-.section.open .section-content{
-  display:block;
-}
+.section.open .section-content{display:block}
 
 .form{
   display:grid;
@@ -92,8 +75,26 @@ body{
 
 .hot-form{
   display:grid;
-  grid-template-columns:1fr 160px 140px;
+  grid-template-columns:1fr 180px 140px;
   gap:9px;
+}
+
+.input-unit{
+  position:relative;
+}
+
+.input-unit input{
+  padding-right:35px;
+}
+
+.input-unit span{
+  position:absolute;
+  right:13px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#a98193;
+  font-size:14px;
+  pointer-events:none;
 }
 
 input{
@@ -112,14 +113,9 @@ input:focus{
   box-shadow:0 0 0 3px rgba(230,150,185,.10);
 }
 
-input::placeholder{
-  color:#b89aa7;
-}
+input::placeholder{color:#b89aa7}
 
-button{
-  font-family:inherit;
-  cursor:pointer;
-}
+button{font-family:inherit;cursor:pointer}
 
 .add{
   border:0;
@@ -136,8 +132,7 @@ button{
   font-size:12px;
 }
 
-.hot-card,
-.buyer-card{
+.hot-card,.buyer-card{
   margin-bottom:9px;
   overflow:hidden;
   border:1px solid #efdbe4;
@@ -145,8 +140,7 @@ button{
   background:white;
 }
 
-.hot-header,
-.buyer-header{
+.hot-header,.buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -154,8 +148,7 @@ button{
   background:linear-gradient(135deg,#fff,#fff5f8);
 }
 
-.hot-main,
-.buyer-main{
+.hot-main,.buyer-main{
   display:flex;
   align-items:center;
   gap:10px;
@@ -163,9 +156,7 @@ button{
   cursor:pointer;
 }
 
-.rank{
-  width:44px;
-  height:44px;
+.rank,.avatar{
   flex:none;
   display:flex;
   align-items:center;
@@ -173,6 +164,11 @@ button{
   border-radius:50%;
   color:white;
   background:linear-gradient(135deg,#ed9ab9,#dba6bd);
+}
+
+.rank{
+  width:44px;
+  height:44px;
   font-size:13px;
   font-weight:900;
 }
@@ -180,13 +176,6 @@ button{
 .avatar{
   width:40px;
   height:40px;
-  flex:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  color:white;
-  background:linear-gradient(135deg,#efa0bd,#dca9c0);
 }
 
 .name{
@@ -201,8 +190,7 @@ button{
   color:#b28e9e;
 }
 
-.drag-handle,
-.item-handle{
+.drag-handle,.item-handle{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -216,24 +204,11 @@ button{
   user-select:none;
 }
 
-.drag-handle{
-  width:38px;
-  height:38px;
-  font-size:20px;
-}
+.drag-handle{width:38px;height:38px;font-size:20px}
+.item-handle{width:33px;height:33px;font-size:17px}
+.dragging{opacity:.55}
 
-.item-handle{
-  width:33px;
-  height:33px;
-  font-size:17px;
-}
-
-.dragging{
-  opacity:.55;
-}
-
-.hot-detail,
-.buyer-detail{
+.hot-detail,.buyer-detail{
   display:none;
   padding:13px;
   border-top:1px solid #f3e4eb;
@@ -247,7 +222,7 @@ button{
 
 .hot-edit{
   display:grid;
-  grid-template-columns:1fr 150px 90px;
+  grid-template-columns:1fr 180px 90px;
   gap:8px;
 }
 
@@ -334,24 +309,23 @@ button{
   margin-top:11px;
 }
 
-.edit-btn{
+.edit-btn,.danger-btn{
   flex:1;
   padding:10px;
-  border:1px solid #ead7df;
   border-radius:10px;
-  background:white;
-  color:#704f5e;
   font-weight:800;
 }
 
+.edit-btn{
+  border:1px solid #ead7df;
+  background:white;
+  color:#704f5e;
+}
+
 .danger-btn{
-  flex:1;
-  padding:10px;
   border:1px solid #efd4dc;
-  border-radius:10px;
   background:#fff0f3;
   color:#ad6178;
-  font-weight:800;
 }
 
 .empty{
@@ -361,19 +335,17 @@ button{
 }
 
 @media(max-width:700px){
-  .form,
-  .hot-form{
+  .form,.hot-form{
     grid-template-columns:1fr 1fr;
   }
 
-  .form .add,
-  .hot-form .add{
+  .form .add,.hot-form .add{
     grid-column:1/-1;
     min-height:46px;
   }
 
   .hot-edit{
-    grid-template-columns:1fr 110px;
+    grid-template-columns:1fr 1fr;
   }
 
   .hot-edit .save-btn{
@@ -381,9 +353,7 @@ button{
     min-height:42px;
   }
 
-  .hero h1{
-    font-size:24px;
-  }
+  .hero h1{font-size:24px}
 }
 </style>
 </head>
@@ -407,21 +377,26 @@ button{
     <div class="section-content">
 
       <div class="hot-form">
+
         <input id="hotName" placeholder="열혈 이름">
 
-        <input
-          id="hotCount"
-          type="number"
-          min="0"
-          placeholder="기여 개수">
+        <div class="input-unit">
+          <input
+            id="hotCount"
+            type="text"
+            inputmode="numeric"
+            placeholder="기여 개수">
+          <span>개</span>
+        </div>
 
         <button class="add" id="hotAddButton">
           ＋ 추가
         </button>
+
       </div>
 
       <div class="tip">
-        ☰를 잡아 순서를 바꾸면 등수가 자동으로 변경돼요.
+        기여 개수는 자동으로 쉼표가 들어가요. ☰를 잡아 순서를 바꾸면 등수도 자동 변경돼요.
       </div>
 
       <div id="hotList"></div>
@@ -485,8 +460,48 @@ button{
 </div>
 
 <script>
+
 function toggleSection(id){
   document.getElementById(id).classList.toggle("open");
+}
+
+function onlyDigits(value){
+  return String(value || "").replace(/[^\d]/g,"");
+}
+
+function formatNumber(value){
+  var digits=onlyDigits(value);
+
+  if(!digits)return "";
+
+  return Number(digits).toLocaleString("ko-KR");
+}
+
+function parseNumber(value){
+  var digits=onlyDigits(value);
+
+  if(!digits)return 0;
+
+  return parseInt(digits,10) || 0;
+}
+
+/* 입력 중 자동 쉼표 */
+function attachCommaInput(input){
+
+  input.addEventListener("input",function(){
+
+    var pos=input.selectionStart;
+    var oldLength=input.value.length;
+
+    input.value=formatNumber(input.value);
+
+    var newLength=input.value.length;
+
+    try{
+      var next=pos+(newLength-oldLength);
+      input.setSelectionRange(next,next);
+    }catch(e){}
+  });
 }
 
 var records={
@@ -520,17 +535,11 @@ try{
 }catch(e){}
 
 function saveCoupons(){
-  localStorage.setItem(
-    "buyerTracker",
-    JSON.stringify(records)
-  );
+  localStorage.setItem("buyerTracker",JSON.stringify(records));
 }
 
 function saveHot(){
-  localStorage.setItem(
-    "hotRankTracker",
-    JSON.stringify(hotRecords)
-  );
+  localStorage.setItem("hotRankTracker",JSON.stringify(hotRecords));
 }
 
 function makeSortable(container,handleSelector,itemSelector,callback){
@@ -540,15 +549,12 @@ function makeSortable(container,handleSelector,itemSelector,callback){
   container.onpointerdown=function(e){
 
     var handle=e.target.closest(handleSelector);
-
     if(!handle)return;
 
     var item=handle.closest(itemSelector);
-
     if(!item)return;
 
     dragged=item;
-
     dragged.classList.add("dragging");
 
     try{
@@ -607,18 +613,11 @@ function makeSortable(container,handleSelector,itemSelector,callback){
 function addHot(){
 
   var name=document.getElementById("hotName").value.trim();
-
-  var count=parseInt(
-    document.getElementById("hotCount").value
-  );
+  var count=parseNumber(document.getElementById("hotCount").value);
 
   if(!name){
     alert("열혈 이름을 입력해주세요.");
     return;
-  }
-
-  if(isNaN(count)||count<0){
-    count=0;
   }
 
   hotRecords.push({
@@ -643,22 +642,14 @@ function updateHot(id){
 
   if(!person)return;
 
-  var nameInput=
-    document.getElementById("hot-name-"+id);
-
-  var countInput=
-    document.getElementById("hot-count-"+id);
+  var nameInput=document.getElementById("hot-name-"+id);
+  var countInput=document.getElementById("hot-count-"+id);
 
   var newName=nameInput.value.trim();
-  var newCount=parseInt(countInput.value);
+  var newCount=parseNumber(countInput.value);
 
   if(!newName){
     alert("이름을 입력해주세요.");
-    return;
-  }
-
-  if(isNaN(newCount)||newCount<0){
-    alert("기여 개수를 확인해주세요.");
     return;
   }
 
@@ -693,8 +684,7 @@ function drawHot(){
   var list=document.getElementById("hotList");
 
   if(hotRecords.length===0){
-    list.innerHTML=
-      '<div class="empty">아직 열혈 기록이 없어요.</div>';
+    list.innerHTML='<div class="empty">아직 열혈 기록이 없어요.</div>';
     return;
   }
 
@@ -724,7 +714,8 @@ function drawHot(){
 
     var sub=document.createElement("div");
     sub.className="sub";
-    sub.textContent="눌러서 기여 개수 확인 / 수정";
+    sub.textContent=
+      "기여 "+Number(person.contribution||0).toLocaleString("ko-KR")+"개";
 
     info.appendChild(name);
     info.appendChild(sub);
@@ -754,12 +745,23 @@ function drawHot(){
     nameInput.value=person.name;
     nameInput.placeholder="이름";
 
+    var countWrap=document.createElement("div");
+    countWrap.className="input-unit";
+
     var countInput=document.createElement("input");
     countInput.id="hot-count-"+person.id;
-    countInput.type="number";
-    countInput.min="0";
-    countInput.value=person.contribution;
+    countInput.type="text";
+    countInput.inputMode="numeric";
+    countInput.value=Number(person.contribution||0).toLocaleString("ko-KR");
     countInput.placeholder="기여 개수";
+
+    var unit=document.createElement("span");
+    unit.textContent="개";
+
+    countWrap.appendChild(countInput);
+    countWrap.appendChild(unit);
+
+    attachCommaInput(countInput);
 
     var saveButton=document.createElement("button");
     saveButton.className="save-btn";
@@ -770,7 +772,7 @@ function drawHot(){
     };
 
     edit.appendChild(nameInput);
-    edit.appendChild(countInput);
+    edit.appendChild(countWrap);
     edit.appendChild(saveButton);
 
     var deleteButton=document.createElement("button");
@@ -851,10 +853,7 @@ function addRecord(){
 
   var buyer=document.getElementById("buyer").value.trim();
   var product=document.getElementById("product").value.trim();
-
-  var count=parseInt(
-    document.getElementById("count").value
-  );
+  var count=parseInt(document.getElementById("count").value);
 
   if(!buyer){
     alert("구매한 이름을 입력해주세요.");
@@ -895,10 +894,7 @@ function addRecord(){
 
 function renameBuyer(oldName){
 
-  var newName=prompt(
-    "새 이름을 입력해주세요.",
-    oldName
-  );
+  var newName=prompt("새 이름을 입력해주세요.",oldName);
 
   if(newName===null)return;
 
@@ -1020,8 +1016,7 @@ function drawBuyers(){
   var list=document.getElementById("buyerList");
 
   if(records.order.length===0){
-    list.innerHTML=
-      '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
+    list.innerHTML='<div class="empty">아직 쿠폰 기록이 없어요.</div>';
     return;
   }
 
@@ -1031,7 +1026,6 @@ function drawBuyers(){
 
     var data=records.people[buyer];
     var products=records.itemOrders[buyer]||[];
-
     var total=0;
 
     products.forEach(function(product){
@@ -1107,11 +1101,7 @@ function drawBuyers(){
       qty.value=data[product];
 
       qty.onchange=function(){
-        changeQty(
-          buyer,
-          product,
-          this.value
-        );
+        changeQty(buyer,product,this.value);
       };
 
       var del=document.createElement("button");
@@ -1197,11 +1187,14 @@ function drawBuyers(){
   );
 }
 
+attachCommaInput(document.getElementById("hotCount"));
+
 document.getElementById("hotAddButton").onclick=addHot;
 document.getElementById("addButton").onclick=addRecord;
 
 drawHot();
 drawBuyers();
+
 </script>
 
 </body>
