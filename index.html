@@ -26,8 +26,6 @@ body{
 }
 
 .hero{
-  position:relative;
-  overflow:hidden;
   padding:28px 22px;
   margin-bottom:18px;
   border-radius:28px;
@@ -36,39 +34,22 @@ body{
   box-shadow:0 14px 35px rgba(225,110,165,.24);
 }
 
-.hero:before{
-  content:"";
-  position:absolute;
-  width:170px;
-  height:170px;
-  border-radius:50%;
-  background:rgba(255,255,255,.18);
-  top:-75px;
-  right:-45px;
-}
-
 .hero h1{
-  position:relative;
   margin:0 0 7px;
   font-size:27px;
-  z-index:1;
 }
 
 .hero p{
-  position:relative;
   margin:0;
   font-size:14px;
-  opacity:.95;
-  z-index:1;
 }
 
 .card{
   padding:18px;
   margin-bottom:16px;
   border-radius:22px;
-  background:rgba(255,255,255,.95);
+  background:white;
   border:1px solid #f3d5e2;
-  box-shadow:0 10px 28px rgba(210,120,160,.10);
 }
 
 .form{
@@ -88,16 +69,6 @@ input{
   outline:none;
 }
 
-input:focus{
-  border-color:#f08fba;
-  box-shadow:0 0 0 4px rgba(240,143,186,.14);
-}
-
-button{
-  cursor:pointer;
-  font-family:inherit;
-}
-
 .add{
   border:0;
   border-radius:14px;
@@ -105,7 +76,6 @@ button{
   font-size:16px;
   font-weight:800;
   background:linear-gradient(135deg,#ff7ead,#ef8fc6 55%,#ad91f5);
-  box-shadow:0 8px 18px rgba(225,105,165,.24);
 }
 
 .tip{
@@ -125,24 +95,14 @@ button{
   padding:15px;
   border-radius:18px;
   text-align:center;
-  font-weight:700;
 }
 
-.stat:nth-child(1){
-  background:linear-gradient(135deg,#ffe0ed,#ffcfe2);
-}
-
-.stat:nth-child(2){
-  background:linear-gradient(135deg,#ffe8f6,#f6d9ef);
-}
-
-.stat:nth-child(3){
-  background:linear-gradient(135deg,#eee6ff,#ddd3ff);
-}
+.stat:nth-child(1){background:#ffe0ed}
+.stat:nth-child(2){background:#ffe8f6}
+.stat:nth-child(3){background:#eee6ff}
 
 .stat span{
   display:block;
-  margin-bottom:5px;
   font-size:12px;
   opacity:.65;
 }
@@ -151,31 +111,22 @@ button{
   font-size:21px;
 }
 
-.section-title{
-  margin-bottom:13px;
-  font-size:17px;
-}
-
 .buyer-card{
-  overflow:hidden;
   margin-bottom:11px;
   border:1px solid #f1d7e3;
   border-radius:18px;
   background:white;
-  box-shadow:0 5px 15px rgba(200,120,155,.06);
+  overflow:hidden;
 }
 
 .buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
   width:100%;
-  padding:15px 16px;
+  padding:14px;
   border:0;
   background:linear-gradient(135deg,#fff4f8,#fbf2ff);
-  color:#6c4658;
-  text-align:left;
 }
 
 .buyer-left{
@@ -185,41 +136,56 @@ button{
 }
 
 .avatar{
-  display:flex;
-  align-items:center;
-  justify-content:center;
   width:38px;
   height:38px;
   border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:linear-gradient(135deg,#ffb4cf,#c9b1ff);
-  color:white;
-  font-size:18px;
 }
 
 .buyer-name{
-  font-size:16px;
   font-weight:800;
+  font-size:16px;
 }
 
 .buyer-total{
-  margin-top:2px;
   font-size:12px;
   color:#aa8094;
 }
 
-.arrow{
-  font-size:18px;
-  transition:.2s;
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
-.buyer-card.open .arrow{
-  transform:rotate(180deg);
+.move-btn{
+  width:34px;
+  height:34px;
+  padding:0;
+  border:0;
+  border-radius:10px;
+  background:#f6e6ee;
+  color:#b45f84;
+  font-size:17px;
+  font-weight:800;
+}
+
+.arrow{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:10px;
+  background:#f5edf2;
+  color:#8d6b7b;
+  font-size:18px;
 }
 
 .buyer-detail{
   display:none;
   padding:12px 14px 14px;
-  background:#fff;
 }
 
 .buyer-card.open .buyer-detail{
@@ -235,25 +201,13 @@ button{
   border-bottom:1px solid #f6e9ef;
 }
 
-.item-row:last-child{
-  border-bottom:0;
-}
-
-.item-name{
-  font-weight:700;
-  color:#755064;
-}
-
 .qty{
-  padding:9px 7px;
+  padding:9px;
   text-align:center;
-  border:1px solid #f0d4e1;
-  border-radius:10px;
-  background:#fffafd;
 }
 
 .item-delete{
-  padding:9px 8px;
+  padding:9px;
   border:0;
   border-radius:10px;
   background:#ffe6ef;
@@ -261,13 +215,8 @@ button{
   font-weight:800;
 }
 
-.buyer-actions{
-  display:flex;
-  justify-content:flex-end;
-  margin-top:10px;
-}
-
 .buyer-delete{
+  margin-top:10px;
   padding:10px 12px;
   border:0;
   border-radius:11px;
@@ -277,15 +226,9 @@ button{
 }
 
 .empty{
-  padding:36px 20px;
-  border-radius:16px;
+  padding:36px;
   text-align:center;
   color:#b18a9d;
-  background:linear-gradient(180deg,#fffafd,#fff5f9);
-}
-
-.reset-wrap{
-  text-align:right;
 }
 
 .reset{
@@ -307,24 +250,8 @@ button{
     min-height:48px;
   }
 
-  .stats{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .stat{
-    padding:12px 5px;
-  }
-
-  .stat strong{
-    font-size:18px;
-  }
-
   .item-row{
     grid-template-columns:1fr 75px 62px;
-  }
-
-  .hero h1{
-    font-size:24px;
   }
 }
 </style>
@@ -334,95 +261,100 @@ button{
 
 <div class="container">
 
-  <div class="hero">
-    <h1>🎀 은별이방 쿠폰 기록</h1>
-    <p>구매자를 누르면 구매한 쿠폰을 확인할 수 있어요 ♡</p>
-  </div>
+<div class="hero">
+  <h1>🎀 은별이방 쿠폰 기록</h1>
+  <p>구매자를 누르면 구매한 쿠폰을 확인할 수 있어요 ♡</p>
+</div>
 
-  <div class="card">
-    <div class="form">
+<div class="card">
 
-      <input id="buyer" placeholder="구매한 이름">
+  <div class="form">
 
-      <input id="product" placeholder="구매한 항목">
+    <input id="buyer" placeholder="구매한 이름">
 
-      <input
-        id="count"
-        type="number"
-        min="1"
-        value="1"
-        placeholder="개수">
+    <input id="product" placeholder="구매한 항목">
 
-      <button id="addButton" class="add">
-        ＋ 기록 추가
-      </button>
+    <input
+      id="count"
+      type="number"
+      min="1"
+      value="1"
+      placeholder="개수">
 
-    </div>
-
-    <div class="tip">
-      같은 구매자 + 같은 항목을 추가하면 개수가 자동 합산돼요.
-    </div>
-  </div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <span>구매자</span>
-      <strong id="peopleCount">0명</strong>
-    </div>
-
-    <div class="stat">
-      <span>쿠폰 항목</span>
-      <strong id="itemCount">0개</strong>
-    </div>
-
-    <div class="stat">
-      <span>전체 수량</span>
-      <strong id="totalCount">0개</strong>
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-      <b>🩷 구매자별 쿠폰 기록</b>
-    </div>
-
-    <div id="buyerList"></div>
-
-  </div>
-
-  <div class="reset-wrap">
-    <button id="resetButton" class="reset">
-      전체 기록 삭제
+    <button id="addButton" class="add">
+      ＋ 기록 추가
     </button>
+
+  </div>
+
+  <div class="tip">
+    같은 구매자 + 같은 항목을 추가하면 자동 합산돼요.
   </div>
 
 </div>
 
+<div class="stats">
+
+  <div class="stat">
+    <span>구매자</span>
+    <strong id="peopleCount">0명</strong>
+  </div>
+
+  <div class="stat">
+    <span>쿠폰 항목</span>
+    <strong id="itemCount">0개</strong>
+  </div>
+
+  <div class="stat">
+    <span>전체 수량</span>
+    <strong id="totalCount">0개</strong>
+  </div>
+
+</div>
+
+<div class="card">
+
+  <b>🩷 구매자별 쿠폰 기록</b>
+
+  <div id="buyerList" style="margin-top:13px"></div>
+
+</div>
+
+<button id="resetButton" class="reset">
+  전체 기록 삭제
+</button>
+
+</div>
+
 <script>
+
 var records = {
   items: [],
-  people: {}
+  people: {},
+  order: []
 };
 
 try {
   var saved = localStorage.getItem("buyerTracker");
 
   if(saved) {
-    records = JSON.parse(saved);
+    var loaded = JSON.parse(saved);
+
+    records.items = loaded.items || [];
+    records.people = loaded.people || {};
+    records.order = loaded.order || Object.keys(records.people);
   }
 } catch(e) {}
 
-function save() {
+function save(){
   localStorage.setItem(
     "buyerTracker",
     JSON.stringify(records)
   );
 }
 
-function addRecord() {
+function addRecord(){
+
   var buyer =
     document.getElementById("buyer").value.trim();
 
@@ -432,30 +364,31 @@ function addRecord() {
   var count =
     parseInt(document.getElementById("count").value);
 
-  if(buyer === "") {
+  if(!buyer){
     alert("구매한 이름을 입력해주세요.");
     return;
   }
 
-  if(product === "") {
+  if(!product){
     alert("구매한 항목을 입력해주세요.");
     return;
   }
 
-  if(!count || count < 1) {
+  if(!count || count < 1){
     alert("개수를 입력해주세요.");
     return;
   }
 
-  if(records.items.indexOf(product) === -1) {
+  if(records.items.indexOf(product) === -1){
     records.items.push(product);
   }
 
-  if(!records.people[buyer]) {
+  if(!records.people[buyer]){
     records.people[buyer] = {};
+    records.order.push(buyer);
   }
 
-  if(!records.people[buyer][product]) {
+  if(!records.people[buyer][product]){
     records.people[buyer][product] = 0;
   }
 
@@ -470,74 +403,128 @@ function addRecord() {
   drawBuyers();
 }
 
-function changeQty(buyer, product, value) {
+function moveBuyer(buyer, direction){
+
+  var index = records.order.indexOf(buyer);
+
+  if(index === -1) return;
+
+  var newIndex = index + direction;
+
+  if(newIndex < 0 || newIndex >= records.order.length){
+    return;
+  }
+
+  var temp = records.order[index];
+
+  records.order[index] = records.order[newIndex];
+  records.order[newIndex] = temp;
+
+  save();
+  drawBuyers();
+}
+
+function changeQty(buyer, product, value){
+
   var number = parseInt(value);
 
-  if(isNaN(number) || number < 0) {
+  if(isNaN(number) || number < 0){
     number = 0;
   }
 
-  records.people[buyer][product] = number;
-
-  if(number === 0) {
+  if(number === 0){
     delete records.people[buyer][product];
+  }else{
+    records.people[buyer][product] = number;
   }
 
   save();
   drawBuyers();
 }
 
-function deleteItem(buyer, product) {
-  if(confirm(product + " 항목을 삭제할까요?")) {
+function deleteItem(buyer, product){
+
+  if(confirm(product + " 항목을 삭제할까요?")){
+
     delete records.people[buyer][product];
+
     save();
     drawBuyers();
   }
 }
 
-function deleteBuyer(buyer) {
-  if(confirm(buyer + "님의 모든 기록을 삭제할까요?")) {
+function deleteBuyer(buyer){
+
+  if(confirm(buyer + "님의 모든 기록을 삭제할까요?")){
+
     delete records.people[buyer];
+
+    records.order =
+      records.order.filter(function(name){
+        return name !== buyer;
+      });
+
     save();
     drawBuyers();
   }
 }
 
-function updateStats() {
+function updateStats(){
+
   var buyers = Object.keys(records.people);
 
   document.getElementById("peopleCount").textContent =
     buyers.length + "명";
 
   var usedItems = {};
+  var total = 0;
 
-  var grandTotal = 0;
+  buyers.forEach(function(buyer){
 
-  buyers.forEach(function(buyer) {
-    Object.keys(records.people[buyer]).forEach(function(product) {
+    Object.keys(records.people[buyer]).forEach(function(product){
+
       usedItems[product] = true;
-      grandTotal += records.people[buyer][product] || 0;
+
+      total +=
+        records.people[buyer][product] || 0;
+
     });
+
   });
 
   document.getElementById("itemCount").textContent =
     Object.keys(usedItems).length + "개";
 
   document.getElementById("totalCount").textContent =
-    grandTotal + "개";
+    total + "개";
 }
 
-function drawBuyers() {
-  var list = document.getElementById("buyerList");
-  var buyers = Object.keys(records.people);
+function drawBuyers(){
 
+  var list =
+    document.getElementById("buyerList");
+
+  records.order =
+    records.order.filter(function(name){
+      return records.people[name];
+    });
+
+  Object.keys(records.people).forEach(function(name){
+
+    if(records.order.indexOf(name) === -1){
+      records.order.push(name);
+    }
+
+  });
+
+  save();
   updateStats();
 
-  if(buyers.length === 0) {
+  if(records.order.length === 0){
+
     list.innerHTML =
       '<div class="empty">' +
-      '🎀 아직 쿠폰 기록이 없어요.<br>' +
-      '위에서 구매자를 추가해주세요!' +
+      '🎀 아직 쿠폰 기록이 없어요.' +
       '</div>';
 
     return;
@@ -545,50 +532,114 @@ function drawBuyers() {
 
   list.innerHTML = "";
 
-  buyers.forEach(function(buyer) {
+  records.order.forEach(function(buyer, index){
+
     var buyerData = records.people[buyer];
+
     var products = Object.keys(buyerData);
 
     var total = 0;
 
-    products.forEach(function(product) {
+    products.forEach(function(product){
       total += buyerData[product] || 0;
     });
 
-    var card = document.createElement("div");
+    var card =
+      document.createElement("div");
+
     card.className = "buyer-card";
 
-    var header = document.createElement("button");
+    var header =
+      document.createElement("div");
+
     header.className = "buyer-header";
 
-    header.innerHTML =
-      '<div class="buyer-left">' +
-        '<div class="avatar">🎀</div>' +
-        '<div>' +
-          '<div class="buyer-name">' + buyer + '</div>' +
-          '<div class="buyer-total">총 ' + total + '개</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="arrow">⌄</div>';
+    var left =
+      document.createElement("div");
 
-    var detail = document.createElement("div");
+    left.className = "buyer-left";
+
+    left.innerHTML =
+      '<div class="avatar">🎀</div>' +
+      '<div>' +
+        '<div class="buyer-name">' + buyer + '</div>' +
+        '<div class="buyer-total">총 ' + total + '개</div>' +
+      '</div>';
+
+    left.onclick = function(){
+      card.classList.toggle("open");
+    };
+
+    var right =
+      document.createElement("div");
+
+    right.className = "header-right";
+
+    var up =
+      document.createElement("button");
+
+    up.className = "move-btn";
+    up.textContent = "↑";
+
+    up.onclick = function(e){
+      e.stopPropagation();
+      moveBuyer(buyer, -1);
+    };
+
+    var down =
+      document.createElement("button");
+
+    down.className = "move-btn";
+    down.textContent = "↓";
+
+    down.onclick = function(e){
+      e.stopPropagation();
+      moveBuyer(buyer, 1);
+    };
+
+    var arrow =
+      document.createElement("button");
+
+    arrow.className = "arrow";
+    arrow.textContent = "⌄";
+
+    arrow.onclick = function(){
+      card.classList.toggle("open");
+    };
+
+    right.appendChild(up);
+    right.appendChild(down);
+    right.appendChild(arrow);
+
+    header.appendChild(left);
+    header.appendChild(right);
+
+    var detail =
+      document.createElement("div");
+
     detail.className = "buyer-detail";
 
-    products.forEach(function(product) {
-      var row = document.createElement("div");
+    products.forEach(function(product){
+
+      var row =
+        document.createElement("div");
+
       row.className = "item-row";
 
-      var name = document.createElement("div");
-      name.className = "item-name";
+      var name =
+        document.createElement("div");
+
       name.textContent = product;
 
-      var input = document.createElement("input");
+      var input =
+        document.createElement("input");
+
       input.type = "number";
       input.min = "0";
       input.className = "qty";
       input.value = buyerData[product];
 
-      input.onchange = function() {
+      input.onchange = function(){
         changeQty(
           buyer,
           product,
@@ -596,11 +647,13 @@ function drawBuyers() {
         );
       };
 
-      var del = document.createElement("button");
+      var del =
+        document.createElement("button");
+
       del.className = "item-delete";
       del.textContent = "삭제";
 
-      del.onclick = function() {
+      del.onclick = function(){
         deleteItem(buyer, product);
       };
 
@@ -609,40 +662,41 @@ function drawBuyers() {
       row.appendChild(del);
 
       detail.appendChild(row);
+
     });
 
-    var actions = document.createElement("div");
-    actions.className = "buyer-actions";
+    var deleteButton =
+      document.createElement("button");
 
-    var buyerDelete = document.createElement("button");
-    buyerDelete.className = "buyer-delete";
-    buyerDelete.textContent = "구매자 전체 삭제";
+    deleteButton.className = "buyer-delete";
+    deleteButton.textContent = "구매자 전체 삭제";
 
-    buyerDelete.onclick = function() {
+    deleteButton.onclick = function(){
       deleteBuyer(buyer);
     };
 
-    actions.appendChild(buyerDelete);
-    detail.appendChild(actions);
-
-    header.onclick = function() {
-      card.classList.toggle("open");
-    };
+    detail.appendChild(deleteButton);
 
     card.appendChild(header);
     card.appendChild(detail);
 
     list.appendChild(card);
+
   });
 }
 
-document.getElementById("addButton").onclick = addRecord;
+document.getElementById("addButton").onclick =
+  addRecord;
 
-document.getElementById("resetButton").onclick = function() {
-  if(confirm("모든 쿠폰 기록을 삭제할까요?")) {
+document.getElementById("resetButton").onclick =
+function(){
+
+  if(confirm("모든 쿠폰 기록을 삭제할까요?")){
+
     records = {
       items: [],
-      people: {}
+      people: {},
+      order: []
     };
 
     save();
@@ -651,6 +705,7 @@ document.getElementById("resetButton").onclick = function() {
 };
 
 drawBuyers();
+
 </script>
 
 </body>
