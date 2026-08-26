@@ -7,692 +7,1838 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;padding:18px 12px 45px;
- font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
- color:#634858;
- background:linear-gradient(#fff9fc,#fff0f6,#fff9fc);
+  margin:0;
+  padding:18px 12px 45px;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  color:#634858;
+  background:linear-gradient(#fff9fc,#fff0f6,#fff9fc);
 }
-.wrap{max-width:850px;margin:auto}
+
+.wrap{
+  max-width:850px;
+  margin:auto;
+}
+
+/* =====================
+   상단
+===================== */
 
 .hero{
- overflow:hidden;background:#fff;border-radius:26px;
- border:1px solid #f1d5e1;
- box-shadow:0 10px 28px rgba(210,110,150,.12);
- margin-bottom:16px;
+  overflow:hidden;
+  margin-bottom:16px;
+  border:1px solid #f1d5e1;
+  border-radius:26px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(210,110,150,.12);
 }
+
 .title{
- padding:22px;text-align:center;color:#fff;
- background:linear-gradient(135deg,#f28fb5,#e9a5bf,#dca5bf);
-}
-.title h1{margin:0;font-size:28px}
-.title p{margin:6px 0 0;font-size:13px}
-
-.profile{padding:16px;text-align:center}
-.profile img{
- width:100%;max-width:480px;max-height:420px;
- object-fit:cover;border-radius:22px;
- box-shadow:0 8px 22px rgba(200,100,145,.15);
+  padding:22px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(135deg,#f28fb5,#e9a5bf,#dca5bf);
 }
 
-.staff{
- display:grid;grid-template-columns:1fr 1fr;gap:9px;
- max-width:480px;margin:14px auto 0;
+.title h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
 }
+
+.title p{
+  margin:6px 0 0;
+  font-size:13px;
+  color:#fff8fb;
+}
+
+/* 사진 + 회장/부회장 */
+
+.profile-side{
+  display:grid;
+  grid-template-columns:minmax(0,1.7fr) minmax(180px,.8fr);
+  gap:16px;
+  align-items:center;
+  padding:18px;
+  background:linear-gradient(180deg,#fff,#fff8fb);
+}
+
+.photo-side{
+  min-width:0;
+}
+
+.photo-side img{
+  display:block;
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  border-radius:22px;
+  border:4px solid #fff;
+  box-shadow:0 8px 22px rgba(200,100,145,.15);
+}
+
+.staff-side{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
 .staff-box{
- padding:13px;border-radius:15px;background:#fff5f9;
- border:1px solid #efd6e1;
+  padding:22px 14px;
+  border:1px solid #efd6e1;
+  border-radius:17px;
+  background:linear-gradient(135deg,#fff,#fff1f6);
+  text-align:center;
+  box-shadow:0 5px 16px rgba(200,100,145,.07);
 }
-.role{font-size:12px;color:#ba7c97;font-weight:800}
-.staff-name{font-size:16px;font-weight:900;margin-top:4px}
+
+.role{
+  color:#ba7c97;
+  font-size:13px;
+  font-weight:800;
+}
+
+.staff-name{
+  margin-top:6px;
+  color:#624554;
+  font-size:19px;
+  font-weight:900;
+}
+
+/* =====================
+   메뉴
+===================== */
 
 .section{
- background:#fff;border:1px solid #f0d7e2;
- border-radius:20px;overflow:hidden;margin-bottom:13px;
- box-shadow:0 6px 18px rgba(190,100,140,.06);
+  margin-bottom:13px;
+  overflow:hidden;
+  border:1px solid #f0d7e2;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 6px 18px rgba(190,100,140,.06);
 }
-.section-head{
- padding:18px;cursor:pointer;
- background:linear-gradient(135deg,#fff,#fff0f6);
-}
-.section-head b{font-size:18px}
-.section-head small{display:block;margin-top:4px;color:#b28a9c}
-.content{display:none;padding:16px;border-top:1px solid #f4e4eb}
-.section.open .content{display:block}
 
-.form3,.form4{display:grid;gap:8px}
-.form3{grid-template-columns:1fr 170px 120px}
-.form4{grid-template-columns:1fr 1fr 90px 120px}
+.section-head{
+  padding:18px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#fff,#fff0f6);
+  user-select:none;
+}
+
+.section-head b{
+  font-size:18px;
+}
+
+.section-head small{
+  display:block;
+  margin-top:4px;
+  color:#b28a9c;
+}
+
+.content{
+  display:none;
+  padding:16px;
+  border-top:1px solid #f4e4eb;
+}
+
+.section.open .content{
+  display:block;
+}
+
+/* =====================
+   입력창
+===================== */
+
+.form3,
+.form4{
+  display:grid;
+  gap:8px;
+}
+
+.form3{
+  grid-template-columns:1fr 170px 120px;
+}
+
+.form4{
+  grid-template-columns:1fr 1fr 90px 120px;
+}
 
 input{
- width:100%;padding:12px;border:1.5px solid #efd3df;
- border-radius:11px;background:#fffafd;font-size:15px;outline:none;
+  width:100%;
+  padding:12px;
+  border:1.5px solid #efd3df;
+  border-radius:11px;
+  outline:none;
+  background:#fffafd;
+  color:#634858;
+  font-size:15px;
 }
-input:focus{border-color:#e89bb8}
 
-.unit{position:relative}
-.unit input{padding-right:30px}
+input:focus{
+  border-color:#e89bb8;
+  box-shadow:0 0 0 3px rgba(232,155,184,.10);
+}
+
+input::placeholder{
+  color:#b89aa7;
+}
+
+.unit{
+  position:relative;
+}
+
+.unit input{
+  padding-right:30px;
+}
+
 .unit span{
- position:absolute;right:11px;top:50%;transform:translateY(-50%);
- color:#aa8495;
+  position:absolute;
+  right:11px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#aa8495;
+  pointer-events:none;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
 }
 
 .add{
- border:0;border-radius:11px;background:#e993b2;
- color:#fff;font-weight:800;
+  border:0;
+  border-radius:11px;
+  color:#fff;
+  background:linear-gradient(135deg,#ed8fb1,#dda0ba);
+  font-weight:800;
 }
 
-.tip{font-size:12px;color:#ad8798;margin:9px 0 13px}
+.tip{
+  margin:9px 0 13px;
+  color:#ad8798;
+  font-size:12px;
+}
+
+/* =====================
+   카드
+===================== */
 
 .card{
- border:1px solid #efdbe4;border-radius:15px;
- overflow:hidden;margin-bottom:8px;background:#fff;
+  margin-bottom:8px;
+  overflow:hidden;
+  border:1px solid #efdbe4;
+  border-radius:15px;
+  background:#fff;
 }
+
 .card-head{
- display:flex;align-items:center;justify-content:space-between;
- gap:8px;padding:12px;background:#fff7fa;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:12px;
+  background:#fff7fa;
 }
+
 .main{
- display:flex;align-items:center;gap:9px;flex:1;cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex:1;
+  min-width:0;
+  cursor:pointer;
 }
+
 .circle{
- width:41px;height:41px;border-radius:50%;
- display:flex;align-items:center;justify-content:center;
- color:#fff;background:#eaa0bb;font-size:13px;font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  width:41px;
+  height:41px;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(135deg,#ed9ab9,#dba6bd);
+  font-size:13px;
+  font-weight:900;
 }
-.name{font-weight:900}
-.sub{font-size:11px;color:#b18c9d;margin-top:2px}
 
-.tools{display:flex;gap:5px;align-items:center}
-.icon,.drag{
- width:36px;height:36px;border:1px solid #efd6e0;
- border-radius:9px;background:#fff1f6;
- display:flex;align-items:center;justify-content:center;
- padding:0;
+.name{
+  color:#674857;
+  font-weight:900;
 }
-.drag{cursor:grab;touch-action:none;color:#b87995;font-size:19px}
-.dragging{opacity:.5}
 
-.secret,.detail{
- display:none;padding:12px;background:#fffafd;
- border-top:1px solid #f3e4eb;
+.sub{
+  margin-top:2px;
+  color:#b18c9d;
+  font-size:11px;
 }
-.card.secret-open .secret{display:block}
-.card.open .detail{display:block}
+
+/* 열혈 버튼 */
+
+.tools{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.icon,
+.drag{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  padding:0;
+  border:1px solid #efd6e0;
+  border-radius:9px;
+  background:#fff1f6;
+}
+
+.drag{
+  color:#b87995;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  font-size:19px;
+}
+
+.dragging{
+  opacity:.5;
+}
+
+/* =====================
+   열혈 기여 개수
+===================== */
+
+.secret,
+.detail{
+  display:none;
+  padding:12px;
+  border-top:1px solid #f3e4eb;
+  background:#fffafd;
+}
+
+.card.secret-open .secret{
+  display:block;
+}
+
+.card.open .detail{
+  display:block;
+}
 
 .secret-box{
- text-align:center;background:#fff;padding:13px;border-radius:12px;
- border:1px solid #efd9e2;
+  padding:13px;
+  border:1px solid #efd9e2;
+  border-radius:12px;
+  background:#fff;
+  text-align:center;
 }
-.secret-box small{color:#ad8798}
-.big{font-size:21px;font-weight:900;margin:4px 0 9px}
 
-.edit,.danger{
- width:100%;padding:9px;border-radius:9px;font-weight:800;
+.secret-box small{
+  color:#ad8798;
 }
-.edit{background:#fff;border:1px solid #ead6df;color:#704f5e}
-.danger{background:#fff0f3;border:1px solid #efd4dc;color:#ad6178}
+
+.big{
+  margin:4px 0 9px;
+  color:#674857;
+  font-size:21px;
+  font-weight:900;
+}
+
+.edit,
+.danger{
+  width:100%;
+  padding:9px;
+  border-radius:9px;
+  font-weight:800;
+}
+
+.edit{
+  border:1px solid #ead6df;
+  color:#704f5e;
+  background:#fff;
+}
+
+.danger{
+  border:1px solid #efd4dc;
+  color:#ad6178;
+  background:#fff0f3;
+}
+
+/* =====================
+   쿠폰
+===================== */
 
 .stats{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:7px;margin:13px 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin:13px 0;
 }
+
 .stat{
- padding:10px;text-align:center;border-radius:13px;background:#fff0f5;
+  padding:10px;
+  border-radius:13px;
+  background:#fff0f5;
+  text-align:center;
 }
-.stat small{display:block;color:#ae8999}
-.stat b{font-size:17px}
+
+.stat small{
+  display:block;
+  color:#ae8999;
+}
+
+.stat b{
+  display:block;
+  margin-top:3px;
+  font-size:17px;
+}
 
 .item{
- display:grid;grid-template-columns:34px 1fr 70px 55px;
- gap:5px;align-items:center;padding:7px 0;
- border-bottom:1px solid #f2e4ea;
+  display:grid;
+  grid-template-columns:34px 1fr 70px 55px;
+  gap:5px;
+  align-items:center;
+  padding:7px 0;
+  border-bottom:1px solid #f2e4ea;
 }
-.item input{text-align:center;padding:7px}
-.del{
- padding:8px 3px;border:1px solid #efd4dc;
- border-radius:8px;background:#fff0f3;color:#ad6178;font-size:11px;
-}
-.actions{display:flex;gap:7px;margin-top:10px}
-.actions button{flex:1}
 
-.empty{text-align:center;padding:22px;color:#b18e9e}
+.item input{
+  padding:7px;
+  text-align:center;
+}
+
+.del{
+  padding:8px 3px;
+  border:1px solid #efd4dc;
+  border-radius:8px;
+  color:#ad6178;
+  background:#fff0f3;
+  font-size:11px;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.actions button{
+  flex:1;
+}
+
+.empty{
+  padding:22px;
+  color:#b18e9e;
+  text-align:center;
+}
+
+/* =====================
+   휴대폰
+===================== */
 
 @media(max-width:650px){
- .form3,.form4{grid-template-columns:1fr 1fr}
- .form3 .add,.form4 .add{grid-column:1/-1;min-height:44px}
- .title h1{font-size:24px}
+
+  .profile-side{
+    grid-template-columns:1fr;
+  }
+
+  .staff-side{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .staff-box{
+    padding:14px 8px;
+  }
+
+  .staff-name{
+    font-size:16px;
+  }
+
+  .form3,
+  .form4{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .form3 .add,
+  .form4 .add{
+    grid-column:1/-1;
+    min-height:44px;
+  }
+
+  .title h1{
+    font-size:24px;
+  }
+
+  .photo-side img{
+    max-height:350px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
+<!-- =====================
+     상단
+===================== -->
+
 <div class="hero">
- <div class="title">
-   <h1>🌸 SOOP갓은별</h1>
-   <p>은별이와 함께하는 기록 공간 ♡</p>
- </div>
 
- <div class="profile">
-   <img src="eunbyeol.png.gif" alt="SOOP갓은별">
+  <div class="title">
+    <h1>SOOP갓은별</h1>
+    <p>은별이와 함께하는 기록 공간 ♡</p>
+  </div>
 
-   <div class="staff">
-     <div class="staff-box">
-       <div class="role">👑 회장님</div>
-       <div class="staff-name">고집사</div>
-     </div>
+  <div class="profile-side">
 
-     <div class="staff-box">
-       <div class="role">💗 부회장님</div>
-       <div class="staff-name">보노아조씨</div>
-     </div>
-   </div>
- </div>
+    <div class="photo-side">
+      <img src="eunbyeol.png.gif" alt="SOOP갓은별">
+    </div>
+
+    <div class="staff-side">
+
+      <div class="staff-box">
+        <div class="role">👑 회장님</div>
+        <div class="staff-name">고집사</div>
+      </div>
+
+      <div class="staff-box">
+        <div class="role">💗 부회장님</div>
+        <div class="staff-name">보노아조씨</div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
+
+
+<!-- =====================
+     열혈
+===================== -->
 
 <div class="section" id="hotSection">
- <div class="section-head" onclick="toggleSection('hotSection')">
-   <b>🔥 열혈 등수</b>
-   <small>눌러서 열혈 기록 보기</small>
- </div>
 
- <div class="content">
-   <div class="form3">
-     <input id="hotName" placeholder="열혈 이름">
+  <div class="section-head" onclick="toggleSection('hotSection')">
+    <b>🔥 열혈 등수</b>
+    <small>눌러서 열혈 기록 보기</small>
+  </div>
 
-     <div class="unit">
-       <input id="hotCount" inputmode="numeric" placeholder="기여 개수">
-       <span>개</span>
-     </div>
+  <div class="content">
 
-     <button class="add" id="hotAdd">＋ 추가</button>
-   </div>
+    <div class="form3">
 
-   <div class="tip">
-     같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요.
-   </div>
+      <input
+        id="hotName"
+        placeholder="열혈 이름">
 
-   <div id="hotList"></div>
- </div>
+      <div class="unit">
+        <input
+          id="hotCount"
+          inputmode="numeric"
+          placeholder="기여 개수">
+        <span>개</span>
+      </div>
+
+      <button
+        class="add"
+        id="hotAdd">
+        ＋ 추가
+      </button>
+
+    </div>
+
+    <div class="tip">
+      같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요.
+    </div>
+
+    <div id="hotList"></div>
+
+  </div>
+
 </div>
+
+
+<!-- =====================
+     쿠폰
+===================== -->
 
 <div class="section" id="couponSection">
- <div class="section-head" onclick="toggleSection('couponSection')">
-   <b>🎟️ 쿠폰</b>
-   <small>눌러서 구매자별 쿠폰 보기</small>
- </div>
 
- <div class="content">
+  <div class="section-head" onclick="toggleSection('couponSection')">
+    <b>🎟️ 쿠폰</b>
+    <small>눌러서 구매자별 쿠폰 보기</small>
+  </div>
 
-   <div class="form4">
-     <input id="buyer" placeholder="구매한 이름">
-     <input id="product" placeholder="구매한 항목">
-     <input id="count" type="number" min="1" value="1">
-     <button class="add" id="couponAdd">＋ 기록 추가</button>
-   </div>
+  <div class="content">
 
-   <div class="stats">
-     <div class="stat"><small>구매자</small><b id="peopleCount">0명</b></div>
-     <div class="stat"><small>쿠폰 항목</small><b id="itemCount">0개</b></div>
-     <div class="stat"><small>전체 수량</small><b id="totalCount">0개</b></div>
-   </div>
+    <div class="form4">
 
-   <div id="buyerList"></div>
- </div>
+      <input
+        id="buyer"
+        placeholder="구매한 이름">
+
+      <input
+        id="product"
+        placeholder="구매한 항목">
+
+      <input
+        id="count"
+        type="number"
+        min="1"
+        value="1">
+
+      <button
+        class="add"
+        id="couponAdd">
+        ＋ 기록 추가
+      </button>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <small>구매자</small>
+        <b id="peopleCount">0명</b>
+      </div>
+
+      <div class="stat">
+        <small>쿠폰 항목</small>
+        <b id="itemCount">0개</b>
+      </div>
+
+      <div class="stat">
+        <small>전체 수량</small>
+        <b id="totalCount">0개</b>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      구매자를 누르면 쿠폰이 펼쳐져요. ☰를 잡고 순서를 바꿀 수 있어요.
+    </div>
+
+    <div id="buyerList"></div>
+
+  </div>
+
 </div>
 
 </div>
+
 
 <script>
+
+/* =====================
+   공통
+===================== */
+
 function toggleSection(id){
- document.getElementById(id).classList.toggle("open");
+  document.getElementById(id).classList.toggle("open");
 }
 
 function digits(v){
- return String(v||"").replace(/[^\d]/g,"");
+  return String(v||"").replace(/[^\d]/g,"");
 }
 
 function number(v){
- return parseInt(digits(v),10)||0;
+  return parseInt(digits(v),10)||0;
 }
 
 function commas(v){
- var d=digits(v);
- return d ? Number(d).toLocaleString("ko-KR") : "";
+  var d=digits(v);
+  return d ? Number(d).toLocaleString("ko-KR") : "";
 }
 
+
+/* =====================
+   데이터
+===================== */
+
 var hot=[];
-var coupons={people:{},order:[],itemOrders:{}};
+
+var coupons={
+  people:{},
+  order:[],
+  itemOrders:{}
+};
 
 try{
- hot=JSON.parse(localStorage.getItem("hotRankTracker"))||[];
+  hot=
+    JSON.parse(
+      localStorage.getItem("hotRankTracker")
+    )||[];
 }catch(e){}
 
 try{
- var old=JSON.parse(localStorage.getItem("buyerTracker"))||{};
- coupons.people=old.people||{};
- coupons.order=old.order||Object.keys(coupons.people);
- coupons.itemOrders=old.itemOrders||{};
+
+  var old=
+    JSON.parse(
+      localStorage.getItem("buyerTracker")
+    )||{};
+
+  coupons.people=old.people||{};
+  coupons.order=old.order||Object.keys(coupons.people);
+  coupons.itemOrders=old.itemOrders||{};
+
 }catch(e){}
+
 
 function saveHot(){
- localStorage.setItem("hotRankTracker",JSON.stringify(hot));
+
+  localStorage.setItem(
+    "hotRankTracker",
+    JSON.stringify(hot)
+  );
+
 }
 
 function saveCoupons(){
- localStorage.setItem("buyerTracker",JSON.stringify(coupons));
+
+  localStorage.setItem(
+    "buyerTracker",
+    JSON.stringify(coupons)
+  );
+
 }
+
+
+/* 기여 개수 입력 콤마 */
 
 document.getElementById("hotCount").oninput=function(){
- this.value=commas(this.value);
+
+  this.value=commas(this.value);
+
 };
 
-function sortable(box,handleClass,itemClass,done){
- var moving=null;
 
- box.onpointerdown=function(e){
-   var handle=e.target.closest(handleClass);
-   if(!handle)return;
+/* =====================
+   드래그
+===================== */
 
-   moving=handle.closest(itemClass);
-   if(!moving)return;
+function sortable(
+  box,
+  handleClass,
+  itemClass,
+  done
+){
 
-   moving.classList.add("dragging");
-   try{handle.setPointerCapture(e.pointerId)}catch(err){}
-   e.preventDefault();
- };
+  var moving=null;
 
- box.onpointermove=function(e){
-   if(!moving)return;
 
-   var others=[...box.children].filter(x=>x!==moving);
+  box.onpointerdown=function(e){
 
-   var before=others.find(x=>{
-     var r=x.getBoundingClientRect();
-     return e.clientY < r.top+r.height/2;
-   });
+    var handle=e.target.closest(handleClass);
 
-   if(before)box.insertBefore(moving,before);
-   else box.appendChild(moving);
- };
+    if(!handle)return;
 
- function end(){
-   if(!moving)return;
-   moving.classList.remove("dragging");
-   moving=null;
-   done();
- }
 
- box.onpointerup=end;
- box.onpointercancel=end;
+    moving=handle.closest(itemClass);
+
+    if(!moving)return;
+
+
+    moving.classList.add("dragging");
+
+
+    try{
+      handle.setPointerCapture(e.pointerId);
+    }catch(err){}
+
+
+    e.preventDefault();
+    e.stopPropagation();
+
+  };
+
+
+  box.onpointermove=function(e){
+
+    if(!moving)return;
+
+
+    var others=
+      [...box.children]
+      .filter(function(x){
+        return x!==moving;
+      });
+
+
+    var before=
+      others.find(function(x){
+
+        var r=x.getBoundingClientRect();
+
+        return e.clientY < r.top+r.height/2;
+
+      });
+
+
+    if(before){
+
+      box.insertBefore(moving,before);
+
+    }else{
+
+      box.appendChild(moving);
+
+    }
+
+  };
+
+
+  function end(){
+
+    if(!moving)return;
+
+
+    moving.classList.remove("dragging");
+
+    moving=null;
+
+    done();
+
+  }
+
+
+  box.onpointerup=end;
+  box.onpointercancel=end;
+
 }
 
-/* 열혈 */
+
+/* =====================
+   열혈 추가
+===================== */
 
 function addHot(){
- var name=document.getElementById("hotName").value.trim();
- var cnt=number(document.getElementById("hotCount").value);
 
- if(!name)return alert("열혈 이름을 입력해주세요.");
- if(cnt<1)return alert("기여 개수를 입력해주세요.");
+  var name=
+    document
+    .getElementById("hotName")
+    .value
+    .trim();
 
- var found=hot.find(x=>x.name===name);
 
- if(found){
-   found.contribution=(found.contribution||0)+cnt;
- }else{
-   hot.push({
-     id:String(Date.now())+Math.random(),
-     name:name,
-     contribution:cnt
-   });
- }
+  var cnt=
+    number(
+      document.getElementById("hotCount").value
+    );
 
- saveHot();
 
- document.getElementById("hotName").value="";
- document.getElementById("hotCount").value="";
+  if(!name){
 
- drawHot();
+    alert("열혈 이름을 입력해주세요.");
+
+    return;
+
+  }
+
+
+  if(cnt<1){
+
+    alert("기여 개수를 입력해주세요.");
+
+    return;
+
+  }
+
+
+  var found=
+    hot.find(function(x){
+
+      return x.name===name;
+
+    });
+
+
+  if(found){
+
+    found.contribution=
+      Number(found.contribution||0)+cnt;
+
+  }else{
+
+    hot.push({
+
+      id:
+        String(Date.now())+
+        Math.random(),
+
+      name:name,
+
+      contribution:cnt
+
+    });
+
+  }
+
+
+  saveHot();
+
+
+  document.getElementById("hotName").value="";
+
+  document.getElementById("hotCount").value="";
+
+
+  drawHot();
+
 }
+
+
+/* =====================
+   열혈 수정
+===================== */
 
 function editHot(id){
- var p=hot.find(x=>x.id===id);
- if(!p)return;
 
- var v=prompt(
-   "기여 개수를 수정해주세요.",
-   Number(p.contribution||0).toLocaleString("ko-KR")
- );
+  var p=
+    hot.find(function(x){
 
- if(v===null)return;
+      return x.id===id;
 
- p.contribution=number(v);
- saveHot();
- drawHot();
+    });
+
+
+  if(!p)return;
+
+
+  var v=
+    prompt(
+      "기여 개수를 수정해주세요.",
+      Number(p.contribution||0)
+      .toLocaleString("ko-KR")
+    );
+
+
+  if(v===null)return;
+
+
+  p.contribution=number(v);
+
+
+  saveHot();
+
+  drawHot();
+
 }
+
+
+/* =====================
+   열혈 삭제
+===================== */
 
 function removeHot(id){
- var p=hot.find(x=>x.id===id);
- if(!p)return;
 
- if(confirm(p.name+"님을 삭제할까요?")){
-   hot=hot.filter(x=>x.id!==id);
-   saveHot();
-   drawHot();
- }
+  var p=
+    hot.find(function(x){
+
+      return x.id===id;
+
+    });
+
+
+  if(!p)return;
+
+
+  if(
+    confirm(
+      p.name+"님을 삭제할까요?"
+    )
+  ){
+
+    hot=
+      hot.filter(function(x){
+
+        return x.id!==id;
+
+      });
+
+
+    saveHot();
+
+    drawHot();
+
+  }
+
 }
+
+
+/* =====================
+   열혈 표시
+===================== */
 
 function drawHot(){
- var list=document.getElementById("hotList");
- list.innerHTML="";
 
- if(!hot.length){
-   list.innerHTML='<div class="empty">아직 열혈 기록이 없어요.</div>';
-   return;
- }
+  var list=
+    document.getElementById("hotList");
 
- hot.forEach((p,i)=>{
 
-   var card=document.createElement("div");
-   card.className="card";
-   card.dataset.id=p.id;
+  list.innerHTML="";
 
-   card.innerHTML=`
-     <div class="card-head">
-       <div class="main">
-         <div class="circle">${i+1}위</div>
-         <div class="name"></div>
-       </div>
 
-       <div class="tools">
-         <button class="icon lock">🔒</button>
-         <button class="icon trash">🗑️</button>
-         <div class="drag">☰</div>
-       </div>
-     </div>
+  if(!hot.length){
 
-     <div class="secret">
-       <div class="secret-box">
-         <small>기여 개수</small>
-         <div class="big">${Number(p.contribution||0).toLocaleString("ko-KR")}개</div>
-         <button class="edit">기여 개수 직접 수정</button>
-       </div>
-     </div>
-   `;
+    list.innerHTML=
+      '<div class="empty">아직 열혈 기록이 없어요.</div>';
 
-   card.querySelector(".name").textContent=p.name;
+    return;
 
-   card.querySelector(".lock").onclick=function(){
-     card.classList.toggle("secret-open");
-     this.textContent=card.classList.contains("secret-open")?"🔓":"🔒";
-   };
+  }
 
-   card.querySelector(".trash").onclick=()=>removeHot(p.id);
-   card.querySelector(".edit").onclick=()=>editHot(p.id);
 
-   list.appendChild(card);
- });
+  hot.forEach(function(p,i){
 
- sortable(list,".drag",".card",function(){
-   var ids=[...list.querySelectorAll(".card")].map(x=>x.dataset.id);
 
-   hot.sort((a,b)=>ids.indexOf(a.id)-ids.indexOf(b.id));
+    var card=
+      document.createElement("div");
 
-   saveHot();
-   drawHot();
- });
+
+    card.className="card";
+
+    card.dataset.id=p.id;
+
+
+    card.innerHTML=`
+
+      <div class="card-head">
+
+        <div class="main">
+
+          <div class="circle">
+            ${i+1}위
+          </div>
+
+          <div class="name"></div>
+
+        </div>
+
+
+        <div class="tools">
+
+          <button class="icon lock">
+            🔒
+          </button>
+
+          <button class="icon trash">
+            🗑️
+          </button>
+
+          <div class="drag">
+            ☰
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="secret">
+
+        <div class="secret-box">
+
+          <small>
+            기여 개수
+          </small>
+
+          <div class="big">
+            ${Number(p.contribution||0).toLocaleString("ko-KR")}개
+          </div>
+
+          <button class="edit">
+            기여 개수 직접 수정
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    card
+    .querySelector(".name")
+    .textContent=p.name;
+
+
+    card
+    .querySelector(".lock")
+    .onclick=function(e){
+
+      e.stopPropagation();
+
+
+      card.classList.toggle(
+        "secret-open"
+      );
+
+
+      this.textContent=
+        card.classList.contains("secret-open")
+        ?"🔓"
+        :"🔒";
+
+    };
+
+
+    card
+    .querySelector(".trash")
+    .onclick=function(e){
+
+      e.stopPropagation();
+
+      removeHot(p.id);
+
+    };
+
+
+    card
+    .querySelector(".edit")
+    .onclick=function(){
+
+      editHot(p.id);
+
+    };
+
+
+    list.appendChild(card);
+
+  });
+
+
+  sortable(
+    list,
+    ".drag",
+    ".card",
+    function(){
+
+      var ids=
+        [...list.querySelectorAll(".card")]
+        .map(function(x){
+
+          return x.dataset.id;
+
+        });
+
+
+      hot.sort(function(a,b){
+
+        return (
+          ids.indexOf(a.id)-
+          ids.indexOf(b.id)
+        );
+
+      });
+
+
+      saveHot();
+
+      drawHot();
+
+    }
+  );
+
 }
 
-/* 쿠폰 */
+
+/* =====================
+   쿠폰 데이터 정리
+===================== */
 
 function normalize(){
- coupons.order=coupons.order.filter(x=>coupons.people[x]);
 
- Object.keys(coupons.people).forEach(name=>{
-   if(!coupons.order.includes(name))coupons.order.push(name);
+  coupons.order=
+    coupons.order.filter(function(x){
 
-   if(!coupons.itemOrders[name]){
-     coupons.itemOrders[name]=Object.keys(coupons.people[name]);
-   }
+      return coupons.people[x];
 
-   coupons.itemOrders[name]=coupons.itemOrders[name]
-     .filter(x=>coupons.people[name][x]!==undefined);
+    });
 
-   Object.keys(coupons.people[name]).forEach(p=>{
-     if(!coupons.itemOrders[name].includes(p)){
-       coupons.itemOrders[name].push(p);
-     }
-   });
- });
+
+  Object
+  .keys(coupons.people)
+  .forEach(function(name){
+
+
+    if(
+      !coupons.order.includes(name)
+    ){
+
+      coupons.order.push(name);
+
+    }
+
+
+    if(
+      !coupons.itemOrders[name]
+    ){
+
+      coupons.itemOrders[name]=
+        Object.keys(
+          coupons.people[name]
+        );
+
+    }
+
+
+    coupons.itemOrders[name]=
+      coupons.itemOrders[name]
+      .filter(function(x){
+
+        return (
+          coupons.people[name][x]
+          !==undefined
+        );
+
+      });
+
+
+    Object
+    .keys(coupons.people[name])
+    .forEach(function(p){
+
+      if(
+        !coupons.itemOrders[name]
+        .includes(p)
+      ){
+
+        coupons.itemOrders[name]
+        .push(p);
+
+      }
+
+    });
+
+  });
+
 }
+
+
+/* =====================
+   쿠폰 추가
+===================== */
 
 function addCoupon(){
- var buyer=document.getElementById("buyer").value.trim();
- var product=document.getElementById("product").value.trim();
- var cnt=parseInt(document.getElementById("count").value)||0;
 
- if(!buyer)return alert("구매한 이름을 입력해주세요.");
- if(!product)return alert("구매한 항목을 입력해주세요.");
- if(cnt<1)return alert("개수를 입력해주세요.");
+  var buyer=
+    document
+    .getElementById("buyer")
+    .value
+    .trim();
 
- if(!coupons.people[buyer]){
-   coupons.people[buyer]={};
-   coupons.order.push(buyer);
-   coupons.itemOrders[buyer]=[];
- }
 
- if(coupons.people[buyer][product]===undefined){
-   coupons.people[buyer][product]=0;
-   coupons.itemOrders[buyer].push(product);
- }
+  var product=
+    document
+    .getElementById("product")
+    .value
+    .trim();
 
- coupons.people[buyer][product]+=cnt;
 
- saveCoupons();
+  var cnt=
+    parseInt(
+      document.getElementById("count").value
+    )||0;
 
- document.getElementById("buyer").value="";
- document.getElementById("product").value="";
- document.getElementById("count").value="1";
 
- drawCoupons();
+  if(!buyer){
+
+    alert("구매한 이름을 입력해주세요.");
+
+    return;
+
+  }
+
+
+  if(!product){
+
+    alert("구매한 항목을 입력해주세요.");
+
+    return;
+
+  }
+
+
+  if(cnt<1){
+
+    alert("개수를 입력해주세요.");
+
+    return;
+
+  }
+
+
+  if(!coupons.people[buyer]){
+
+    coupons.people[buyer]={};
+
+    coupons.order.push(buyer);
+
+    coupons.itemOrders[buyer]=[];
+
+  }
+
+
+  if(
+    coupons.people[buyer][product]
+    ===undefined
+  ){
+
+    coupons.people[buyer][product]=0;
+
+    coupons.itemOrders[buyer]
+    .push(product);
+
+  }
+
+
+  coupons.people[buyer][product]+=cnt;
+
+
+  saveCoupons();
+
+
+  document.getElementById("buyer").value="";
+
+  document.getElementById("product").value="";
+
+  document.getElementById("count").value="1";
+
+
+  drawCoupons();
+
 }
+
+
+/* =====================
+   구매자 이름 수정
+===================== */
 
 function renameBuyer(oldName){
- var newName=prompt("새 이름을 입력해주세요.",oldName);
- if(newName===null)return;
 
- newName=newName.trim();
- if(!newName||newName===oldName)return;
+  var newName=
+    prompt(
+      "새 이름을 입력해주세요.",
+      oldName
+    );
 
- if(coupons.people[newName]){
-   return alert("이미 같은 이름이 있어요.");
- }
 
- coupons.people[newName]=coupons.people[oldName];
- delete coupons.people[oldName];
+  if(newName===null)return;
 
- coupons.itemOrders[newName]=coupons.itemOrders[oldName]||[];
- delete coupons.itemOrders[oldName];
 
- var i=coupons.order.indexOf(oldName);
- if(i>=0)coupons.order[i]=newName;
+  newName=newName.trim();
 
- saveCoupons();
- drawCoupons();
+
+  if(
+    !newName||
+    newName===oldName
+  )return;
+
+
+  if(coupons.people[newName]){
+
+    alert("이미 같은 이름이 있어요.");
+
+    return;
+
+  }
+
+
+  coupons.people[newName]=
+    coupons.people[oldName];
+
+
+  delete coupons.people[oldName];
+
+
+  coupons.itemOrders[newName]=
+    coupons.itemOrders[oldName]||[];
+
+
+  delete coupons.itemOrders[oldName];
+
+
+  var i=
+    coupons.order.indexOf(oldName);
+
+
+  if(i>=0){
+
+    coupons.order[i]=newName;
+
+  }
+
+
+  saveCoupons();
+
+  drawCoupons();
+
 }
+
+
+/* =====================
+   구매자 삭제
+===================== */
 
 function deleteBuyer(name){
- if(confirm(name+"님의 기록을 삭제할까요?")){
-   delete coupons.people[name];
-   delete coupons.itemOrders[name];
-   coupons.order=coupons.order.filter(x=>x!==name);
 
-   saveCoupons();
-   drawCoupons();
- }
+  if(
+    confirm(
+      name+"님의 기록을 삭제할까요?"
+    )
+  ){
+
+    delete coupons.people[name];
+
+    delete coupons.itemOrders[name];
+
+
+    coupons.order=
+      coupons.order.filter(function(x){
+
+        return x!==name;
+
+      });
+
+
+    saveCoupons();
+
+    drawCoupons();
+
+  }
+
 }
+
+
+/* =====================
+   쿠폰 표시
+===================== */
 
 function drawCoupons(){
- normalize();
 
- var buyers=Object.keys(coupons.people);
- var kinds={};
- var totalAll=0;
+  normalize();
 
- buyers.forEach(b=>{
-   Object.keys(coupons.people[b]).forEach(p=>{
-     kinds[p]=1;
-     totalAll+=coupons.people[b][p]||0;
-   });
- });
 
- document.getElementById("peopleCount").textContent=buyers.length+"명";
- document.getElementById("itemCount").textContent=Object.keys(kinds).length+"개";
- document.getElementById("totalCount").textContent=totalAll+"개";
+  var buyers=
+    Object.keys(
+      coupons.people
+    );
 
- var list=document.getElementById("buyerList");
- list.innerHTML="";
 
- if(!coupons.order.length){
-   list.innerHTML='<div class="empty">아직 쿠폰 기록이 없어요.</div>';
-   return;
- }
+  var kinds={};
 
- coupons.order.forEach(name=>{
+  var totalAll=0;
 
-   var products=coupons.itemOrders[name]||[];
-   var total=products.reduce((a,p)=>a+(coupons.people[name][p]||0),0);
 
-   var card=document.createElement("div");
-   card.className="card";
-   card.dataset.buyer=name;
+  buyers.forEach(function(b){
 
-   var head=document.createElement("div");
-   head.className="card-head";
+    Object
+    .keys(coupons.people[b])
+    .forEach(function(p){
 
-   var main=document.createElement("div");
-   main.className="main";
+      kinds[p]=1;
 
-   main.innerHTML=`
-     <div class="circle">♥</div>
-     <div>
-       <div class="name"></div>
-       <div class="sub">총 ${total}개</div>
-     </div>
-   `;
+      totalAll+=
+        coupons.people[b][p]||0;
 
-   main.querySelector(".name").textContent=name;
-   main.onclick=()=>card.classList.toggle("open");
+    });
 
-   var drag=document.createElement("div");
-   drag.className="drag";
-   drag.textContent="☰";
+  });
 
-   head.appendChild(main);
-   head.appendChild(drag);
 
-   var detail=document.createElement("div");
-   detail.className="detail";
+  document
+  .getElementById("peopleCount")
+  .textContent=
+    buyers.length+"명";
 
-   var itemList=document.createElement("div");
 
-   products.forEach(product=>{
-     var row=document.createElement("div");
-     row.className="item";
-     row.dataset.product=product;
+  document
+  .getElementById("itemCount")
+  .textContent=
+    Object.keys(kinds).length+"개";
 
-     var handle=document.createElement("div");
-     handle.className="drag";
-     handle.textContent="☰";
 
-     var label=document.createElement("div");
-     label.textContent=product;
+  document
+  .getElementById("totalCount")
+  .textContent=
+    totalAll+"개";
 
-     var input=document.createElement("input");
-     input.type="number";
-     input.min="0";
-     input.value=coupons.people[name][product];
 
-     input.onchange=function(){
-       var v=parseInt(this.value)||0;
+  var list=
+    document.getElementById("buyerList");
 
-       if(v<=0){
-         delete coupons.people[name][product];
-         coupons.itemOrders[name]=coupons.itemOrders[name]
-           .filter(x=>x!==product);
-       }else{
-         coupons.people[name][product]=v;
-       }
 
-       saveCoupons();
-       drawCoupons();
-     };
+  list.innerHTML="";
 
-     var del=document.createElement("button");
-     del.className="del";
-     del.textContent="삭제";
 
-     del.onclick=function(){
-       if(confirm(product+" 항목을 삭제할까요?")){
-         delete coupons.people[name][product];
+  if(!coupons.order.length){
 
-         coupons.itemOrders[name]=coupons.itemOrders[name]
-           .filter(x=>x!==product);
+    list.innerHTML=
+      '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
 
-         saveCoupons();
-         drawCoupons();
-       }
-     };
+    return;
 
-     row.append(handle,label,input,del);
-     itemList.appendChild(row);
-   });
+  }
 
-   detail.appendChild(itemList);
 
-   var actions=document.createElement("div");
-   actions.className="actions";
+  coupons.order.forEach(function(name){
 
-   var rename=document.createElement("button");
-   rename.className="edit";
-   rename.textContent="✎ 이름 수정";
-   rename.onclick=()=>renameBuyer(name);
 
-   var remove=document.createElement("button");
-   remove.className="danger";
-   remove.textContent="구매자 삭제";
-   remove.onclick=()=>deleteBuyer(name);
+    var products=
+      coupons.itemOrders[name]||[];
 
-   actions.append(rename,remove);
-   detail.appendChild(actions);
 
-   card.append(head,detail);
-   list.appendChild(card);
+    var total=
+      products.reduce(
+        function(a,p){
 
-   sortable(itemList,".drag",".item",function(){
-     coupons.itemOrders[name]=[...itemList.querySelectorAll(".item")]
-       .map(x=>x.dataset.product);
+          return (
+            a+
+            (coupons.people[name][p]||0)
+          );
 
-     saveCoupons();
-   });
- });
+        },
+        0
+      );
 
- sortable(list,".drag",".card",function(){
-   coupons.order=[...list.querySelectorAll(".card")]
-     .map(x=>x.dataset.buyer);
 
-   saveCoupons();
- });
+    var card=
+      document.createElement("div");
+
+
+    card.className="card";
+
+    card.dataset.buyer=name;
+
+
+    var head=
+      document.createElement("div");
+
+
+    head.className="card-head";
+
+
+    var main=
+      document.createElement("div");
+
+
+    main.className="main";
+
+
+    main.innerHTML=`
+
+      <div class="circle">
+        ♥
+      </div>
+
+      <div>
+
+        <div class="name"></div>
+
+        <div class="sub">
+          총 ${total}개
+        </div>
+
+      </div>
+
+    `;
+
+
+    main
+    .querySelector(".name")
+    .textContent=name;
+
+
+    main.onclick=function(){
+
+      card.classList.toggle("open");
+
+    };
+
+
+    var drag=
+      document.createElement("div");
+
+
+    drag.className="drag";
+
+    drag.textContent="☰";
+
+
+    head.appendChild(main);
+
+    head.appendChild(drag);
+
+
+    var detail=
+      document.createElement("div");
+
+
+    detail.className="detail";
+
+
+    var itemList=
+      document.createElement("div");
+
+
+    products.forEach(function(product){
+
+
+      var row=
+        document.createElement("div");
+
+
+      row.className="item";
+
+      row.dataset.product=product;
+
+
+      var handle=
+        document.createElement("div");
+
+
+      handle.className="drag";
+
+      handle.textContent="☰";
+
+
+      var label=
+        document.createElement("div");
+
+
+      label.textContent=product;
+
+
+      var input=
+        document.createElement("input");
+
+
+      input.type="number";
+
+      input.min="0";
+
+      input.value=
+        coupons.people[name][product];
+
+
+      input.onchange=function(){
+
+        var v=
+          parseInt(this.value)||0;
+
+
+        if(v<=0){
+
+          delete coupons.people[name][product];
+
+
+          coupons.itemOrders[name]=
+            coupons.itemOrders[name]
+            .filter(function(x){
+
+              return x!==product;
+
+            });
+
+        }else{
+
+          coupons.people[name][product]=v;
+
+        }
+
+
+        saveCoupons();
+
+        drawCoupons();
+
+      };
+
+
+      var del=
+        document.createElement("button");
+
+
+      del.className="del";
+
+      del.textContent="삭제";
+
+
+      del.onclick=function(){
+
+        if(
+          confirm(
+            product+" 항목을 삭제할까요?"
+          )
+        ){
+
+          delete coupons.people[name][product];
+
+
+          coupons.itemOrders[name]=
+            coupons.itemOrders[name]
+            .filter(function(x){
+
+              return x!==product;
+
+            });
+
+
+          saveCoupons();
+
+          drawCoupons();
+
+        }
+
+      };
+
+
+      row.append(
+        handle,
+        label,
+        input,
+        del
+      );
+
+
+      itemList.appendChild(row);
+
+    });
+
+
+    detail.appendChild(itemList);
+
+
+    var actions=
+      document.createElement("div");
+
+
+    actions.className="actions";
+
+
+    var rename=
+      document.createElement("button");
+
+
+    rename.className="edit";
+
+    rename.textContent="✎ 이름 수정";
+
+
+    rename.onclick=function(){
+
+      renameBuyer(name);
+
+    };
+
+
+    var remove=
+      document.createElement("button");
+
+
+    remove.className="danger";
+
+    remove.textContent="구매자 삭제";
+
+
+    remove.onclick=function(){
+
+      deleteBuyer(name);
+
+    };
+
+
+    actions.append(
+      rename,
+      remove
+    );
+
+
+    detail.appendChild(actions);
+
+
+    card.append(
+      head,
+      detail
+    );
+
+
+    list.appendChild(card);
+
+
+    sortable(
+      itemList,
+      ".drag",
+      ".item",
+      function(){
+
+        coupons.itemOrders[name]=
+          [...itemList.querySelectorAll(".item")]
+          .map(function(x){
+
+            return x.dataset.product;
+
+          });
+
+
+        saveCoupons();
+
+      }
+    );
+
+  });
+
+
+  sortable(
+    list,
+    ".drag",
+    ".card",
+    function(){
+
+      coupons.order=
+        [...list.querySelectorAll(".card")]
+        .map(function(x){
+
+          return x.dataset.buyer;
+
+        });
+
+
+      saveCoupons();
+
+    }
+  );
+
 }
 
-document.getElementById("hotAdd").onclick=addHot;
-document.getElementById("couponAdd").onclick=addCoupon;
+
+/* =====================
+   시작
+===================== */
+
+document
+.getElementById("hotAdd")
+.onclick=addHot;
+
+
+document
+.getElementById("couponAdd")
+.onclick=addCoupon;
+
 
 drawHot();
+
 drawCoupons();
+
 </script>
+
 </body>
 </html>
