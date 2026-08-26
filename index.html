@@ -124,7 +124,7 @@ body{
   font-weight:900;
 }
 
-/* 큰 메뉴 */
+/* 메뉴 */
 
 .section{
   margin-bottom:14px;
@@ -304,7 +304,7 @@ button{
   font-size:12px;
 }
 
-/* 열혈 아이콘 */
+/* 열혈 버튼 */
 
 .hot-tools{
   display:flex;
@@ -363,7 +363,7 @@ button{
   opacity:.55;
 }
 
-/* 열혈 숨김 정보 */
+/* 열혈 기여개수 */
 
 .hot-secret{
   display:none;
@@ -510,11 +510,9 @@ button{
   text-align:center;
 }
 
-@media(max-width:700px){
+/* 휴대폰 */
 
-  .staff-wrap{
-    grid-template-columns:1fr 1fr;
-  }
+@media(max-width:700px){
 
   .form,
   .hot-form{
@@ -530,6 +528,10 @@ button{
   .hero-title h1{
     font-size:26px;
   }
+
+  .profile-photo{
+    max-height:350px;
+  }
 }
 </style>
 </head>
@@ -538,7 +540,7 @@ button{
 
 <div class="container">
 
-  <!-- 상단 -->
+  <!-- 상단 프로필 -->
   <div class="hero">
 
     <div class="hero-title">
@@ -550,15 +552,13 @@ button{
 
       <div class="profile-photo-wrap">
 
-        <!-- GitHub에 eunbyeol.gif 이름으로 사진 업로드 -->
+        <!-- 사진 파일 이름 eunbyeol.png -->
         <img
-          src="eunbyeol.gif"
+          src="eunbyeol.png"
           class="profile-photo"
           alt="SOOP갓은별">
 
-        <div class="profile-heart">
-          ♥
-        </div>
+        <div class="profile-heart">♥</div>
 
       </div>
 
@@ -611,7 +611,7 @@ button{
       </div>
 
       <div class="tip">
-        같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요.
+        같은 이름을 다시 입력하면 기존 기여 개수에 자동으로 더해져요.
       </div>
 
       <div id="hotList"></div>
@@ -668,6 +668,10 @@ button{
 
       </div>
 
+      <div class="tip">
+        구매자를 누르면 쿠폰이 펼쳐져요. ☰를 잡고 순서를 바꿀 수 있어요.
+      </div>
+
       <div id="buyerList"></div>
 
     </div>
@@ -675,7 +679,12 @@ button{
 
 </div>
 
+
 <script>
+
+/* ========================
+   공통
+======================== */
 
 function toggleSection(id){
   document.getElementById(id).classList.toggle("open");
@@ -686,22 +695,34 @@ function onlyDigits(value){
 }
 
 function formatNumber(value){
+
   var digits=onlyDigits(value);
+
   if(!digits)return "";
+
   return Number(digits).toLocaleString("ko-KR");
 }
 
 function parseNumber(value){
+
   var digits=onlyDigits(value);
+
   if(!digits)return 0;
+
   return parseInt(digits,10)||0;
 }
 
 function attachCommaInput(input){
+
   input.addEventListener("input",function(){
     input.value=formatNumber(input.value);
   });
 }
+
+
+/* ========================
+   데이터 불러오기
+======================== */
 
 var records={
   items:[],
@@ -713,46 +734,72 @@ var records={
 var hotRecords=[];
 
 try{
+
   var saved=localStorage.getItem("buyerTracker");
 
   if(saved){
+
     var loaded=JSON.parse(saved);
+
     records.items=loaded.items||[];
     records.people=loaded.people||{};
     records.order=loaded.order||Object.keys(records.people);
     records.itemOrders=loaded.itemOrders||{};
   }
+
 }catch(e){}
 
 try{
+
   var hotSaved=localStorage.getItem("hotRankTracker");
 
   if(hotSaved){
     hotRecords=JSON.parse(hotSaved)||[];
   }
+
 }catch(e){}
 
+
 function saveCoupons(){
-  localStorage.setItem("buyerTracker",JSON.stringify(records));
+  localStorage.setItem(
+    "buyerTracker",
+    JSON.stringify(records)
+  );
 }
 
 function saveHot(){
-  localStorage.setItem("hotRankTracker",JSON.stringify(hotRecords));
+  localStorage.setItem(
+    "hotRankTracker",
+    JSON.stringify(hotRecords)
+  );
 }
 
-function makeSortable(container,handleSelector,itemSelector,callback){
+
+/* ========================
+   드래그
+======================== */
+
+function makeSortable(
+  container,
+  handleSelector,
+  itemSelector,
+  callback
+){
 
   var dragged=null;
 
   container.onpointerdown=function(e){
 
     var handle=e.target.closest(handleSelector);
+
     if(!handle)return;
 
     var item=handle.closest(itemSelector);
+
     if(!item)return;
 
     dragged=item;
+
     dragged.classList.add("dragging");
 
     try{
@@ -762,6 +809,7 @@ function makeSortable(container,handleSelector,itemSelector,callback){
     e.preventDefault();
     e.stopPropagation();
   };
+
 
   container.onpointermove=function(e){
 
@@ -792,11 +840,15 @@ function makeSortable(container,handleSelector,itemSelector,callback){
     }
   };
 
+
   function finish(){
+
     if(!dragged)return;
 
     dragged.classList.remove("dragging");
+
     dragged=null;
+
     callback();
   }
 
@@ -805,29 +857,47 @@ function makeSortable(container,handleSelector,itemSelector,callback){
 }
 
 
-/* 열혈 */
+/* ========================
+   열혈
+======================== */
 
 function addHot(){
 
-  var name=document.getElementById("hotName").value.trim();
+  var name=
+    document.getElementById("hotName")
+    .value.trim();
 
-  var count=parseNumber(
-    document.getElementById("hotCount").value
-  );
+  var count=
+    parseNumber(
+      document.getElementById("hotCount").value
+    );
+
 
   if(!name){
+
     alert("열혈 이름을 입력해주세요.");
+
     return;
   }
+
 
   if(count<1){
+
     alert("기여 개수를 입력해주세요.");
+
     return;
   }
 
-  var existing=hotRecords.find(function(person){
-    return person.name===name;
-  });
+
+  var existing=
+    hotRecords.find(function(person){
+
+      return person.name===name;
+
+    });
+
+
+  /* 같은 이름이면 자동 누적 */
 
   if(existing){
 
@@ -837,64 +907,105 @@ function addHot(){
   }else{
 
     hotRecords.push({
-      id:Date.now().toString()+Math.random().toString(),
+
+      id:
+        Date.now().toString()+
+        Math.random().toString(),
+
       name:name,
+
       contribution:count
+
     });
 
   }
 
+
   saveHot();
 
+
   document.getElementById("hotName").value="";
+
   document.getElementById("hotCount").value="";
+
 
   drawHot();
 }
+
+
+/* 기여 개수 직접 수정 */
 
 function adjustHot(id){
 
-  var person=hotRecords.find(function(p){
-    return p.id===id;
-  });
+  var person=
+    hotRecords.find(function(p){
+      return p.id===id;
+    });
+
 
   if(!person)return;
 
-  var value=prompt(
-    "기여 개수를 직접 수정해주세요.",
-    Number(person.contribution||0).toLocaleString("ko-KR")
-  );
+
+  var value=
+    prompt(
+      "기여 개수를 직접 수정해주세요.",
+      Number(person.contribution||0)
+      .toLocaleString("ko-KR")
+    );
+
 
   if(value===null)return;
 
-  person.contribution=parseNumber(value);
+
+  person.contribution=
+    parseNumber(value);
+
 
   saveHot();
+
   drawHot();
 }
 
+
+/* 열혈 삭제 */
+
 function deleteHot(id){
 
-  var person=hotRecords.find(function(p){
-    return p.id===id;
-  });
+  var person=
+    hotRecords.find(function(p){
+      return p.id===id;
+    });
+
 
   if(!person)return;
 
+
   if(confirm(person.name+"님을 삭제할까요?")){
 
-    hotRecords=hotRecords.filter(function(p){
-      return p.id!==id;
-    });
+
+    hotRecords=
+      hotRecords.filter(function(p){
+
+        return p.id!==id;
+
+      });
+
 
     saveHot();
+
     drawHot();
+
   }
 }
 
+
+/* 열혈 화면 */
+
 function drawHot(){
 
-  var list=document.getElementById("hotList");
+  var list=
+    document.getElementById("hotList");
+
 
   if(hotRecords.length===0){
 
@@ -904,341 +1015,601 @@ function drawHot(){
     return;
   }
 
+
   list.innerHTML="";
 
+
   hotRecords.forEach(function(person,index){
+
 
     var card=document.createElement("div");
 
     card.className="hot-card";
+
     card.dataset.id=person.id;
 
+
     var header=document.createElement("div");
+
     header.className="hot-header";
 
+
     var main=document.createElement("div");
+
     main.className="hot-main";
 
+
     var rank=document.createElement("div");
+
     rank.className="rank";
+
     rank.textContent=(index+1)+"위";
+
 
     var info=document.createElement("div");
 
+
     var name=document.createElement("div");
+
     name.className="name";
+
     name.textContent=person.name;
+
 
     info.appendChild(name);
 
+
     main.appendChild(rank);
+
     main.appendChild(info);
 
+
     var tools=document.createElement("div");
+
     tools.className="hot-tools";
 
+
+    /* 자물쇠 */
+
     var lock=document.createElement("button");
+
     lock.className="icon-btn";
+
     lock.textContent="🔒";
+
 
     lock.onclick=function(e){
 
       e.stopPropagation();
 
+
       card.classList.toggle("secret-open");
+
 
       lock.textContent=
         card.classList.contains("secret-open")
         ?"🔓"
         :"🔒";
+
     };
+
+
+    /* 휴지통 */
 
     var trash=document.createElement("button");
+
     trash.className="icon-btn trash-btn";
+
     trash.textContent="🗑️";
 
+
     trash.onclick=function(e){
+
       e.stopPropagation();
+
       deleteHot(person.id);
+
     };
 
+
+    /* 순서 변경 */
+
     var handle=document.createElement("div");
+
     handle.className="drag-handle";
+
     handle.textContent="☰";
 
+
     tools.appendChild(lock);
+
     tools.appendChild(trash);
+
     tools.appendChild(handle);
 
+
     header.appendChild(main);
+
     header.appendChild(tools);
 
+
+    /* 숨겨진 기여 개수 */
+
     var secret=document.createElement("div");
+
     secret.className="hot-secret";
 
+
     var secretBox=document.createElement("div");
+
     secretBox.className="secret-box";
 
+
     var secretLabel=document.createElement("div");
+
     secretLabel.className="secret-label";
+
     secretLabel.textContent="기여 개수";
 
+
     var secretNumber=document.createElement("div");
+
     secretNumber.className="secret-number";
 
     secretNumber.textContent=
       Number(person.contribution||0)
       .toLocaleString("ko-KR")+"개";
 
+
     var adjustButton=document.createElement("button");
+
     adjustButton.className="adjust-btn";
+
     adjustButton.textContent="기여 개수 직접 수정";
 
+
     adjustButton.onclick=function(){
+
       adjustHot(person.id);
+
     };
 
+
     secretBox.appendChild(secretLabel);
+
     secretBox.appendChild(secretNumber);
+
     secretBox.appendChild(adjustButton);
+
 
     secret.appendChild(secretBox);
 
+
     card.appendChild(header);
+
     card.appendChild(secret);
 
+
     list.appendChild(card);
+
   });
 
+
+  /* 열혈 순서 변경 */
+
   makeSortable(
+
     list,
+
     ".drag-handle",
+
     ".hot-card",
+
     function(){
+
 
       var ids=
         Array.from(
           list.querySelectorAll(".hot-card")
         ).map(function(card){
+
           return card.dataset.id;
+
         });
 
+
       hotRecords.sort(function(a,b){
+
         return ids.indexOf(a.id)-ids.indexOf(b.id);
+
       });
 
+
       saveHot();
+
       drawHot();
+
     }
+
   );
+
 }
 
 
-/* 쿠폰 */
+/* ========================
+   쿠폰
+======================== */
 
 function normalizeCoupons(){
 
   records.order=
     records.order.filter(function(name){
+
       return records.people[name];
+
     });
 
-  Object.keys(records.people).forEach(function(name){
+
+  Object.keys(records.people)
+  .forEach(function(name){
+
 
     if(records.order.indexOf(name)===-1){
+
       records.order.push(name);
+
     }
 
+
     if(!records.itemOrders[name]){
-      records.itemOrders[name]=Object.keys(records.people[name]);
+
+      records.itemOrders[name]=
+        Object.keys(records.people[name]);
+
     }
+
 
     records.itemOrders[name]=
       records.itemOrders[name]
       .filter(function(product){
+
         return records.people[name][product]!==undefined;
+
       });
 
-    Object.keys(records.people[name]).forEach(function(product){
 
-      if(records.itemOrders[name].indexOf(product)===-1){
+    Object.keys(records.people[name])
+    .forEach(function(product){
+
+
+      if(
+        records.itemOrders[name]
+        .indexOf(product)===-1
+      ){
+
         records.itemOrders[name].push(product);
+
       }
+
     });
+
   });
+
 }
+
+
+/* 쿠폰 추가 */
 
 function addRecord(){
 
-  var buyer=document.getElementById("buyer").value.trim();
-  var product=document.getElementById("product").value.trim();
-  var count=parseInt(document.getElementById("count").value);
+  var buyer=
+    document.getElementById("buyer")
+    .value.trim();
+
+  var product=
+    document.getElementById("product")
+    .value.trim();
+
+  var count=
+    parseInt(
+      document.getElementById("count").value
+    );
+
 
   if(!buyer){
+
     alert("구매한 이름을 입력해주세요.");
+
     return;
+
   }
+
 
   if(!product){
+
     alert("구매한 항목을 입력해주세요.");
+
     return;
+
   }
+
 
   if(!count||count<1){
+
     alert("개수를 입력해주세요.");
+
     return;
+
   }
+
 
   if(!records.people[buyer]){
+
     records.people[buyer]={};
+
     records.order.push(buyer);
+
     records.itemOrders[buyer]=[];
+
   }
 
-  if(records.people[buyer][product]===undefined){
+
+  if(
+    records.people[buyer][product]===undefined
+  ){
+
     records.people[buyer][product]=0;
+
     records.itemOrders[buyer].push(product);
+
   }
+
 
   records.people[buyer][product]+=count;
 
+
   saveCoupons();
 
+
   document.getElementById("buyer").value="";
+
   document.getElementById("product").value="";
+
   document.getElementById("count").value="1";
 
+
   drawBuyers();
+
 }
+
+
+/* 구매자 이름 수정 */
 
 function renameBuyer(oldName){
 
-  var newName=prompt(
-    "새 이름을 입력해주세요.",
-    oldName
-  );
+  var newName=
+    prompt(
+      "새 이름을 입력해주세요.",
+      oldName
+    );
+
 
   if(newName===null)return;
 
+
   newName=newName.trim();
+
 
   if(!newName||newName===oldName)return;
 
+
   if(records.people[newName]){
+
     alert("이미 같은 이름의 구매자가 있어요.");
+
     return;
+
   }
 
-  records.people[newName]=records.people[oldName];
+
+  records.people[newName]=
+    records.people[oldName];
+
+
   delete records.people[oldName];
 
-  records.itemOrders[newName]=records.itemOrders[oldName]||[];
+
+  records.itemOrders[newName]=
+    records.itemOrders[oldName]||[];
+
+
   delete records.itemOrders[oldName];
 
-  var index=records.order.indexOf(oldName);
+
+  var index=
+    records.order.indexOf(oldName);
+
 
   if(index!==-1){
+
     records.order[index]=newName;
+
   }
 
+
   saveCoupons();
+
   drawBuyers();
+
 }
 
-function changeQty(buyer,product,value){
+
+/* 쿠폰 수량 변경 */
+
+function changeQty(
+  buyer,
+  product,
+  value
+){
 
   var number=parseInt(value);
 
+
   if(isNaN(number)||number<0){
+
     number=0;
+
   }
+
 
   if(number===0){
 
+
     delete records.people[buyer][product];
+
 
     records.itemOrders[buyer]=
       records.itemOrders[buyer]
       .filter(function(p){
+
         return p!==product;
+
       });
 
+
   }else{
+
     records.people[buyer][product]=number;
+
   }
 
+
   saveCoupons();
+
   drawBuyers();
+
 }
 
-function deleteItem(buyer,product){
+
+/* 쿠폰 항목 삭제 */
+
+function deleteItem(
+  buyer,
+  product
+){
 
   if(confirm(product+" 항목을 삭제할까요?")){
 
+
     delete records.people[buyer][product];
+
 
     records.itemOrders[buyer]=
       records.itemOrders[buyer]
       .filter(function(p){
+
         return p!==product;
+
       });
 
+
     saveCoupons();
+
     drawBuyers();
+
   }
+
 }
+
+
+/* 구매자 삭제 */
 
 function deleteBuyer(buyer){
 
   if(confirm(buyer+"님의 기록을 삭제할까요?")){
 
+
     delete records.people[buyer];
+
     delete records.itemOrders[buyer];
+
 
     records.order=
       records.order.filter(function(name){
+
         return name!==buyer;
+
       });
 
+
     saveCoupons();
+
     drawBuyers();
+
   }
+
 }
+
+
+/* 쿠폰 통계 */
 
 function updateStats(){
 
-  var buyers=Object.keys(records.people);
+  var buyers=
+    Object.keys(records.people);
 
   var items={};
+
   var total=0;
+
 
   buyers.forEach(function(buyer){
 
-    Object.keys(records.people[buyer]).forEach(function(product){
+
+    Object.keys(records.people[buyer])
+    .forEach(function(product){
+
 
       items[product]=true;
 
+
       total+=
         records.people[buyer][product]||0;
+
     });
+
   });
 
-  document.getElementById("peopleCount").textContent=
+
+  document.getElementById("peopleCount")
+  .textContent=
     buyers.length+"명";
 
-  document.getElementById("itemCount").textContent=
+
+  document.getElementById("itemCount")
+  .textContent=
     Object.keys(items).length+"개";
 
-  document.getElementById("totalCount").textContent=
+
+  document.getElementById("totalCount")
+  .textContent=
     total+"개";
+
 }
+
+
+/* 쿠폰 화면 */
 
 function drawBuyers(){
 
   normalizeCoupons();
+
   updateStats();
 
-  var list=document.getElementById("buyerList");
+
+  var list=
+    document.getElementById("buyerList");
+
 
   if(records.order.length===0){
 
@@ -1246,200 +1617,361 @@ function drawBuyers(){
       '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
 
     return;
+
   }
+
 
   list.innerHTML="";
 
+
   records.order.forEach(function(buyer){
 
-    var data=records.people[buyer];
+
+    var data=
+      records.people[buyer];
+
 
     var products=
       records.itemOrders[buyer]||[];
 
+
     var total=0;
 
+
     products.forEach(function(product){
+
       total+=data[product]||0;
+
     });
 
-    var card=document.createElement("div");
+
+    var card=
+      document.createElement("div");
+
 
     card.className="buyer-card";
+
     card.dataset.buyer=buyer;
 
-    var header=document.createElement("div");
+
+    var header=
+      document.createElement("div");
+
+
     header.className="buyer-header";
 
-    var main=document.createElement("div");
+
+    var main=
+      document.createElement("div");
+
+
     main.className="buyer-main";
 
-    var avatar=document.createElement("div");
+
+    var avatar=
+      document.createElement("div");
+
+
     avatar.className="avatar";
+
     avatar.textContent="♥";
 
-    var info=document.createElement("div");
 
-    var name=document.createElement("div");
+    var info=
+      document.createElement("div");
+
+
+    var name=
+      document.createElement("div");
+
+
     name.className="name";
+
     name.textContent=buyer;
 
-    var sub=document.createElement("div");
+
+    var sub=
+      document.createElement("div");
+
+
     sub.className="sub";
+
     sub.textContent="총 "+total+"개";
 
+
     info.appendChild(name);
+
     info.appendChild(sub);
 
+
     main.appendChild(avatar);
+
     main.appendChild(info);
 
+
     main.onclick=function(){
+
       card.classList.toggle("open");
+
     };
 
-    var handle=document.createElement("div");
+
+    var handle=
+      document.createElement("div");
+
+
     handle.className="drag-handle";
+
     handle.textContent="☰";
 
+
     header.appendChild(main);
+
     header.appendChild(handle);
 
-    var detail=document.createElement("div");
+
+    var detail=
+      document.createElement("div");
+
+
     detail.className="buyer-detail";
 
-    var itemList=document.createElement("div");
+
+    var itemList=
+      document.createElement("div");
+
 
     products.forEach(function(product){
+
 
       if(data[product]===undefined)return;
 
-      var row=document.createElement("div");
+
+      var row=
+        document.createElement("div");
+
+
       row.className="item-row";
+
       row.dataset.product=product;
 
-      var itemHandle=document.createElement("div");
+
+      var itemHandle=
+        document.createElement("div");
+
+
       itemHandle.className="item-handle";
+
       itemHandle.textContent="☰";
 
-      var itemName=document.createElement("div");
+
+      var itemName=
+        document.createElement("div");
+
+
       itemName.className="item-name";
+
       itemName.textContent=product;
 
-      var qty=document.createElement("input");
+
+      var qty=
+        document.createElement("input");
+
+
       qty.type="number";
+
       qty.min="0";
+
       qty.className="qty";
+
       qty.value=data[product];
 
+
       qty.onchange=function(){
+
         changeQty(
           buyer,
           product,
           this.value
         );
+
       };
 
-      var del=document.createElement("button");
+
+      var del=
+        document.createElement("button");
+
+
       del.className="small-delete";
+
       del.textContent="삭제";
 
+
       del.onclick=function(){
+
         deleteItem(
           buyer,
           product
         );
+
       };
 
+
       row.appendChild(itemHandle);
+
       row.appendChild(itemName);
+
       row.appendChild(qty);
+
       row.appendChild(del);
 
+
       itemList.appendChild(row);
+
     });
+
 
     detail.appendChild(itemList);
 
-    var actions=document.createElement("div");
+
+    var actions=
+      document.createElement("div");
+
+
     actions.className="actions";
 
-    var rename=document.createElement("button");
+
+    var rename=
+      document.createElement("button");
+
+
     rename.className="edit-btn";
+
     rename.textContent="✎ 이름 수정";
 
+
     rename.onclick=function(){
+
       renameBuyer(buyer);
+
     };
 
-    var deleteBtn=document.createElement("button");
+
+    var deleteBtn=
+      document.createElement("button");
+
+
     deleteBtn.className="danger-btn";
+
     deleteBtn.textContent="구매자 삭제";
 
+
     deleteBtn.onclick=function(){
+
       deleteBuyer(buyer);
+
     };
 
+
     actions.appendChild(rename);
+
     actions.appendChild(deleteBtn);
+
 
     detail.appendChild(actions);
 
+
     card.appendChild(header);
+
     card.appendChild(detail);
+
 
     list.appendChild(card);
 
+
+    /* 쿠폰 항목 순서 변경 */
+
     makeSortable(
+
       itemList,
+
       ".item-handle",
+
       ".item-row",
+
       function(){
+
 
         records.itemOrders[buyer]=
           Array.from(
             itemList.querySelectorAll(".item-row")
           ).map(function(row){
+
             return row.dataset.product;
+
           });
 
+
         saveCoupons();
+
       }
+
     );
+
   });
 
+
+  /* 구매자 순서 변경 */
+
   makeSortable(
+
     list,
+
     ".drag-handle",
+
     ".buyer-card",
+
     function(){
+
 
       records.order=
         Array.from(
           list.querySelectorAll(".buyer-card")
         ).map(function(card){
+
           return card.dataset.buyer;
+
         });
 
+
       saveCoupons();
+
     }
+
   );
+
 }
 
 
-/* 시작 */
+/* ========================
+   시작
+======================== */
 
 attachCommaInput(
   document.getElementById("hotCount")
 );
 
-document.getElementById("hotAddButton").onclick=
-  addHot;
 
-document.getElementById("addButton").onclick=
-  addRecord;
+document.getElementById("hotAddButton")
+.onclick=addHot;
+
+
+document.getElementById("addButton")
+.onclick=addRecord;
+
 
 drawHot();
+
 drawBuyers();
 
 </script>
