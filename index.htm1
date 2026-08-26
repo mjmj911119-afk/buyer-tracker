@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구매 기록 관리</title>
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f5f6fa;
+  margin: 0;
+  padding: 15px;
+  color: #222;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+input {
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add {
+  background: #222;
+  color: white;
+}
+
+.delete {
+  background: #ffeaea;
+  color: #d33;
+}
+
+.tablebox {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+th {
+  background: #fafafa;
+}
+
+.qty {
+  width: 60px;
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+  color: #999;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🛒 구매 기록 관리</h1>
+
+<div class="card">
+
+<div class="form">
+
+<input
+id="buyer"
+placeholder="구매한 이름">
+
+<input
+id="product"
+placeholder="구매한 항목">
+
+<input
+id="count"
+type="number"
+min="1"
+value="1"
+placeholder="개수">
+
+<button
+id="addButton"
+class="add">
+기록 추가
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<b>구매 현황</b>
+
+<div
+id="tableArea"
+class="tablebox">
+</div>
+
+</div>
+
+<button
+id="resetButton"
+class="delete">
+전체 기록 삭제
+</button>
+
+</div>
+
+<script>
+
+var records = {
+  items: [],
+  people: {}
+};
+
+try {
+
+  var saved =
+  localStorage.getItem("buyerTracker");
+
+  if(saved) {
+    records = JSON.parse(saved);
+  }
+
+} catch(e) {}
+
+function save() {
+
+  localStorage.setItem(
+    "buyerTracker",
+    JSON.stringify(records)
+  );
+
+}
+
+function addRecord() {
+
+  var buyer =
+    document.getElementById("buyer")
+    .value.trim();
+
+  var product =
+    document.getElementById("product")
+    .value.trim();
+
+  var count =
+    parseInt(
+      document.getElementById("count")
+      .value
+    );
+
+  if(buyer === "") {
+    alert("구매한 이름을 입력해주세요.");
+    return;
+  }
+
+  if(product === "") {
+    alert("구매한 항목을 입력해주세요.");
+    return;
+  }
+
+  if(!count || count < 1) {
+    alert("개수를 입력해주세요.");
+    return;
+  }
+
+  if(records.items.indexOf(product) === -1) {
+    records.items.push(product);
+  }
+
+  if(!records.people[buyer]) {
+    records.people[buyer] = {};
+  }
+
+  if(!records.people[buyer][product]) {
+    records.people[buyer][product] = 0;
+  }
+
+  records.people[buyer][product] += count;
+
+  save();
+
+  document.getElementById("buyer").value = "";
+  document.getElementById("product").value = "";
+  document.getElementById("count").value = "1";
+
+  drawTable();
+
+}
+
+function changeQty(buyer, product, value) {
+
+  var number = parseInt(value);
+
+  if(isNaN(number) || number < 0) {
+    number = 0;
+  }
+
+  records.people[buyer][product] = number;
+
+  save();
+  drawTable();
+
+}
+
+function deleteBuyer(buyer) {
+
+  if(
+    confirm(
+      buyer +
+      "님의 기록을 삭제할까요?"
+    )
+  ) {
+
+    delete records.people[buyer];
+
+    save();
+    drawTable();
+
+  }
+
+}
+
+function drawTable() {
+
+  var area =
+    document.getElementById("tableArea");
+
+  var buyers =
+    Object.keys(records.people);
+
+  if(buyers.length === 0) {
+
+    area.innerHTML =
+      '<div class="empty">' +
+      '아직 구매 기록이 없습니다.' +
+      '</div>';
+
+    return;
+
+  }
+
+  var table =
+    document.createElement("table");
+
+  var thead =
+    document.createElement("thead");
+
+  var header =
+    document.createElement("tr");
+
+  var nameHeader =
+    document.createElement("th");
+
+  nameHeader.textContent =
+    "구매한 이름";
+
+  header.appendChild(nameHeader);
+
+  records.items.forEach(
+    function(product) {
+
+      var th =
+        document.createElement("th");
+
+      th.textContent = product;
+
+      header.appendChild(th);
+
+    }
+  );
+
+  var totalHeader =
+    document.createElement("th");
+
+  totalHeader.textContent =
+    "총 개수";
+
+  header.appendChild(totalHeader);
+
+  var manageHeader =
+    document.createElement("th");
+
+  manageHeader.textContent =
+    "관리";
+
+  header.appendChild(manageHeader);
+
+  thead.appendChild(header);
+
+  table.appendChild(thead);
+
+  var tbody =
+    document.createElement("tbody");
+
+  buyers.forEach(
+    function(buyer) {
+
+      var row =
+        document.createElement("tr");
+
+      var name =
+        document.createElement("td");
+
+      name.textContent = buyer;
+
+      row.appendChild(name);
+
+      var total = 0;
+
+      records.items.forEach(
+        function(product) {
+
+          var td =
+            document.createElement("td");
+
+          var input =
+            document.createElement("input");
+
+          input.type = "number";
+          input.min = "0";
+          input.className = "qty";
+
+          var quantity =
+            records.people[buyer][product] || 0;
+
+          input.value = quantity;
+
+          total += quantity;
+
+          input.onchange =
+            function() {
+
+              changeQty(
+                buyer,
+                product,
+                this.value
+              );
+
+            };
+
+          td.appendChild(input);
+
+          row.appendChild(td);
+
+        }
+      );
+
+      var totalCell =
+        document.createElement("td");
+
+      totalCell.innerHTML =
+        "<b>" + total + "</b>";
+
+      row.appendChild(totalCell);
+
+      var manage =
+        document.createElement("td");
+
+      var deleteButton =
+        document.createElement("button");
+
+      deleteButton.textContent =
+        "삭제";
+
+      deleteButton.className =
+        "delete";
+
+      deleteButton.onclick =
+        function() {
+
+          deleteBuyer(buyer);
+
+        };
+
+      manage.appendChild(
+        deleteButton
+      );
+
+      row.appendChild(manage);
+
+      tbody.appendChild(row);
+
+    }
+  );
+
+  table.appendChild(tbody);
+
+  area.innerHTML = "";
+
+  area.appendChild(table);
+
+}
+
+document
+.getElementById("addButton")
+.onclick = addRecord;
+
+document
+.getElementById("resetButton")
+.onclick =
+function() {
+
+  if(
+    confirm(
+      "모든 기록을 삭제할까요?"
+    )
+  ) {
+
+    records = {
+      items: [],
+      people: {}
+    };
+
+    save();
+    drawTable();
+
+  }
+
+};
+
+drawTable();
+
+</script>
+
+</body>
+</html>
