@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>은별이방 기록</title>
+<title>SOOP갓은별</title>
 
 <style>
 *{box-sizing:border-box}
@@ -14,22 +14,117 @@ body{
   min-height:100vh;
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
   color:#5e4350;
-  background:linear-gradient(180deg,#fff9fc 0%,#fff0f6 55%,#fff8fb 100%);
+  background:
+    radial-gradient(circle at top left,#ffffff 0,transparent 30%),
+    radial-gradient(circle at top right,#ffe3ef 0,transparent 35%),
+    linear-gradient(180deg,#fff9fc 0%,#fff0f6 55%,#fff8fb 100%);
 }
 
-.container{max-width:900px;margin:auto}
+.container{
+  max-width:900px;
+  margin:auto;
+}
+
+/* 상단 프로필 */
 
 .hero{
-  padding:30px 24px;
+  overflow:hidden;
   margin-bottom:20px;
-  border-radius:28px;
-  color:white;
-  background:linear-gradient(135deg,#f49abb,#eaa8c1 55%,#dca9c2);
-  box-shadow:0 14px 35px rgba(215,110,155,.20);
+  border:1px solid #f0d2df;
+  border-radius:30px;
+  background:white;
+  box-shadow:0 14px 35px rgba(215,110,155,.14);
 }
 
-.hero h1{margin:0 0 6px;font-size:28px}
-.hero p{margin:0;font-size:14px;color:#fff8fb}
+.hero-title{
+  padding:24px 20px 18px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#f493b7,#eba8c1 55%,#dca6bf);
+}
+
+.hero-title h1{
+  margin:0;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.hero-title p{
+  margin:6px 0 0;
+  font-size:13px;
+  color:#fff7fb;
+}
+
+.profile-area{
+  padding:18px;
+  text-align:center;
+  background:linear-gradient(180deg,#fff,#fff7fa);
+}
+
+.profile-photo-wrap{
+  position:relative;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.profile-photo{
+  display:block;
+  width:100%;
+  max-height:430px;
+  object-fit:cover;
+  border:5px solid white;
+  border-radius:25px;
+  box-shadow:0 12px 30px rgba(205,110,150,.18);
+}
+
+.profile-heart{
+  position:absolute;
+  right:-4px;
+  bottom:-8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:52px;
+  height:52px;
+  border:4px solid white;
+  border-radius:50%;
+  color:white;
+  background:linear-gradient(135deg,#f58eb5,#dba1bc);
+  box-shadow:0 5px 15px rgba(200,100,145,.2);
+  font-size:23px;
+}
+
+.staff-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  max-width:500px;
+  margin:18px auto 0;
+}
+
+.staff{
+  padding:14px 12px;
+  border:1px solid #efd5e1;
+  border-radius:16px;
+  background:white;
+  box-shadow:0 5px 16px rgba(200,100,145,.07);
+}
+
+.staff-role{
+  margin-bottom:5px;
+  color:#c27696;
+  font-size:12px;
+  font-weight:800;
+}
+
+.staff-name{
+  color:#624554;
+  font-size:17px;
+  font-weight:900;
+}
+
+/* 큰 메뉴 */
 
 .section{
   margin-bottom:14px;
@@ -48,9 +143,9 @@ body{
 }
 
 .section-title{
+  color:#704d5d;
   font-size:19px;
   font-weight:900;
-  color:#704d5d;
 }
 
 .section-sub{
@@ -65,7 +160,11 @@ body{
   border-top:1px solid #f4e4eb;
 }
 
-.section.open .section-content{display:block}
+.section.open .section-content{
+  display:block;
+}
+
+/* 입력 */
 
 .form{
   display:grid;
@@ -113,7 +212,9 @@ input:focus{
   box-shadow:0 0 0 3px rgba(230,150,185,.10);
 }
 
-input::placeholder{color:#b89aa7}
+input::placeholder{
+  color:#b89aa7;
+}
 
 button{
   font-family:inherit;
@@ -125,8 +226,8 @@ button{
   border-radius:12px;
   color:white;
   background:linear-gradient(135deg,#ed8fb1,#dda0ba);
-  font-weight:850;
   font-size:15px;
+  font-weight:850;
 }
 
 .tip{
@@ -135,7 +236,10 @@ button{
   font-size:12px;
 }
 
-.hot-card,.buyer-card{
+/* 카드 */
+
+.hot-card,
+.buyer-card{
   margin-bottom:9px;
   overflow:hidden;
   border:1px solid #efdbe4;
@@ -143,7 +247,8 @@ button{
   background:white;
 }
 
-.hot-header,.buyer-header{
+.hot-header,
+.buyer-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -151,7 +256,8 @@ button{
   background:linear-gradient(135deg,#fff,#fff5f8);
 }
 
-.hot-main,.buyer-main{
+.hot-main,
+.buyer-main{
   display:flex;
   align-items:center;
   gap:10px;
@@ -159,11 +265,16 @@ button{
   min-width:0;
 }
 
-.rank,.avatar{
-  flex:none;
+.buyer-main{
+  cursor:pointer;
+}
+
+.rank,
+.avatar{
   display:flex;
   align-items:center;
   justify-content:center;
+  flex:none;
   border-radius:50%;
   color:white;
   background:linear-gradient(135deg,#ed9ab9,#dba6bd);
@@ -182,16 +293,18 @@ button{
 }
 
 .name{
+  color:#674857;
   font-size:16px;
   font-weight:850;
-  color:#674857;
 }
 
 .sub{
   margin-top:2px;
-  font-size:12px;
   color:#b28e9e;
+  font-size:12px;
 }
+
+/* 열혈 아이콘 */
 
 .hot-tools{
   display:flex;
@@ -200,15 +313,15 @@ button{
 }
 
 .icon-btn{
-  width:38px;
-  height:38px;
-  border:1px solid #efd7e1;
-  border-radius:10px;
-  background:#fff2f7;
   display:flex;
   align-items:center;
   justify-content:center;
+  width:38px;
+  height:38px;
   padding:0;
+  border:1px solid #efd7e1;
+  border-radius:10px;
+  background:#fff2f7;
   font-size:17px;
 }
 
@@ -216,7 +329,10 @@ button{
   background:#fff1f3;
 }
 
-.drag-handle,.item-handle{
+/* 드래그 */
+
+.drag-handle,
+.item-handle{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -243,9 +359,12 @@ button{
   font-size:17px;
 }
 
-.dragging{opacity:.55}
+.dragging{
+  opacity:.55;
+}
 
-/* 열혈 기여 개수 보기 */
+/* 열혈 숨김 정보 */
+
 .hot-secret{
   display:none;
   padding:13px;
@@ -266,9 +385,9 @@ button{
 }
 
 .secret-label{
+  margin-bottom:4px;
   color:#ae8999;
   font-size:12px;
-  margin-bottom:4px;
 }
 
 .secret-number{
@@ -278,17 +397,18 @@ button{
 }
 
 .adjust-btn{
-  margin-top:10px;
   width:100%;
+  margin-top:10px;
   padding:10px;
   border:1px solid #ead7df;
   border-radius:10px;
-  background:#fff;
   color:#704f5e;
+  background:#fff;
   font-weight:800;
 }
 
 /* 쿠폰 */
+
 .buyer-detail{
   display:none;
   padding:13px;
@@ -364,7 +484,8 @@ button{
   margin-top:11px;
 }
 
-.edit-btn,.danger-btn{
+.edit-btn,
+.danger-btn{
   flex:1;
   padding:10px;
   border-radius:10px;
@@ -373,34 +494,41 @@ button{
 
 .edit-btn{
   border:1px solid #ead7df;
-  background:white;
   color:#704f5e;
+  background:white;
 }
 
 .danger-btn{
   border:1px solid #efd4dc;
-  background:#fff0f3;
   color:#ad6178;
+  background:#fff0f3;
 }
 
 .empty{
   padding:25px;
-  text-align:center;
   color:#b292a0;
+  text-align:center;
 }
 
 @media(max-width:700px){
-  .form,.hot-form{
+
+  .staff-wrap{
     grid-template-columns:1fr 1fr;
   }
 
-  .form .add,.hot-form .add{
+  .form,
+  .hot-form{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .form .add,
+  .hot-form .add{
     grid-column:1/-1;
     min-height:46px;
   }
 
-  .hero h1{
-    font-size:24px;
+  .hero-title h1{
+    font-size:26px;
   }
 }
 </style>
@@ -410,10 +538,48 @@ button{
 
 <div class="container">
 
+  <!-- 상단 -->
   <div class="hero">
-    <h1>🌸 은별이방 기록</h1>
-    <p>필요한 기록만 눌러서 확인해요 ♡</p>
+
+    <div class="hero-title">
+      <h1>🌸 SOOP갓은별</h1>
+      <p>은별이와 함께하는 기록 공간 ♡</p>
+    </div>
+
+    <div class="profile-area">
+
+      <div class="profile-photo-wrap">
+
+        <!-- GitHub에 eunbyeol.gif 이름으로 사진 업로드 -->
+        <img
+          src="eunbyeol.gif"
+          class="profile-photo"
+          alt="SOOP갓은별">
+
+        <div class="profile-heart">
+          ♥
+        </div>
+
+      </div>
+
+      <div class="staff-wrap">
+
+        <div class="staff">
+          <div class="staff-role">👑 회장님</div>
+          <div class="staff-name">고집사</div>
+        </div>
+
+        <div class="staff">
+          <div class="staff-role">💗 부회장님</div>
+          <div class="staff-name">보노아조씨</div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+
 
   <!-- 열혈 -->
   <div class="section" id="hotSection">
@@ -426,6 +592,7 @@ button{
     <div class="section-content">
 
       <div class="hot-form">
+
         <input id="hotName" placeholder="열혈 이름">
 
         <div class="input-unit">
@@ -440,16 +607,18 @@ button{
         <button class="add" id="hotAddButton">
           ＋ 추가
         </button>
+
       </div>
 
       <div class="tip">
-        같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요. 🔒로 확인하고, 🗑️로 삭제할 수 있어요.
+        같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요.
       </div>
 
       <div id="hotList"></div>
 
     </div>
   </div>
+
 
   <!-- 쿠폰 -->
   <div class="section" id="couponSection">
@@ -462,7 +631,9 @@ button{
     <div class="section-content">
 
       <div class="form">
+
         <input id="buyer" placeholder="구매한 이름">
+
         <input id="product" placeholder="구매한 항목">
 
         <input
@@ -475,6 +646,7 @@ button{
         <button class="add" id="addButton">
           ＋ 기록 추가
         </button>
+
       </div>
 
       <div class="stats">
@@ -496,10 +668,6 @@ button{
 
       </div>
 
-      <div class="tip">
-        구매자를 누르면 쿠폰이 펼쳐져요. ☰로 순서를 바꿀 수 있어요.
-      </div>
-
       <div id="buyerList"></div>
 
     </div>
@@ -514,7 +682,7 @@ function toggleSection(id){
 }
 
 function onlyDigits(value){
-  return String(value || "").replace(/[^\d]/g,"");
+  return String(value||"").replace(/[^\d]/g,"");
 }
 
 function formatNumber(value){
@@ -629,7 +797,6 @@ function makeSortable(container,handleSelector,itemSelector,callback){
 
     dragged.classList.remove("dragging");
     dragged=null;
-
     callback();
   }
 
@@ -637,12 +804,16 @@ function makeSortable(container,handleSelector,itemSelector,callback){
   container.onpointercancel=finish;
 }
 
+
 /* 열혈 */
 
 function addHot(){
 
   var name=document.getElementById("hotName").value.trim();
-  var count=parseNumber(document.getElementById("hotCount").value);
+
+  var count=parseNumber(
+    document.getElementById("hotCount").value
+  );
 
   if(!name){
     alert("열혈 이름을 입력해주세요.");
@@ -659,14 +830,18 @@ function addHot(){
   });
 
   if(existing){
+
     existing.contribution=
       Number(existing.contribution||0)+count;
+
   }else{
+
     hotRecords.push({
       id:Date.now().toString()+Math.random().toString(),
       name:name,
       contribution:count
     });
+
   }
 
   saveHot();
@@ -692,13 +867,7 @@ function adjustHot(id){
 
   if(value===null)return;
 
-  var number=parseNumber(value);
-
-  if(number<0){
-    return;
-  }
-
-  person.contribution=number;
+  person.contribution=parseNumber(value);
 
   saveHot();
   drawHot();
@@ -728,8 +897,10 @@ function drawHot(){
   var list=document.getElementById("hotList");
 
   if(hotRecords.length===0){
+
     list.innerHTML=
       '<div class="empty">아직 열혈 기록이 없어요.</div>';
+
     return;
   }
 
@@ -738,6 +909,7 @@ function drawHot(){
   hotRecords.forEach(function(person,index){
 
     var card=document.createElement("div");
+
     card.className="hot-card";
     card.dataset.id=person.id;
 
@@ -770,15 +942,15 @@ function drawHot(){
     lock.textContent="🔒";
 
     lock.onclick=function(e){
+
       e.stopPropagation();
 
       card.classList.toggle("secret-open");
 
-      if(card.classList.contains("secret-open")){
-        lock.textContent="🔓";
-      }else{
-        lock.textContent="🔒";
-      }
+      lock.textContent=
+        card.classList.contains("secret-open")
+        ?"🔓"
+        :"🔒";
     };
 
     var trash=document.createElement("button");
@@ -813,8 +985,10 @@ function drawHot(){
 
     var secretNumber=document.createElement("div");
     secretNumber.className="secret-number";
+
     secretNumber.textContent=
-      Number(person.contribution||0).toLocaleString("ko-KR")+"개";
+      Number(person.contribution||0)
+      .toLocaleString("ko-KR")+"개";
 
     var adjustButton=document.createElement("button");
     adjustButton.className="adjust-btn";
@@ -858,6 +1032,7 @@ function drawHot(){
     }
   );
 }
+
 
 /* 쿠폰 */
 
@@ -938,7 +1113,10 @@ function addRecord(){
 
 function renameBuyer(oldName){
 
-  var newName=prompt("새 이름을 입력해주세요.",oldName);
+  var newName=prompt(
+    "새 이름을 입력해주세요.",
+    oldName
+  );
 
   if(newName===null)return;
 
@@ -1030,6 +1208,7 @@ function deleteBuyer(buyer){
 function updateStats(){
 
   var buyers=Object.keys(records.people);
+
   var items={};
   var total=0;
 
@@ -1038,7 +1217,9 @@ function updateStats(){
     Object.keys(records.people[buyer]).forEach(function(product){
 
       items[product]=true;
-      total+=records.people[buyer][product]||0;
+
+      total+=
+        records.people[buyer][product]||0;
     });
   });
 
@@ -1060,8 +1241,10 @@ function drawBuyers(){
   var list=document.getElementById("buyerList");
 
   if(records.order.length===0){
+
     list.innerHTML=
       '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
+
     return;
   }
 
@@ -1070,7 +1253,10 @@ function drawBuyers(){
   records.order.forEach(function(buyer){
 
     var data=records.people[buyer];
-    var products=records.itemOrders[buyer]||[];
+
+    var products=
+      records.itemOrders[buyer]||[];
+
     var total=0;
 
     products.forEach(function(product){
@@ -1078,6 +1264,7 @@ function drawBuyers(){
     });
 
     var card=document.createElement("div");
+
     card.className="buyer-card";
     card.dataset.buyer=buyer;
 
@@ -1146,7 +1333,11 @@ function drawBuyers(){
       qty.value=data[product];
 
       qty.onchange=function(){
-        changeQty(buyer,product,this.value);
+        changeQty(
+          buyer,
+          product,
+          this.value
+        );
       };
 
       var del=document.createElement("button");
@@ -1154,7 +1345,10 @@ function drawBuyers(){
       del.textContent="삭제";
 
       del.onclick=function(){
-        deleteItem(buyer,product);
+        deleteItem(
+          buyer,
+          product
+        );
       };
 
       row.appendChild(itemHandle);
@@ -1232,10 +1426,18 @@ function drawBuyers(){
   );
 }
 
-attachCommaInput(document.getElementById("hotCount"));
 
-document.getElementById("hotAddButton").onclick=addHot;
-document.getElementById("addButton").onclick=addRecord;
+/* 시작 */
+
+attachCommaInput(
+  document.getElementById("hotCount")
+);
+
+document.getElementById("hotAddButton").onclick=
+  addHot;
+
+document.getElementById("addButton").onclick=
+  addRecord;
 
 drawHot();
 drawBuyers();
