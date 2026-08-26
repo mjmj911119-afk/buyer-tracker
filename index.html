@@ -1,37 +1,698 @@
-<!-- 상단 프로필 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOOP갓은별</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:18px 12px 45px;
+ font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+ color:#634858;
+ background:linear-gradient(#fff9fc,#fff0f6,#fff9fc);
+}
+.wrap{max-width:850px;margin:auto}
+
+.hero{
+ overflow:hidden;background:#fff;border-radius:26px;
+ border:1px solid #f1d5e1;
+ box-shadow:0 10px 28px rgba(210,110,150,.12);
+ margin-bottom:16px;
+}
+.title{
+ padding:22px;text-align:center;color:#fff;
+ background:linear-gradient(135deg,#f28fb5,#e9a5bf,#dca5bf);
+}
+.title h1{margin:0;font-size:28px}
+.title p{margin:6px 0 0;font-size:13px}
+
+.profile{padding:16px;text-align:center}
+.profile img{
+ width:100%;max-width:480px;max-height:420px;
+ object-fit:cover;border-radius:22px;
+ box-shadow:0 8px 22px rgba(200,100,145,.15);
+}
+
+.staff{
+ display:grid;grid-template-columns:1fr 1fr;gap:9px;
+ max-width:480px;margin:14px auto 0;
+}
+.staff-box{
+ padding:13px;border-radius:15px;background:#fff5f9;
+ border:1px solid #efd6e1;
+}
+.role{font-size:12px;color:#ba7c97;font-weight:800}
+.staff-name{font-size:16px;font-weight:900;margin-top:4px}
+
+.section{
+ background:#fff;border:1px solid #f0d7e2;
+ border-radius:20px;overflow:hidden;margin-bottom:13px;
+ box-shadow:0 6px 18px rgba(190,100,140,.06);
+}
+.section-head{
+ padding:18px;cursor:pointer;
+ background:linear-gradient(135deg,#fff,#fff0f6);
+}
+.section-head b{font-size:18px}
+.section-head small{display:block;margin-top:4px;color:#b28a9c}
+.content{display:none;padding:16px;border-top:1px solid #f4e4eb}
+.section.open .content{display:block}
+
+.form3,.form4{display:grid;gap:8px}
+.form3{grid-template-columns:1fr 170px 120px}
+.form4{grid-template-columns:1fr 1fr 90px 120px}
+
+input{
+ width:100%;padding:12px;border:1.5px solid #efd3df;
+ border-radius:11px;background:#fffafd;font-size:15px;outline:none;
+}
+input:focus{border-color:#e89bb8}
+
+.unit{position:relative}
+.unit input{padding-right:30px}
+.unit span{
+ position:absolute;right:11px;top:50%;transform:translateY(-50%);
+ color:#aa8495;
+}
+
+.add{
+ border:0;border-radius:11px;background:#e993b2;
+ color:#fff;font-weight:800;
+}
+
+.tip{font-size:12px;color:#ad8798;margin:9px 0 13px}
+
+.card{
+ border:1px solid #efdbe4;border-radius:15px;
+ overflow:hidden;margin-bottom:8px;background:#fff;
+}
+.card-head{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;padding:12px;background:#fff7fa;
+}
+.main{
+ display:flex;align-items:center;gap:9px;flex:1;cursor:pointer;
+}
+.circle{
+ width:41px;height:41px;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ color:#fff;background:#eaa0bb;font-size:13px;font-weight:900;
+}
+.name{font-weight:900}
+.sub{font-size:11px;color:#b18c9d;margin-top:2px}
+
+.tools{display:flex;gap:5px;align-items:center}
+.icon,.drag{
+ width:36px;height:36px;border:1px solid #efd6e0;
+ border-radius:9px;background:#fff1f6;
+ display:flex;align-items:center;justify-content:center;
+ padding:0;
+}
+.drag{cursor:grab;touch-action:none;color:#b87995;font-size:19px}
+.dragging{opacity:.5}
+
+.secret,.detail{
+ display:none;padding:12px;background:#fffafd;
+ border-top:1px solid #f3e4eb;
+}
+.card.secret-open .secret{display:block}
+.card.open .detail{display:block}
+
+.secret-box{
+ text-align:center;background:#fff;padding:13px;border-radius:12px;
+ border:1px solid #efd9e2;
+}
+.secret-box small{color:#ad8798}
+.big{font-size:21px;font-weight:900;margin:4px 0 9px}
+
+.edit,.danger{
+ width:100%;padding:9px;border-radius:9px;font-weight:800;
+}
+.edit{background:#fff;border:1px solid #ead6df;color:#704f5e}
+.danger{background:#fff0f3;border:1px solid #efd4dc;color:#ad6178}
+
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:7px;margin:13px 0;
+}
+.stat{
+ padding:10px;text-align:center;border-radius:13px;background:#fff0f5;
+}
+.stat small{display:block;color:#ae8999}
+.stat b{font-size:17px}
+
+.item{
+ display:grid;grid-template-columns:34px 1fr 70px 55px;
+ gap:5px;align-items:center;padding:7px 0;
+ border-bottom:1px solid #f2e4ea;
+}
+.item input{text-align:center;padding:7px}
+.del{
+ padding:8px 3px;border:1px solid #efd4dc;
+ border-radius:8px;background:#fff0f3;color:#ad6178;font-size:11px;
+}
+.actions{display:flex;gap:7px;margin-top:10px}
+.actions button{flex:1}
+
+.empty{text-align:center;padding:22px;color:#b18e9e}
+
+@media(max-width:650px){
+ .form3,.form4{grid-template-columns:1fr 1fr}
+ .form3 .add,.form4 .add{grid-column:1/-1;min-height:44px}
+ .title h1{font-size:24px}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
 <div class="hero">
+ <div class="title">
+   <h1>🌸 SOOP갓은별</h1>
+   <p>은별이와 함께하는 기록 공간 ♡</p>
+ </div>
 
-  <div class="hero-title">
-    <h1>🌸 SOOP갓은별</h1>
-    <p>은별이와 함께하는 기록 공간 ♡</p>
-  </div>
+ <div class="profile">
+   <img src="eunbyeol.png.gif" alt="SOOP갓은별">
 
-  <div class="profile-area">
+   <div class="staff">
+     <div class="staff-box">
+       <div class="role">👑 회장님</div>
+       <div class="staff-name">고집사</div>
+     </div>
 
-    <div class="profile-photo-wrap">
-
-      <img
-        src="eunbyeol.png.gif"
-        class="profile-photo"
-        alt="SOOP갓은별">
-
-      <div class="profile-heart">♥</div>
-
-    </div>
-
-    <div class="staff-wrap">
-
-      <div class="staff">
-        <div class="staff-role">👑 회장님</div>
-        <div class="staff-name">고집사</div>
-      </div>
-
-      <div class="staff">
-        <div class="staff-role">💗 부회장님</div>
-        <div class="staff-name">보노아조씨</div>
-      </div>
-
-    </div>
-
-  </div>
+     <div class="staff-box">
+       <div class="role">💗 부회장님</div>
+       <div class="staff-name">보노아조씨</div>
+     </div>
+   </div>
+ </div>
 </div>
+
+<div class="section" id="hotSection">
+ <div class="section-head" onclick="toggleSection('hotSection')">
+   <b>🔥 열혈 등수</b>
+   <small>눌러서 열혈 기록 보기</small>
+ </div>
+
+ <div class="content">
+   <div class="form3">
+     <input id="hotName" placeholder="열혈 이름">
+
+     <div class="unit">
+       <input id="hotCount" inputmode="numeric" placeholder="기여 개수">
+       <span>개</span>
+     </div>
+
+     <button class="add" id="hotAdd">＋ 추가</button>
+   </div>
+
+   <div class="tip">
+     같은 이름을 다시 입력하면 기여 개수가 자동으로 누적돼요.
+   </div>
+
+   <div id="hotList"></div>
+ </div>
+</div>
+
+<div class="section" id="couponSection">
+ <div class="section-head" onclick="toggleSection('couponSection')">
+   <b>🎟️ 쿠폰</b>
+   <small>눌러서 구매자별 쿠폰 보기</small>
+ </div>
+
+ <div class="content">
+
+   <div class="form4">
+     <input id="buyer" placeholder="구매한 이름">
+     <input id="product" placeholder="구매한 항목">
+     <input id="count" type="number" min="1" value="1">
+     <button class="add" id="couponAdd">＋ 기록 추가</button>
+   </div>
+
+   <div class="stats">
+     <div class="stat"><small>구매자</small><b id="peopleCount">0명</b></div>
+     <div class="stat"><small>쿠폰 항목</small><b id="itemCount">0개</b></div>
+     <div class="stat"><small>전체 수량</small><b id="totalCount">0개</b></div>
+   </div>
+
+   <div id="buyerList"></div>
+ </div>
+</div>
+
+</div>
+
+<script>
+function toggleSection(id){
+ document.getElementById(id).classList.toggle("open");
+}
+
+function digits(v){
+ return String(v||"").replace(/[^\d]/g,"");
+}
+
+function number(v){
+ return parseInt(digits(v),10)||0;
+}
+
+function commas(v){
+ var d=digits(v);
+ return d ? Number(d).toLocaleString("ko-KR") : "";
+}
+
+var hot=[];
+var coupons={people:{},order:[],itemOrders:{}};
+
+try{
+ hot=JSON.parse(localStorage.getItem("hotRankTracker"))||[];
+}catch(e){}
+
+try{
+ var old=JSON.parse(localStorage.getItem("buyerTracker"))||{};
+ coupons.people=old.people||{};
+ coupons.order=old.order||Object.keys(coupons.people);
+ coupons.itemOrders=old.itemOrders||{};
+}catch(e){}
+
+function saveHot(){
+ localStorage.setItem("hotRankTracker",JSON.stringify(hot));
+}
+
+function saveCoupons(){
+ localStorage.setItem("buyerTracker",JSON.stringify(coupons));
+}
+
+document.getElementById("hotCount").oninput=function(){
+ this.value=commas(this.value);
+};
+
+function sortable(box,handleClass,itemClass,done){
+ var moving=null;
+
+ box.onpointerdown=function(e){
+   var handle=e.target.closest(handleClass);
+   if(!handle)return;
+
+   moving=handle.closest(itemClass);
+   if(!moving)return;
+
+   moving.classList.add("dragging");
+   try{handle.setPointerCapture(e.pointerId)}catch(err){}
+   e.preventDefault();
+ };
+
+ box.onpointermove=function(e){
+   if(!moving)return;
+
+   var others=[...box.children].filter(x=>x!==moving);
+
+   var before=others.find(x=>{
+     var r=x.getBoundingClientRect();
+     return e.clientY < r.top+r.height/2;
+   });
+
+   if(before)box.insertBefore(moving,before);
+   else box.appendChild(moving);
+ };
+
+ function end(){
+   if(!moving)return;
+   moving.classList.remove("dragging");
+   moving=null;
+   done();
+ }
+
+ box.onpointerup=end;
+ box.onpointercancel=end;
+}
+
+/* 열혈 */
+
+function addHot(){
+ var name=document.getElementById("hotName").value.trim();
+ var cnt=number(document.getElementById("hotCount").value);
+
+ if(!name)return alert("열혈 이름을 입력해주세요.");
+ if(cnt<1)return alert("기여 개수를 입력해주세요.");
+
+ var found=hot.find(x=>x.name===name);
+
+ if(found){
+   found.contribution=(found.contribution||0)+cnt;
+ }else{
+   hot.push({
+     id:String(Date.now())+Math.random(),
+     name:name,
+     contribution:cnt
+   });
+ }
+
+ saveHot();
+
+ document.getElementById("hotName").value="";
+ document.getElementById("hotCount").value="";
+
+ drawHot();
+}
+
+function editHot(id){
+ var p=hot.find(x=>x.id===id);
+ if(!p)return;
+
+ var v=prompt(
+   "기여 개수를 수정해주세요.",
+   Number(p.contribution||0).toLocaleString("ko-KR")
+ );
+
+ if(v===null)return;
+
+ p.contribution=number(v);
+ saveHot();
+ drawHot();
+}
+
+function removeHot(id){
+ var p=hot.find(x=>x.id===id);
+ if(!p)return;
+
+ if(confirm(p.name+"님을 삭제할까요?")){
+   hot=hot.filter(x=>x.id!==id);
+   saveHot();
+   drawHot();
+ }
+}
+
+function drawHot(){
+ var list=document.getElementById("hotList");
+ list.innerHTML="";
+
+ if(!hot.length){
+   list.innerHTML='<div class="empty">아직 열혈 기록이 없어요.</div>';
+   return;
+ }
+
+ hot.forEach((p,i)=>{
+
+   var card=document.createElement("div");
+   card.className="card";
+   card.dataset.id=p.id;
+
+   card.innerHTML=`
+     <div class="card-head">
+       <div class="main">
+         <div class="circle">${i+1}위</div>
+         <div class="name"></div>
+       </div>
+
+       <div class="tools">
+         <button class="icon lock">🔒</button>
+         <button class="icon trash">🗑️</button>
+         <div class="drag">☰</div>
+       </div>
+     </div>
+
+     <div class="secret">
+       <div class="secret-box">
+         <small>기여 개수</small>
+         <div class="big">${Number(p.contribution||0).toLocaleString("ko-KR")}개</div>
+         <button class="edit">기여 개수 직접 수정</button>
+       </div>
+     </div>
+   `;
+
+   card.querySelector(".name").textContent=p.name;
+
+   card.querySelector(".lock").onclick=function(){
+     card.classList.toggle("secret-open");
+     this.textContent=card.classList.contains("secret-open")?"🔓":"🔒";
+   };
+
+   card.querySelector(".trash").onclick=()=>removeHot(p.id);
+   card.querySelector(".edit").onclick=()=>editHot(p.id);
+
+   list.appendChild(card);
+ });
+
+ sortable(list,".drag",".card",function(){
+   var ids=[...list.querySelectorAll(".card")].map(x=>x.dataset.id);
+
+   hot.sort((a,b)=>ids.indexOf(a.id)-ids.indexOf(b.id));
+
+   saveHot();
+   drawHot();
+ });
+}
+
+/* 쿠폰 */
+
+function normalize(){
+ coupons.order=coupons.order.filter(x=>coupons.people[x]);
+
+ Object.keys(coupons.people).forEach(name=>{
+   if(!coupons.order.includes(name))coupons.order.push(name);
+
+   if(!coupons.itemOrders[name]){
+     coupons.itemOrders[name]=Object.keys(coupons.people[name]);
+   }
+
+   coupons.itemOrders[name]=coupons.itemOrders[name]
+     .filter(x=>coupons.people[name][x]!==undefined);
+
+   Object.keys(coupons.people[name]).forEach(p=>{
+     if(!coupons.itemOrders[name].includes(p)){
+       coupons.itemOrders[name].push(p);
+     }
+   });
+ });
+}
+
+function addCoupon(){
+ var buyer=document.getElementById("buyer").value.trim();
+ var product=document.getElementById("product").value.trim();
+ var cnt=parseInt(document.getElementById("count").value)||0;
+
+ if(!buyer)return alert("구매한 이름을 입력해주세요.");
+ if(!product)return alert("구매한 항목을 입력해주세요.");
+ if(cnt<1)return alert("개수를 입력해주세요.");
+
+ if(!coupons.people[buyer]){
+   coupons.people[buyer]={};
+   coupons.order.push(buyer);
+   coupons.itemOrders[buyer]=[];
+ }
+
+ if(coupons.people[buyer][product]===undefined){
+   coupons.people[buyer][product]=0;
+   coupons.itemOrders[buyer].push(product);
+ }
+
+ coupons.people[buyer][product]+=cnt;
+
+ saveCoupons();
+
+ document.getElementById("buyer").value="";
+ document.getElementById("product").value="";
+ document.getElementById("count").value="1";
+
+ drawCoupons();
+}
+
+function renameBuyer(oldName){
+ var newName=prompt("새 이름을 입력해주세요.",oldName);
+ if(newName===null)return;
+
+ newName=newName.trim();
+ if(!newName||newName===oldName)return;
+
+ if(coupons.people[newName]){
+   return alert("이미 같은 이름이 있어요.");
+ }
+
+ coupons.people[newName]=coupons.people[oldName];
+ delete coupons.people[oldName];
+
+ coupons.itemOrders[newName]=coupons.itemOrders[oldName]||[];
+ delete coupons.itemOrders[oldName];
+
+ var i=coupons.order.indexOf(oldName);
+ if(i>=0)coupons.order[i]=newName;
+
+ saveCoupons();
+ drawCoupons();
+}
+
+function deleteBuyer(name){
+ if(confirm(name+"님의 기록을 삭제할까요?")){
+   delete coupons.people[name];
+   delete coupons.itemOrders[name];
+   coupons.order=coupons.order.filter(x=>x!==name);
+
+   saveCoupons();
+   drawCoupons();
+ }
+}
+
+function drawCoupons(){
+ normalize();
+
+ var buyers=Object.keys(coupons.people);
+ var kinds={};
+ var totalAll=0;
+
+ buyers.forEach(b=>{
+   Object.keys(coupons.people[b]).forEach(p=>{
+     kinds[p]=1;
+     totalAll+=coupons.people[b][p]||0;
+   });
+ });
+
+ document.getElementById("peopleCount").textContent=buyers.length+"명";
+ document.getElementById("itemCount").textContent=Object.keys(kinds).length+"개";
+ document.getElementById("totalCount").textContent=totalAll+"개";
+
+ var list=document.getElementById("buyerList");
+ list.innerHTML="";
+
+ if(!coupons.order.length){
+   list.innerHTML='<div class="empty">아직 쿠폰 기록이 없어요.</div>';
+   return;
+ }
+
+ coupons.order.forEach(name=>{
+
+   var products=coupons.itemOrders[name]||[];
+   var total=products.reduce((a,p)=>a+(coupons.people[name][p]||0),0);
+
+   var card=document.createElement("div");
+   card.className="card";
+   card.dataset.buyer=name;
+
+   var head=document.createElement("div");
+   head.className="card-head";
+
+   var main=document.createElement("div");
+   main.className="main";
+
+   main.innerHTML=`
+     <div class="circle">♥</div>
+     <div>
+       <div class="name"></div>
+       <div class="sub">총 ${total}개</div>
+     </div>
+   `;
+
+   main.querySelector(".name").textContent=name;
+   main.onclick=()=>card.classList.toggle("open");
+
+   var drag=document.createElement("div");
+   drag.className="drag";
+   drag.textContent="☰";
+
+   head.appendChild(main);
+   head.appendChild(drag);
+
+   var detail=document.createElement("div");
+   detail.className="detail";
+
+   var itemList=document.createElement("div");
+
+   products.forEach(product=>{
+     var row=document.createElement("div");
+     row.className="item";
+     row.dataset.product=product;
+
+     var handle=document.createElement("div");
+     handle.className="drag";
+     handle.textContent="☰";
+
+     var label=document.createElement("div");
+     label.textContent=product;
+
+     var input=document.createElement("input");
+     input.type="number";
+     input.min="0";
+     input.value=coupons.people[name][product];
+
+     input.onchange=function(){
+       var v=parseInt(this.value)||0;
+
+       if(v<=0){
+         delete coupons.people[name][product];
+         coupons.itemOrders[name]=coupons.itemOrders[name]
+           .filter(x=>x!==product);
+       }else{
+         coupons.people[name][product]=v;
+       }
+
+       saveCoupons();
+       drawCoupons();
+     };
+
+     var del=document.createElement("button");
+     del.className="del";
+     del.textContent="삭제";
+
+     del.onclick=function(){
+       if(confirm(product+" 항목을 삭제할까요?")){
+         delete coupons.people[name][product];
+
+         coupons.itemOrders[name]=coupons.itemOrders[name]
+           .filter(x=>x!==product);
+
+         saveCoupons();
+         drawCoupons();
+       }
+     };
+
+     row.append(handle,label,input,del);
+     itemList.appendChild(row);
+   });
+
+   detail.appendChild(itemList);
+
+   var actions=document.createElement("div");
+   actions.className="actions";
+
+   var rename=document.createElement("button");
+   rename.className="edit";
+   rename.textContent="✎ 이름 수정";
+   rename.onclick=()=>renameBuyer(name);
+
+   var remove=document.createElement("button");
+   remove.className="danger";
+   remove.textContent="구매자 삭제";
+   remove.onclick=()=>deleteBuyer(name);
+
+   actions.append(rename,remove);
+   detail.appendChild(actions);
+
+   card.append(head,detail);
+   list.appendChild(card);
+
+   sortable(itemList,".drag",".item",function(){
+     coupons.itemOrders[name]=[...itemList.querySelectorAll(".item")]
+       .map(x=>x.dataset.product);
+
+     saveCoupons();
+   });
+ });
+
+ sortable(list,".drag",".card",function(){
+   coupons.order=[...list.querySelectorAll(".card")]
+     .map(x=>x.dataset.buyer);
+
+   saveCoupons();
+ });
+}
+
+document.getElementById("hotAdd").onclick=addHot;
+document.getElementById("couponAdd").onclick=addCoupon;
+
+drawHot();
+drawCoupons();
+</script>
+</body>
+</html>
