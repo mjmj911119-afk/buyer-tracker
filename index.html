@@ -16,14 +16,7 @@ body{
   background:linear-gradient(#fff9fc,#fff0f6,#fff9fc);
 }
 
-.wrap{
-  max-width:850px;
-  margin:auto;
-}
-
-/* =====================
-   상단
-===================== */
+.wrap{max-width:850px;margin:auto}
 
 .hero{
   overflow:hidden;
@@ -41,19 +34,8 @@ body{
   background:linear-gradient(135deg,#f28fb5,#e9a5bf,#dca5bf);
 }
 
-.title h1{
-  margin:0;
-  font-size:28px;
-  font-weight:900;
-}
-
-.title p{
-  margin:6px 0 0;
-  font-size:13px;
-  color:#fff8fb;
-}
-
-/* 사진 + 회장/부회장 */
+.title h1{margin:0;font-size:28px;font-weight:900}
+.title p{margin:6px 0 0;font-size:13px;color:#fff8fb}
 
 .profile-side{
   display:grid;
@@ -62,10 +44,6 @@ body{
   align-items:center;
   padding:18px;
   background:linear-gradient(180deg,#fff,#fff8fb);
-}
-
-.photo-side{
-  min-width:0;
 }
 
 .photo-side img{
@@ -78,11 +56,7 @@ body{
   box-shadow:0 8px 22px rgba(200,100,145,.15);
 }
 
-.staff-side{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
+.staff-side{display:flex;flex-direction:column;gap:12px}
 
 .staff-box{
   padding:22px 14px;
@@ -90,25 +64,12 @@ body{
   border-radius:17px;
   background:linear-gradient(135deg,#fff,#fff1f6);
   text-align:center;
-  box-shadow:0 5px 16px rgba(200,100,145,.07);
 }
 
-.role{
-  color:#ba7c97;
-  font-size:13px;
-  font-weight:800;
-}
+.role{color:#ba7c97;font-size:13px;font-weight:800}
+.staff-name{margin-top:6px;color:#624554;font-size:19px;font-weight:900}
 
-.staff-name{
-  margin-top:6px;
-  color:#624554;
-  font-size:19px;
-  font-weight:900;
-}
-
-/* =====================
-   메뉴
-===================== */
+/* 큰 메뉴 */
 
 .section{
   margin-bottom:13px;
@@ -126,15 +87,8 @@ body{
   user-select:none;
 }
 
-.section-head b{
-  font-size:18px;
-}
-
-.section-head small{
-  display:block;
-  margin-top:4px;
-  color:#b28a9c;
-}
+.section-head b{font-size:18px}
+.section-head small{display:block;margin-top:4px;color:#b28a9c}
 
 .content{
   display:none;
@@ -142,27 +96,13 @@ body{
   border-top:1px solid #f4e4eb;
 }
 
-.section.open .content{
-  display:block;
-}
+.section.open .content{display:block}
 
-/* =====================
-   입력창
-===================== */
+/* 입력 */
 
-.form3,
-.form4{
-  display:grid;
-  gap:8px;
-}
-
-.form3{
-  grid-template-columns:1fr 170px 120px;
-}
-
-.form4{
-  grid-template-columns:1fr 1fr 90px 120px;
-}
+.form3,.form4{display:grid;gap:8px}
+.form3{grid-template-columns:1fr 170px 120px}
+.form4{grid-template-columns:1fr 1fr 90px 120px}
 
 input{
   width:100%;
@@ -180,17 +120,10 @@ input:focus{
   box-shadow:0 0 0 3px rgba(232,155,184,.10);
 }
 
-input::placeholder{
-  color:#b89aa7;
-}
+input::placeholder{color:#b89aa7}
 
-.unit{
-  position:relative;
-}
-
-.unit input{
-  padding-right:30px;
-}
+.unit{position:relative}
+.unit input{padding-right:30px}
 
 .unit span{
   position:absolute;
@@ -201,10 +134,7 @@ input::placeholder{
   pointer-events:none;
 }
 
-button{
-  font-family:inherit;
-  cursor:pointer;
-}
+button{font-family:inherit;cursor:pointer}
 
 .add{
   border:0;
@@ -214,15 +144,9 @@ button{
   font-weight:800;
 }
 
-.tip{
-  margin:9px 0 13px;
-  color:#ad8798;
-  font-size:12px;
-}
+.tip{margin:9px 0 13px;color:#ad8798;font-size:12px}
 
-/* =====================
-   카드
-===================== */
+/* 카드 */
 
 .card{
   margin-bottom:8px;
@@ -264,27 +188,12 @@ button{
   font-weight:900;
 }
 
-.name{
-  color:#674857;
-  font-weight:900;
-}
+.name{color:#674857;font-weight:900}
+.sub{margin-top:2px;color:#b18c9d;font-size:11px}
 
-.sub{
-  margin-top:2px;
-  color:#b18c9d;
-  font-size:11px;
-}
+.tools{display:flex;align-items:center;gap:5px}
 
-/* 열혈 버튼 */
-
-.tools{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.icon,
-.drag{
+.icon,.drag{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -301,30 +210,19 @@ button{
   cursor:grab;
   touch-action:none;
   user-select:none;
-  -webkit-user-select:none;
   font-size:19px;
 }
 
-.dragging{
-  opacity:.5;
-}
+.dragging{opacity:.5}
 
-/* =====================
-   열혈 기여 개수
-===================== */
-
-.secret,
-.detail{
+.secret,.detail{
   display:none;
   padding:12px;
   border-top:1px solid #f3e4eb;
   background:#fffafd;
 }
 
-.card.secret-open .secret{
-  display:block;
-}
-
+.card.secret-open .secret,
 .card.open .detail{
   display:block;
 }
@@ -337,9 +235,7 @@ button{
   text-align:center;
 }
 
-.secret-box small{
-  color:#ad8798;
-}
+.secret-box small{color:#ad8798}
 
 .big{
   margin:4px 0 9px;
@@ -348,8 +244,7 @@ button{
   font-weight:900;
 }
 
-.edit,
-.danger{
+.edit,.danger{
   width:100%;
   padding:9px;
   border-radius:9px;
@@ -368,15 +263,17 @@ button{
   background:#fff0f3;
 }
 
-/* =====================
-   쿠폰
-===================== */
+/* 통계 */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:7px;
   margin:13px 0;
+}
+
+.stats.two{
+  grid-template-columns:repeat(2,1fr);
 }
 
 .stat{
@@ -386,16 +283,10 @@ button{
   text-align:center;
 }
 
-.stat small{
-  display:block;
-  color:#ae8999;
-}
+.stat small{display:block;color:#ae8999}
+.stat b{display:block;margin-top:3px;font-size:17px}
 
-.stat b{
-  display:block;
-  margin-top:3px;
-  font-size:17px;
-}
+/* 쿠폰 */
 
 .item{
   display:grid;
@@ -406,10 +297,7 @@ button{
   border-bottom:1px solid #f2e4ea;
 }
 
-.item input{
-  padding:7px;
-  text-align:center;
-}
+.item input{padding:7px;text-align:center}
 
 .del{
   padding:8px 3px;
@@ -426,9 +314,7 @@ button{
   margin-top:10px;
 }
 
-.actions button{
-  flex:1;
-}
+.actions button{flex:1}
 
 .empty{
   padding:22px;
@@ -436,47 +322,29 @@ button{
   text-align:center;
 }
 
-/* =====================
-   휴대폰
-===================== */
-
 @media(max-width:650px){
 
-  .profile-side{
-    grid-template-columns:1fr;
-  }
+  .profile-side{grid-template-columns:1fr}
 
   .staff-side{
     display:grid;
     grid-template-columns:1fr 1fr;
   }
 
-  .staff-box{
-    padding:14px 8px;
-  }
+  .staff-box{padding:14px 8px}
+  .staff-name{font-size:16px}
 
-  .staff-name{
-    font-size:16px;
-  }
-
-  .form3,
-  .form4{
+  .form3,.form4{
     grid-template-columns:1fr 1fr;
   }
 
-  .form3 .add,
-  .form4 .add{
+  .form3 .add,.form4 .add{
     grid-column:1/-1;
     min-height:44px;
   }
 
-  .title h1{
-    font-size:24px;
-  }
-
-  .photo-side img{
-    max-height:350px;
-  }
+  .title h1{font-size:24px}
+  .photo-side img{max-height:350px}
 }
 </style>
 </head>
@@ -485,9 +353,7 @@ button{
 
 <div class="wrap">
 
-<!-- =====================
-     상단
-===================== -->
+<!-- 상단 -->
 
 <div class="hero">
 
@@ -521,9 +387,7 @@ button{
 </div>
 
 
-<!-- =====================
-     열혈
-===================== -->
+<!-- 열혈 -->
 
 <div class="section" id="hotSection">
 
@@ -536,21 +400,14 @@ button{
 
     <div class="form3">
 
-      <input
-        id="hotName"
-        placeholder="열혈 이름">
+      <input id="hotName" placeholder="열혈 이름">
 
       <div class="unit">
-        <input
-          id="hotCount"
-          inputmode="numeric"
-          placeholder="기여 개수">
+        <input id="hotCount" inputmode="numeric" placeholder="기여 개수">
         <span>개</span>
       </div>
 
-      <button
-        class="add"
-        id="hotAdd">
+      <button class="add" id="hotAdd">
         ＋ 추가
       </button>
 
@@ -567,9 +424,7 @@ button{
 </div>
 
 
-<!-- =====================
-     쿠폰
-===================== -->
+<!-- 쿠폰 -->
 
 <div class="section" id="couponSection">
 
@@ -582,23 +437,13 @@ button{
 
     <div class="form4">
 
-      <input
-        id="buyer"
-        placeholder="구매한 이름">
+      <input id="buyer" placeholder="구매한 이름">
 
-      <input
-        id="product"
-        placeholder="구매한 항목">
+      <input id="product" placeholder="구매한 항목">
 
-      <input
-        id="count"
-        type="number"
-        min="1"
-        value="1">
+      <input id="count" type="number" min="1" value="1">
 
-      <button
-        class="add"
-        id="couponAdd">
+      <button class="add" id="couponAdd">
         ＋ 기록 추가
       </button>
 
@@ -623,11 +468,67 @@ button{
 
     </div>
 
-    <div class="tip">
-      구매자를 누르면 쿠폰이 펼쳐져요. ☰를 잡고 순서를 바꿀 수 있어요.
+    <div id="buyerList"></div>
+
+  </div>
+
+</div>
+
+
+<!-- 1주년 응모권 -->
+
+<div class="section" id="raffleSection">
+
+  <div class="section-head" onclick="toggleSection('raffleSection')">
+    <b>🎫 1주년 응모권</b>
+    <small>눌러서 응모권 기록 보기</small>
+  </div>
+
+  <div class="content">
+
+    <div class="form3">
+
+      <input
+        id="raffleName"
+        placeholder="닉네임">
+
+      <div class="unit">
+        <input
+          id="raffleCount"
+          type="number"
+          min="1"
+          value="1"
+          placeholder="응모권 개수">
+        <span>개</span>
+      </div>
+
+      <button
+        class="add"
+        id="raffleAdd">
+        ＋ 추가
+      </button>
+
     </div>
 
-    <div id="buyerList"></div>
+    <div class="tip">
+      같은 닉네임을 다시 입력하면 기존 응모권에 자동으로 더해져요.
+    </div>
+
+    <div class="stats two">
+
+      <div class="stat">
+        <small>참여자</small>
+        <b id="rafflePeople">0명</b>
+      </div>
+
+      <div class="stat">
+        <small>총 응모권</small>
+        <b id="raffleTotal">0개</b>
+      </div>
+
+    </div>
+
+    <div id="raffleList"></div>
 
   </div>
 
@@ -635,12 +536,9 @@ button{
 
 </div>
 
-
 <script>
 
-/* =====================
-   공통
-===================== */
+/* 공통 */
 
 function toggleSection(id){
   document.getElementById(id).classList.toggle("open");
@@ -660,9 +558,7 @@ function commas(v){
 }
 
 
-/* =====================
-   데이터
-===================== */
+/* 데이터 */
 
 var hot=[];
 
@@ -672,12 +568,16 @@ var coupons={
   itemOrders:{}
 };
 
+var raffle=[];
+
+
 try{
   hot=
     JSON.parse(
       localStorage.getItem("hotRankTracker")
     )||[];
 }catch(e){}
+
 
 try{
 
@@ -693,47 +593,48 @@ try{
 }catch(e){}
 
 
-function saveHot(){
+try{
 
+  raffle=
+    JSON.parse(
+      localStorage.getItem("anniversaryRaffleTracker")
+    )||[];
+
+}catch(e){}
+
+
+function saveHot(){
   localStorage.setItem(
     "hotRankTracker",
     JSON.stringify(hot)
   );
-
 }
 
 function saveCoupons(){
-
   localStorage.setItem(
     "buyerTracker",
     JSON.stringify(coupons)
   );
+}
 
+function saveRaffle(){
+  localStorage.setItem(
+    "anniversaryRaffleTracker",
+    JSON.stringify(raffle)
+  );
 }
 
 
-/* 기여 개수 입력 콤마 */
-
 document.getElementById("hotCount").oninput=function(){
-
   this.value=commas(this.value);
-
 };
 
 
-/* =====================
-   드래그
-===================== */
+/* 드래그 */
 
-function sortable(
-  box,
-  handleClass,
-  itemClass,
-  done
-){
+function sortable(box,handleClass,itemClass,done){
 
   var moving=null;
-
 
   box.onpointerdown=function(e){
 
@@ -741,23 +642,18 @@ function sortable(
 
     if(!handle)return;
 
-
     moving=handle.closest(itemClass);
 
     if(!moving)return;
 
-
     moving.classList.add("dragging");
-
 
     try{
       handle.setPointerCapture(e.pointerId);
     }catch(err){}
 
-
     e.preventDefault();
     e.stopPropagation();
-
   };
 
 
@@ -765,13 +661,11 @@ function sortable(
 
     if(!moving)return;
 
-
     var others=
       [...box.children]
       .filter(function(x){
         return x!==moving;
       });
-
 
     var before=
       others.find(function(x){
@@ -779,20 +673,13 @@ function sortable(
         var r=x.getBoundingClientRect();
 
         return e.clientY < r.top+r.height/2;
-
       });
 
-
     if(before){
-
       box.insertBefore(moving,before);
-
     }else{
-
       box.appendChild(moving);
-
     }
-
   };
 
 
@@ -800,66 +687,46 @@ function sortable(
 
     if(!moving)return;
 
-
     moving.classList.remove("dragging");
 
     moving=null;
 
     done();
-
   }
-
 
   box.onpointerup=end;
   box.onpointercancel=end;
-
 }
 
 
 /* =====================
-   열혈 추가
+   열혈
 ===================== */
 
 function addHot(){
 
   var name=
-    document
-    .getElementById("hotName")
-    .value
-    .trim();
-
+    document.getElementById("hotName").value.trim();
 
   var cnt=
     number(
       document.getElementById("hotCount").value
     );
 
-
   if(!name){
-
     alert("열혈 이름을 입력해주세요.");
-
     return;
-
   }
-
 
   if(cnt<1){
-
     alert("기여 개수를 입력해주세요.");
-
     return;
-
   }
-
 
   var found=
     hot.find(function(x){
-
       return x.name===name;
-
     });
-
 
   if(found){
 
@@ -869,123 +736,73 @@ function addHot(){
   }else{
 
     hot.push({
-
-      id:
-        String(Date.now())+
-        Math.random(),
-
+      id:String(Date.now())+Math.random(),
       name:name,
-
       contribution:cnt
-
     });
-
   }
-
 
   saveHot();
 
-
   document.getElementById("hotName").value="";
-
   document.getElementById("hotCount").value="";
 
-
   drawHot();
-
 }
 
-
-/* =====================
-   열혈 수정
-===================== */
 
 function editHot(id){
 
   var p=
     hot.find(function(x){
-
       return x.id===id;
-
     });
 
-
   if(!p)return;
-
 
   var v=
     prompt(
       "기여 개수를 수정해주세요.",
-      Number(p.contribution||0)
-      .toLocaleString("ko-KR")
+      Number(p.contribution||0).toLocaleString("ko-KR")
     );
-
 
   if(v===null)return;
 
-
   p.contribution=number(v);
 
-
   saveHot();
-
   drawHot();
-
 }
 
-
-/* =====================
-   열혈 삭제
-===================== */
 
 function removeHot(id){
 
   var p=
     hot.find(function(x){
-
       return x.id===id;
-
     });
-
 
   if(!p)return;
 
-
-  if(
-    confirm(
-      p.name+"님을 삭제할까요?"
-    )
-  ){
+  if(confirm(p.name+"님을 삭제할까요?")){
 
     hot=
       hot.filter(function(x){
-
         return x.id!==id;
-
       });
 
-
     saveHot();
-
     drawHot();
-
   }
-
 }
 
-
-/* =====================
-   열혈 표시
-===================== */
 
 function drawHot(){
 
   var list=
     document.getElementById("hotList");
 
-
   list.innerHTML="";
-
 
   if(!hot.length){
 
@@ -993,21 +810,16 @@ function drawHot(){
       '<div class="empty">아직 열혈 기록이 없어요.</div>';
 
     return;
-
   }
 
 
   hot.forEach(function(p,i){
 
-
     var card=
       document.createElement("div");
 
-
     card.className="card";
-
     card.dataset.id=p.id;
-
 
     card.innerHTML=`
 
@@ -1023,33 +835,23 @@ function drawHot(){
 
         </div>
 
-
         <div class="tools">
 
-          <button class="icon lock">
-            🔒
-          </button>
+          <button class="icon lock">🔒</button>
 
-          <button class="icon trash">
-            🗑️
-          </button>
+          <button class="icon trash">🗑️</button>
 
-          <div class="drag">
-            ☰
-          </div>
+          <div class="drag">☰</div>
 
         </div>
 
       </div>
 
-
       <div class="secret">
 
         <div class="secret-box">
 
-          <small>
-            기여 개수
-          </small>
+          <small>기여 개수</small>
 
           <div class="big">
             ${Number(p.contribution||0).toLocaleString("ko-KR")}개
@@ -1062,57 +864,34 @@ function drawHot(){
         </div>
 
       </div>
-
     `;
 
+    card.querySelector(".name").textContent=p.name;
 
-    card
-    .querySelector(".name")
-    .textContent=p.name;
-
-
-    card
-    .querySelector(".lock")
-    .onclick=function(e){
+    card.querySelector(".lock").onclick=function(e){
 
       e.stopPropagation();
 
-
-      card.classList.toggle(
-        "secret-open"
-      );
-
+      card.classList.toggle("secret-open");
 
       this.textContent=
         card.classList.contains("secret-open")
         ?"🔓"
         :"🔒";
-
     };
 
-
-    card
-    .querySelector(".trash")
-    .onclick=function(e){
+    card.querySelector(".trash").onclick=function(e){
 
       e.stopPropagation();
 
       removeHot(p.id);
-
     };
 
-
-    card
-    .querySelector(".edit")
-    .onclick=function(){
-
+    card.querySelector(".edit").onclick=function(){
       editHot(p.id);
-
     };
-
 
     list.appendChild(card);
-
   });
 
 
@@ -1125,203 +904,114 @@ function drawHot(){
       var ids=
         [...list.querySelectorAll(".card")]
         .map(function(x){
-
           return x.dataset.id;
-
         });
 
-
       hot.sort(function(a,b){
-
-        return (
-          ids.indexOf(a.id)-
-          ids.indexOf(b.id)
-        );
-
+        return ids.indexOf(a.id)-ids.indexOf(b.id);
       });
 
-
       saveHot();
-
       drawHot();
-
     }
   );
-
 }
 
 
 /* =====================
-   쿠폰 데이터 정리
+   쿠폰
 ===================== */
 
 function normalize(){
 
   coupons.order=
     coupons.order.filter(function(x){
-
       return coupons.people[x];
-
     });
 
-
-  Object
-  .keys(coupons.people)
+  Object.keys(coupons.people)
   .forEach(function(name){
 
-
-    if(
-      !coupons.order.includes(name)
-    ){
-
+    if(!coupons.order.includes(name)){
       coupons.order.push(name);
-
     }
 
-
-    if(
-      !coupons.itemOrders[name]
-    ){
+    if(!coupons.itemOrders[name]){
 
       coupons.itemOrders[name]=
-        Object.keys(
-          coupons.people[name]
-        );
-
+        Object.keys(coupons.people[name]);
     }
-
 
     coupons.itemOrders[name]=
       coupons.itemOrders[name]
       .filter(function(x){
-
-        return (
-          coupons.people[name][x]
-          !==undefined
-        );
-
+        return coupons.people[name][x]!==undefined;
       });
 
-
-    Object
-    .keys(coupons.people[name])
+    Object.keys(coupons.people[name])
     .forEach(function(p){
 
-      if(
-        !coupons.itemOrders[name]
-        .includes(p)
-      ){
-
-        coupons.itemOrders[name]
-        .push(p);
-
+      if(!coupons.itemOrders[name].includes(p)){
+        coupons.itemOrders[name].push(p);
       }
-
     });
-
   });
-
 }
 
-
-/* =====================
-   쿠폰 추가
-===================== */
 
 function addCoupon(){
 
   var buyer=
-    document
-    .getElementById("buyer")
-    .value
-    .trim();
-
+    document.getElementById("buyer").value.trim();
 
   var product=
-    document
-    .getElementById("product")
-    .value
-    .trim();
-
+    document.getElementById("product").value.trim();
 
   var cnt=
     parseInt(
       document.getElementById("count").value
     )||0;
 
-
   if(!buyer){
-
     alert("구매한 이름을 입력해주세요.");
-
     return;
-
   }
-
 
   if(!product){
-
     alert("구매한 항목을 입력해주세요.");
-
     return;
-
   }
-
 
   if(cnt<1){
-
     alert("개수를 입력해주세요.");
-
     return;
-
   }
-
 
   if(!coupons.people[buyer]){
 
     coupons.people[buyer]={};
-
     coupons.order.push(buyer);
-
     coupons.itemOrders[buyer]=[];
-
   }
 
-
-  if(
-    coupons.people[buyer][product]
-    ===undefined
-  ){
+  if(coupons.people[buyer][product]===undefined){
 
     coupons.people[buyer][product]=0;
 
-    coupons.itemOrders[buyer]
-    .push(product);
-
+    coupons.itemOrders[buyer].push(product);
   }
-
 
   coupons.people[buyer][product]+=cnt;
 
-
   saveCoupons();
 
-
   document.getElementById("buyer").value="";
-
   document.getElementById("product").value="";
-
   document.getElementById("count").value="1";
 
-
   drawCoupons();
-
 }
 
-
-/* =====================
-   구매자 이름 수정
-===================== */
 
 function renameBuyer(oldName){
 
@@ -1331,154 +1021,93 @@ function renameBuyer(oldName){
       oldName
     );
 
-
   if(newName===null)return;
-
 
   newName=newName.trim();
 
-
-  if(
-    !newName||
-    newName===oldName
-  )return;
-
+  if(!newName||newName===oldName)return;
 
   if(coupons.people[newName]){
-
     alert("이미 같은 이름이 있어요.");
-
     return;
-
   }
-
 
   coupons.people[newName]=
     coupons.people[oldName];
 
-
   delete coupons.people[oldName];
-
 
   coupons.itemOrders[newName]=
     coupons.itemOrders[oldName]||[];
 
-
   delete coupons.itemOrders[oldName];
-
 
   var i=
     coupons.order.indexOf(oldName);
 
-
   if(i>=0){
-
     coupons.order[i]=newName;
-
   }
 
-
   saveCoupons();
-
   drawCoupons();
-
 }
 
-
-/* =====================
-   구매자 삭제
-===================== */
 
 function deleteBuyer(name){
 
-  if(
-    confirm(
-      name+"님의 기록을 삭제할까요?"
-    )
-  ){
+  if(confirm(name+"님의 기록을 삭제할까요?")){
 
     delete coupons.people[name];
-
     delete coupons.itemOrders[name];
-
 
     coupons.order=
       coupons.order.filter(function(x){
-
         return x!==name;
-
       });
 
-
     saveCoupons();
-
     drawCoupons();
-
   }
-
 }
 
-
-/* =====================
-   쿠폰 표시
-===================== */
 
 function drawCoupons(){
 
   normalize();
 
-
   var buyers=
-    Object.keys(
-      coupons.people
-    );
-
+    Object.keys(coupons.people);
 
   var kinds={};
 
   var totalAll=0;
 
-
   buyers.forEach(function(b){
 
-    Object
-    .keys(coupons.people[b])
+    Object.keys(coupons.people[b])
     .forEach(function(p){
 
       kinds[p]=1;
 
       totalAll+=
         coupons.people[b][p]||0;
-
     });
-
   });
 
-
-  document
-  .getElementById("peopleCount")
-  .textContent=
+  document.getElementById("peopleCount").textContent=
     buyers.length+"명";
 
-
-  document
-  .getElementById("itemCount")
-  .textContent=
+  document.getElementById("itemCount").textContent=
     Object.keys(kinds).length+"개";
 
-
-  document
-  .getElementById("totalCount")
-  .textContent=
+  document.getElementById("totalCount").textContent=
     totalAll+"개";
-
 
   var list=
     document.getElementById("buyerList");
 
-
   list.innerHTML="";
-
 
   if(!coupons.order.length){
 
@@ -1486,59 +1115,43 @@ function drawCoupons(){
       '<div class="empty">아직 쿠폰 기록이 없어요.</div>';
 
     return;
-
   }
 
 
   coupons.order.forEach(function(name){
 
-
     var products=
       coupons.itemOrders[name]||[];
-
 
     var total=
       products.reduce(
         function(a,p){
 
-          return (
-            a+
-            (coupons.people[name][p]||0)
-          );
-
+          return a+
+            (coupons.people[name][p]||0);
         },
         0
       );
 
-
     var card=
       document.createElement("div");
 
-
     card.className="card";
-
     card.dataset.buyer=name;
-
 
     var head=
       document.createElement("div");
 
-
     head.className="card-head";
-
 
     var main=
       document.createElement("div");
 
-
     main.className="main";
-
 
     main.innerHTML=`
 
-      <div class="circle">
-        ♥
-      </div>
+      <div class="circle">♥</div>
 
       <div>
 
@@ -1549,42 +1162,27 @@ function drawCoupons(){
         </div>
 
       </div>
-
     `;
 
-
-    main
-    .querySelector(".name")
-    .textContent=name;
-
+    main.querySelector(".name").textContent=name;
 
     main.onclick=function(){
-
       card.classList.toggle("open");
-
     };
-
 
     var drag=
       document.createElement("div");
 
-
     drag.className="drag";
-
     drag.textContent="☰";
 
-
     head.appendChild(main);
-
     head.appendChild(drag);
-
 
     var detail=
       document.createElement("div");
 
-
     detail.className="detail";
-
 
     var itemList=
       document.createElement("div");
@@ -1592,114 +1190,78 @@ function drawCoupons(){
 
     products.forEach(function(product){
 
-
       var row=
         document.createElement("div");
 
-
       row.className="item";
-
       row.dataset.product=product;
-
 
       var handle=
         document.createElement("div");
 
-
       handle.className="drag";
-
       handle.textContent="☰";
-
 
       var label=
         document.createElement("div");
 
-
       label.textContent=product;
-
 
       var input=
         document.createElement("input");
 
-
       input.type="number";
-
       input.min="0";
 
       input.value=
         coupons.people[name][product];
-
 
       input.onchange=function(){
 
         var v=
           parseInt(this.value)||0;
 
-
         if(v<=0){
 
           delete coupons.people[name][product];
 
-
           coupons.itemOrders[name]=
             coupons.itemOrders[name]
             .filter(function(x){
-
               return x!==product;
-
             });
 
         }else{
 
           coupons.people[name][product]=v;
-
         }
 
-
         saveCoupons();
-
         drawCoupons();
-
       };
-
 
       var del=
         document.createElement("button");
 
-
       del.className="del";
-
       del.textContent="삭제";
-
 
       del.onclick=function(){
 
-        if(
-          confirm(
-            product+" 항목을 삭제할까요?"
-          )
-        ){
+        if(confirm(product+" 항목을 삭제할까요?")){
 
           delete coupons.people[name][product];
-
 
           coupons.itemOrders[name]=
             coupons.itemOrders[name]
             .filter(function(x){
-
               return x!==product;
-
             });
 
-
           saveCoupons();
-
           drawCoupons();
-
         }
-
       };
-
 
       row.append(
         handle,
@@ -1708,68 +1270,48 @@ function drawCoupons(){
         del
       );
 
-
       itemList.appendChild(row);
-
     });
 
 
     detail.appendChild(itemList);
 
-
     var actions=
       document.createElement("div");
 
-
     actions.className="actions";
-
 
     var rename=
       document.createElement("button");
 
-
     rename.className="edit";
-
     rename.textContent="✎ 이름 수정";
 
-
     rename.onclick=function(){
-
       renameBuyer(name);
-
     };
-
 
     var remove=
       document.createElement("button");
 
-
     remove.className="danger";
-
     remove.textContent="구매자 삭제";
 
-
     remove.onclick=function(){
-
       deleteBuyer(name);
-
     };
-
 
     actions.append(
       rename,
       remove
     );
 
-
     detail.appendChild(actions);
-
 
     card.append(
       head,
       detail
     );
-
 
     list.appendChild(card);
 
@@ -1783,17 +1325,12 @@ function drawCoupons(){
         coupons.itemOrders[name]=
           [...itemList.querySelectorAll(".item")]
           .map(function(x){
-
             return x.dataset.product;
-
           });
 
-
         saveCoupons();
-
       }
     );
-
   });
 
 
@@ -1806,37 +1343,276 @@ function drawCoupons(){
       coupons.order=
         [...list.querySelectorAll(".card")]
         .map(function(x){
-
           return x.dataset.buyer;
-
         });
 
-
       saveCoupons();
-
     }
   );
-
 }
 
 
 /* =====================
-   시작
+   1주년 응모권
 ===================== */
 
-document
-.getElementById("hotAdd")
-.onclick=addHot;
+function addRaffle(){
+
+  var name=
+    document.getElementById("raffleName").value.trim();
+
+  var count=
+    parseInt(
+      document.getElementById("raffleCount").value
+    )||0;
+
+  if(!name){
+    alert("닉네임을 입력해주세요.");
+    return;
+  }
+
+  if(count<1){
+    alert("응모권 개수를 입력해주세요.");
+    return;
+  }
+
+  var existing=
+    raffle.find(function(x){
+      return x.name===name;
+    });
+
+  if(existing){
+
+    existing.count=
+      Number(existing.count||0)+count;
+
+  }else{
+
+    raffle.push({
+      id:String(Date.now())+Math.random(),
+      name:name,
+      count:count
+    });
+  }
+
+  saveRaffle();
+
+  document.getElementById("raffleName").value="";
+  document.getElementById("raffleCount").value="1";
+
+  drawRaffle();
+}
 
 
-document
-.getElementById("couponAdd")
-.onclick=addCoupon;
+function editRaffle(id){
 
+  var person=
+    raffle.find(function(x){
+      return x.id===id;
+    });
+
+  if(!person)return;
+
+  var value=
+    prompt(
+      person.name+"님의 응모권 개수",
+      person.count
+    );
+
+  if(value===null)return;
+
+  var newCount=
+    parseInt(value)||0;
+
+  if(newCount<0)return;
+
+  person.count=newCount;
+
+  saveRaffle();
+  drawRaffle();
+}
+
+
+function deleteRaffle(id){
+
+  var person=
+    raffle.find(function(x){
+      return x.id===id;
+    });
+
+  if(!person)return;
+
+  if(confirm(person.name+"님의 응모권 기록을 삭제할까요?")){
+
+    raffle=
+      raffle.filter(function(x){
+        return x.id!==id;
+      });
+
+    saveRaffle();
+    drawRaffle();
+  }
+}
+
+
+function drawRaffle(){
+
+  document.getElementById("rafflePeople").textContent=
+    raffle.length+"명";
+
+  var total=
+    raffle.reduce(function(sum,p){
+      return sum+Number(p.count||0);
+    },0);
+
+  document.getElementById("raffleTotal").textContent=
+    total.toLocaleString("ko-KR")+"개";
+
+
+  var list=
+    document.getElementById("raffleList");
+
+  list.innerHTML="";
+
+  if(!raffle.length){
+
+    list.innerHTML=
+      '<div class="empty">아직 응모권 기록이 없어요.</div>';
+
+    return;
+  }
+
+
+  raffle.forEach(function(person){
+
+    var card=
+      document.createElement("div");
+
+    card.className="card";
+    card.dataset.id=person.id;
+
+
+    var head=
+      document.createElement("div");
+
+    head.className="card-head";
+
+
+    var main=
+      document.createElement("div");
+
+    main.className="main";
+
+
+    main.innerHTML=`
+
+      <div class="circle">🎫</div>
+
+      <div>
+
+        <div class="name"></div>
+
+        <div class="sub">
+          응모권 ${Number(person.count||0).toLocaleString("ko-KR")}개
+        </div>
+
+      </div>
+    `;
+
+
+    main.querySelector(".name").textContent=
+      person.name;
+
+
+    main.onclick=function(){
+      editRaffle(person.id);
+    };
+
+
+    var tools=
+      document.createElement("div");
+
+    tools.className="tools";
+
+
+    var trash=
+      document.createElement("button");
+
+    trash.className="icon";
+
+    trash.textContent="🗑️";
+
+    trash.onclick=function(e){
+
+      e.stopPropagation();
+
+      deleteRaffle(person.id);
+    };
+
+
+    var drag=
+      document.createElement("div");
+
+    drag.className="drag";
+
+    drag.textContent="☰";
+
+
+    tools.append(
+      trash,
+      drag
+    );
+
+
+    head.append(
+      main,
+      tools
+    );
+
+
+    card.appendChild(head);
+
+    list.appendChild(card);
+  });
+
+
+  sortable(
+    list,
+    ".drag",
+    ".card",
+    function(){
+
+      var ids=
+        [...list.querySelectorAll(".card")]
+        .map(function(x){
+          return x.dataset.id;
+        });
+
+      raffle.sort(function(a,b){
+        return ids.indexOf(a.id)-ids.indexOf(b.id);
+      });
+
+      saveRaffle();
+      drawRaffle();
+    }
+  );
+}
+
+
+/* 시작 */
+
+document.getElementById("hotAdd").onclick=
+  addHot;
+
+document.getElementById("couponAdd").onclick=
+  addCoupon;
+
+document.getElementById("raffleAdd").onclick=
+  addRaffle;
 
 drawHot();
-
 drawCoupons();
+drawRaffle();
 
 </script>
 
